@@ -1,8 +1,33 @@
 #logo-main img {
-    position: absolute;
+    display: block;
     width: 541px;
     height: 187px;
-    left: 548px;
     top: 0px;
-    background: url(slogon.jpg.jpg);
+    margin: auto;
+    background: url(slogon.jpg);
+}
+
+body {
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu-main {
+    font-family: 'Nanum Gothic Coding', monospace;
+    text-align: center;
+}
+
+
+/* Rectangle 111 */
+
+.menu-main {
+    box-sizing: border-box;
+    position: absolute;
+    display: block;
+    margin: auto;
+    max-width: 966px;
+    max-height: 47px;
+    left: 88px;
+    top: 195px;
+    background: rgba(144, 184, 124, 0.2);
+    border-radius: 30px;
 }
