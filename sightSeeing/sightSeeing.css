@@ -1,3 +1,44 @@
 div{
     text-align: center;
 }
+
+body {
+    margin: 0;
+}
+
+body {
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(144, 184, 124, 0.2);
+}
+
+.menu {
+    font-family: 'Nanum Gothic Coding', monospace;
+    text-align: center;
+}
+
+.menu-item {
+    padding: 15px;
+    cursor: pointer;
+}
+
+.menu-item a {
+    text-align: center;
+    text-decoration: none;
+    color: rgba(115, 146, 100, 1.0);
+}
+
+.image-box {
+    border: 1px solid #000000;
+    width: 400px;
+    height: 800px;
+    padding: 10px;
+    margin: 10px;
+}
