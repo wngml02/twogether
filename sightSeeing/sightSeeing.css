@@ -42,3 +42,51 @@ body {
     padding: 10px;
     margin: 10px;
 }
+
+#image-box > div {
+    float: left;
+    width: 300px;
+    height: 400px;
+    font-size: 20px;
+    line-height: 100px;
+    text-align: center;
+    margin: 50px;
+    padding: 50px;
+}
+
+#image-box::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.box1 {
+    background-color: rgba(66, 133, 91, 0.7);
+}
+
+.box2 {
+    background-color: rgba(66, 133, 91, 0.7);
+}
+
+.box3 {
+    background-color: rgba(66, 133, 91, 0.7);
+}
+
+.button1 {
+    border: 0;
+    background-color:#90B77D;
+    border-radius: 30px;
+    font: 14px Nanum Gothic Coding;
+    color: #FFFFFF;
+    width: 160;
+    height: 50;
+}
+
+.button2 {
+    all: unset;
+}
+
+.button2 {
+    font: 14px Nanum Gothic Coding;
+    color: #90B77D;
+}
