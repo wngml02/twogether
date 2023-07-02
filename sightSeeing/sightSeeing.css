@@ -10,22 +10,20 @@ body {
     font-family: 'Nanum Gothic Coding', monospace;
 }
 
-.menu {
+
+.menubar {
     display: flex;
-    flex-direction: row;
     width: 100%;
     margin: 10px;
     padding: 10px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    text-align: center;
+    flex-direction: row;
     background-color: rgba(144, 184, 124, 0.2);
 }
 
-.menu {
-    font-family: 'Nanum Gothic Coding', monospace;
-    text-align: center;
-}
-
 .menu-item {
-    padding: 15px;
+    padding: 10px;
     cursor: pointer;
 }
 
