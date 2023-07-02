@@ -73,6 +73,37 @@
         background: url(twogetherblack.jpg);
     }
     
+    .mainTitle {
+        position: relative;
+        text-align: left;
+        font-style: bolder;
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 150.5%;
+        /* or 72px */
+        display: flex;
+        align-items: center;
+        text-align: right;
+        letter-spacing: -0.02em;
+        color: #000000;
+    }
+    /* Travel With ecO의 약자이면서 함께한다(Together)는 의미로 환경과 함께, 이용자와 함께, 모두가 공존하는 여행이 될 수 있도록 도와주는 서비스입니다. */
+    
+    .mainMent {
+        /* Travel With ecO의 약자이면서 함께한다(Together)는 의미로 환경과 함께, 이용자와 함께, 모두가 공존하는 여행이 될 수 있도록 도와주는 서비스입니다. */
+        position: absolute;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 150.5%;
+        /* or 36px */
+        display: flex;
+        align-items: center;
+        text-align: right;
+        letter-spacing: -0.02em;
+        color: #000000;
+    }
+    
     .main2 {
         position: relative;
         width: auto;
