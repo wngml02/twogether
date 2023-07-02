@@ -13,13 +13,46 @@ body {
 
 .menubar {
     display: flex;
-    width: 100%;
+    width: 85%;
     margin: 10px;
     padding: 10px;
     font-family: 'Nanum Gothic Coding', monospace;
     text-align: center;
     flex-direction: row;
     background-color: rgba(144, 184, 124, 0.2);
+    border-radius: 60px;
+}
+
+.menu1{
+    display: flex;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu2{
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu3{
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu4{
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Nanum Gothic Coding', monospace;
 }
 
 .menu-item {
