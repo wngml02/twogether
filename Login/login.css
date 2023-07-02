@@ -1,3 +1,7 @@
+body{
+  text-align: center;
+}
+
 .user{
   font-size: 15px;
   text-decoration: underline;

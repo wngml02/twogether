@@ -1,0 +1,56 @@
+body{
+  text-align: center;
+}
+
+.user{
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+.name{
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 6px;
+}
+
+.num{
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 6px;
+}
+
+.id{
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 6px;
+}
+
+.pw{
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 6px;
+}
+
+.pwc{
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 6px;
+}
+
+.find{
+  font-size: 15px;
+}
+
+.log{
+  font-size: 16px;
+  background-color: #42855B;
+  border: none;
+  border-radius: 6px;
+}
+
+.logka{
+  font-size: 16px;
+  background-color: #F6D875;
+  border: none;
+  border-radius: 6px;
+}
