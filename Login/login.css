@@ -3,36 +3,47 @@ body{
 }
 
 .user{
-  font-size: 15px;
+  font-size: 20px;
   text-decoration: underline;
 }
 
 .id{
   background-color: #F2F2F2;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
 }
 
 .pw{
   background-color: #F2F2F2;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
 }
 
 .find{
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .log{
-  font-size: 16px;
+  font-size: 20px;
   background-color: #42855B;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
+  font-weight: bolder;
+  color: white;
 }
 
 .logka{
-  font-size: 16px;
+  font-size: 20px;
   background-color: #F6D875;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
+  font-weight: bolder;
 }

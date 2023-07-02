@@ -3,38 +3,48 @@ body{
 }
 
 .user{
-  font-size: 15px;
+  font-size: 20px;
   text-decoration: underline;
 }
 
 .name{
   background-color: #F2F2F2;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
 }
 
 .num{
   background-color: #F2F2F2;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
 }
 
 .id{
   background-color: #F2F2F2;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
 }
 
 .pw{
   background-color: #F2F2F2;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
 }
 
 .pwc{
   background-color: #F2F2F2;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
 }
 
 .find{
@@ -42,10 +52,14 @@ body{
 }
 
 .log{
-  font-size: 16px;
+  font-size: 20px;
   background-color: #42855B;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
+  font-weight: bolder;
+  color: white;
 }
 
 .logka{
