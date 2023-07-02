@@ -1,0 +1,92 @@
+div{
+    text-align: center;
+}
+
+body {
+    margin: 0;
+}
+
+body {
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(144, 184, 124, 0.2);
+}
+
+.menu {
+    font-family: 'Nanum Gothic Coding', monospace;
+    text-align: center;
+}
+
+.menu-item {
+    padding: 15px;
+    cursor: pointer;
+}
+
+.menu-item a {
+    text-align: center;
+    text-decoration: none;
+    color: rgba(115, 146, 100, 1.0);
+}
+
+.image-box {
+    border: 1px solid #000000;
+    width: 400px;
+    height: 800px;
+    padding: 10px;
+    margin: 10px;
+}
+
+#image-box > div {
+    float: left;
+    width: 300px;
+    height: 400px;
+    font-size: 20px;
+    line-height: 100px;
+    text-align: center;
+    margin: 50px;
+    padding: 50px;
+}
+
+#image-box::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.box1 {
+    background-color: rgba(66, 133, 91, 0.7);
+}
+
+.box2 {
+    background-color: rgba(66, 133, 91, 0.7);
+}
+
+.box3 {
+    background-color: rgba(66, 133, 91, 0.7);
+}
+
+.button1 {
+    border: 0;
+    background-color:#90B77D;
+    border-radius: 30px;
+    font: 14px Nanum Gothic Coding;
+    color: #FFFFFF;
+    width: 160;
+    height: 50;
+}
+
+.button2 {
+    all: unset;
+}
+
+.button2 {
+    font: 14px Nanum Gothic Coding;
+    color: #90B77D;
+}
