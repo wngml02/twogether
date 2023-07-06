@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관광지 추천</title>
-    <link rel="stylesheet" href="sightSeeing.css">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="myPage.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div>
             <img src="twogether-logo.png" alt="로고" width="380px" height="140px">
-            <input type="button" onclick="location.href='myPage.html'" value="마이페이지" class="button1" style="float:right;">
+            <input type="button" value="마이페이지" class="button1" style="float:right;">
             <input type="button" value="로그인" class="button2" style="float:right;">
         </div>
     </header>
@@ -23,10 +23,12 @@
             <span class="menu4"> <a href="">나무 키우기</a></span>
         </ul>
     </nav>
-    <div id="image-box">
-        <div class="box1">관광지1</div>
-        <div class="box2">관광지2</div>
-        <div class="box3">관광지3</div>
+    <div class="box" style="background: #BDBDBD;">
+        <img class="profile" src="twogether-logo.png">
     </div>
+    <div class="user" style="text-align: center;">
+        <b style="font-size:30px;">홍길동</b> 님
+    </div>
+    <div class="edit" style="text-align: center;"> <a href="">정보 수정</a></div>
 </body>
 </html>
