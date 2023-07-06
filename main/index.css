@@ -56,25 +56,13 @@
         height: 1024px;
         left: 0px;
         top: 265px;
-        background: #E9F1E5;
+        border: 100px solid #E9F1E5;
     }
     
     .main1-in {
-        background-color: white;
-        margin: 10% 10%;
-        width: 50%;
-        height: 50%;
+        width: auto;
+        max-height: 50%;
         text-align: center;
-        bottom: 100%;
-    }
-    
-    .main1-in img {
-        display: flexbox;
-        width: 50%;
-        height: 20%;
-        top: 10px;
-        margin: auto;
-        background: url(twogetherblack.jpg);
     }
     
     .mainTitle {
@@ -86,7 +74,7 @@
         /* or 72px */
         display: flex;
         margin: auto;
-        padding: 20%;
+        padding: 10%;
         align-items: center;
         text-align: right;
         letter-spacing: -0.02em;
@@ -114,7 +102,7 @@
         height: 1024px;
         left: 0px;
         top: 265px;
-        background: #90B77d;
+        border: 100px solid #90B77d;
     }
     
     .main3 {
@@ -123,5 +111,5 @@
         height: 1024px;
         left: 0px;
         top: 265px;
-        background: #42855b;
+        border: 100px solid #42855b;
     }
