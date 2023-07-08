@@ -61,39 +61,57 @@
     
     .main1-in {
         width: auto;
-        max-height: 50%;
         text-align: center;
+        margin: 20px;
+    }
+    
+    .main1-leftbox {
+        float: left;
+        width: 50%;
+        margin-top: 50px;
     }
     
     .mainTitle {
         position: relative;
-        text-align: left;
         font-weight: 800;
-        font-size: 48px;
-        line-height: 150.5%;
+        font-size: 55px;
         /* or 72px */
         display: flex;
-        margin: auto;
-        padding: 10%;
-        align-items: center;
         text-align: right;
-        letter-spacing: -0.02em;
         color: #000000;
+        justify-content: flex-end;
+        margin-bottom: 50px;
+        margin-left: 10%;
+        margin-right: 10px;
     }
     
     .mainMent {
         /* Travel With ecO의 약자이면서 함께한다(Together)는 의미로 환경과 함께, 이용자와 함께, 모두가 공존하는 여행이 될 수 있도록 도와주는 서비스입니다. */
-        position: absolute;
+        position: relative;
         font-style: normal;
         font-weight: 400;
-        font-size: 24px;
-        line-height: 150.5%;
+        font-size: 35px;
         /* or 36px */
         display: flex;
-        align-items: center;
         text-align: right;
-        letter-spacing: -0.02em;
         color: #000000;
+        padding-left: 50px;
+        margin-right: 10px;
+    }
+    
+    .main1-rightbox {
+        float: right;
+        width: 50%;
+        margin-top: 50px;
+    }
+    
+    .hand {
+        width: 500px;
+        height: 520px;
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin: 0px 0px 0px 50px;
     }
     
     .main2 {
