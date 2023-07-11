@@ -223,8 +223,15 @@
     }
     
     .main3-ment {
-        background-color: lightgray;
+        background-color: #90b77d81;
         border-radius: 30px;
         text-align: left;
         font-size: 50px;
+        font-weight: 800;
+        margin: 5% 20% 5% 20%;
+        padding: 20px;
+    }
+    
+    .main3-ment2 {
+        font-size: 30px;
     }
