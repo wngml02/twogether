@@ -2,9 +2,11 @@ body{
   text-align: center;
 }
 
+
 .user{
   font-size: 20px;
   text-decoration: underline;
+  text-align: center;
 }
 
 .name{
@@ -60,11 +62,4 @@ body{
   height: 42px;
   font-weight: bolder;
   color: white;
-}
-
-.logka{
-  font-size: 16px;
-  background-color: #F6D875;
-  border: none;
-  border-radius: 6px;
 }
