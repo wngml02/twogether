@@ -1,0 +1,36 @@
+body{
+  text-align: center;
+}
+
+.id{
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
+}
+
+.pw{
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
+}
+
+.find{
+  font-size: 18px;
+  padding-top: 20px;
+}
+
+.log{
+  font-size: 20px;
+  background-color: #42855B;
+  border: none;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
+  font-weight: bolder;
+  color: white;
+  padding-left: 20px;
+}

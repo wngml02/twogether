@@ -1,0 +1,14 @@
+body{
+  text-align: center;
+}
+
+.log{
+  font-size: 20px;
+  background-color: #42855B;
+  border: none;
+  border-radius: 10px;
+  width: 25%;
+  height: 42px;
+  font-weight: bolder;
+  color: white;
+}
