@@ -7,14 +7,14 @@ body {
 }
 
 body {
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', monospace;
 }
 
 .button1 {
     border: 0;
     background-color:#90B77D;
     border-radius: 30px;
-    font: 17px Nanum Gothic Coding;
+    font: 17px Noto Sans KR;
     color: #FFFFFF;
     width: 160;
     height: 50;
@@ -27,7 +27,7 @@ body {
 }
 
 .button2 {
-    font: 17px Nanum Gothic Coding;
+    font: 17px Noto Sans KR;
     color: #90B77D;
 }
 
@@ -37,7 +37,7 @@ body {
     width: 97%;
     margin: 10px;
     padding: 10px;
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', monospace;
     text-align: center;
     flex-direction: row;
     background-color: rgba(144, 184, 124, 0.2);
@@ -49,7 +49,7 @@ body {
     width: 100%;
     margin: 10px;
     padding: 10px;
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', monospace;
 }
 
 .menu2{
@@ -57,7 +57,7 @@ body {
     width: 100%;
     margin: 7px;
     padding: 15px;
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', monospace;
 }
 
 .menu3{
@@ -65,7 +65,7 @@ body {
     width: 100%;
     margin: 7px;
     padding: 15px;
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', monospace;
 }
 
 .menu4{
@@ -73,7 +73,7 @@ body {
     width: 100%;
     margin: 7px;
     padding: 15px;
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', monospace;
 }
 
 .menu-item {
