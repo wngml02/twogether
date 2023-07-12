@@ -119,7 +119,8 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px;
+    margin-top: 30px;
+    margin-bottom: 40px;
     border-radius: 60px;
 }
 
@@ -151,11 +152,11 @@ body {
 }
 
 .activity {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .service {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
