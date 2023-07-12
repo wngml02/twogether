@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+}
+
+body {
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menubar {
+  display: flex;
+  width: 97%;
+  margin: 10px;
+  padding: 10px;
+  font-family: 'Nanum Gothic Coding', monospace;
+  text-align: center;
+  flex-direction: row;
+  background-color: rgba(144, 184, 124, 0.2);
+  border-radius: 60px;
+}
+
+.menu1{
+  display: flex;
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu2{
+  display: flex;
+  width: 100%;
+  margin: 7px;
+  padding: 15px;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu3{
+  display: flex;
+  width: 100%;
+  margin: 7px;
+  padding: 15px;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu4{
+  display: flex;
+  width: 100%;
+  margin: 7px;
+  padding: 15px;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.menu-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu-item a {
+  text-align: center;
+  text-decoration: none;
+  color: rgba(115, 146, 100, 1.0);
+}
+
+.button1 {
+  border: 0;
+  background-color:#90B77D;
+  border-radius: 30px;
+  font: 17px Nanum Gothic Coding;
+  color: #FFFFFF;
+  width: 160;
+  height: 50;
+  margin: 10px;
+}
+
+.button2 {
+  all: unset;
+  margin: 10px;
+  font: 17px Nanum Gothic Coding;
+  color: #90B77D;
+}
+
+.box1{
+  background-color: #E9F1E5;
+  width: 85%;
+  height: 800px;
+  margin: 70px;
+  border-radius: 50px;
+}
+
+.box2{
+  background-color: white;
+  width: 90%;
+  height: 700px;
+  border-radius: 50px;
+}
+
+.box1 {
+  position: relative;
+}
+.box1 > div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
