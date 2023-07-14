@@ -62,3 +62,8 @@
     font: 17px Nanum Gothic Coding;
     color: #90B77D;
 }
+
+.mapMain {
+    width: 100%;
+    height: auto;
+}
