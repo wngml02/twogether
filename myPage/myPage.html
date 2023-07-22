@@ -35,7 +35,11 @@
             <div class="progress"> </div>
         </div>
         <div class="message" style="text-align: center;">
-            <b> 친환경 운동에 <b style="color: #42855B;">15번</b> 참여하셨어요! </b>
+            <b> 친환경 운동에
+                <input type="button" onclick='count("plus")' value='+'/>
+                <input type="button" onclick='count("minus")' value='-'/>
+                <div id='result'>0</div>
+                <b style="color: #42855B;">15번</b> 참여하셨어요! </b>
         </div>
     </div>
     <hr width="90%" size="2" style="color: #767676;">
