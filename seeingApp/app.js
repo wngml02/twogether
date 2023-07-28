@@ -12,7 +12,7 @@ let options = {
         'Cookie': 'NCPVPCLB=53dc2963a8054bd57870a8b2355dc148919c5a02851f15d4ffafa945a766b4a1'
     }
 };
-module.exports = app;
+
 request(options, function(error, response, body) {
     if (error) {
         throw new Error(error);
@@ -26,7 +26,7 @@ request(options, function(error, response, body) {
     }
 });
 
-
+module.exports = app;
 
 app.get('', function(req, res) {
     return res.sendFile(__dirname + '/sightSeeing.html');
