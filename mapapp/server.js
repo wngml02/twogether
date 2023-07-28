@@ -18,11 +18,11 @@ request(options, function(error, response, body) {
     let info = JSON.parse(body);
 
     for (i in info['response']['body']['items']['item']) {
-        console.log('이름 : ' + i + info['response']['body']['items']['item'][i]['title']);
+        console.log('이름 : ' + j + info['response']['body']['items']['item'][i]['title']);
         console.log('주소 : ' + info['response']['body']['items']['item'][i]['addr']);
         console.log(" ")
     }
-    i++;
+    j++;
 });
 app.use(express.static(__dirname + "/public"));
 
