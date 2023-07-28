@@ -9,6 +9,9 @@ app.get('', function(req, res) {
 app.get('/placeInfo', function(req, res) {
     return res.sendFile(__dirname + '/placeInfo.html');
 });
+app.get('/map', function(req, res) {
+    return res.sendFile(__dirname + '/map.html');
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
