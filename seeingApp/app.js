@@ -1,12 +1,22 @@
 //import request from "request";
 
 var express = require('express');
-var app     = express();
-
-var port = "3000";
+var app = express();
+var port = "3001";
 app.set('port', port);
 
 module.exports = app;
+
+app.get('', function(req, res) {
+  return res.sendFile(__dirname + '/sightSeeing.html');
+});
+app.get('/page', function(req, res) {
+  return res.send('/page');
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+});
 
 let request = require('request');
 let options = {
