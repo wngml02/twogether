@@ -23,7 +23,6 @@ request(options, function(error, response, body) {
         console.log('소개:' + info['response']['body']['items']['item'][i]['summary']);
         console.log('');
     }
-    i++;
 });
 
 // module.exports = app;

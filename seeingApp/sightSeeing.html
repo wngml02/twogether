@@ -32,8 +32,6 @@
         <div id="placeInfo"></div>
     </div>
     <p></p>
-    <script type="text/javascript" src="/tour.js">
-    </script>
     <script>
         function getPlace() {
             const config = {
@@ -52,6 +50,9 @@
                 })
                 .catch(error => console.log("fetch 에러"));
         }
+    </script>
+    <script>
+        getPlace();
     </script>
 </body>
 
