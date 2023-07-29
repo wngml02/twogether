@@ -26,36 +26,41 @@
         </ul>
     </nav>
     <div id="image-box">
-        <div class="box1">관광지1</div>
-        <div class="box2">관광지2</div>
-        <div class="box3">관광지3</div>
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
     </div>
     <div id="placeInfo"> </div>
     <script src="tour.js"> </script>
     <script>
-        const apiUrl = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
+        const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
+        const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
+
+        const boxClassNames = [".box1",".box2",".box3"];
 
         function getPlace() {
-            fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                const placeInfo = document.getElementById("placeInfo");
-                placeInfo.innerHTML = "";
+            boxClassNames.forEach((boxClass, index) => {
+                const apiUrlWithPageNo = `${apiUrlBase}?${queryParams}&pageNo=${index + 1}`;
 
-                data.response.body.items.item.forEach(item => {
-                    const title = document.createElement("div");
-                    title.textContent = item.title;
+                fetch(apiUrlWithPageNo)
+                    .then(response => response.json())
+                    .then(data => {
+                        const box = document.querySelector(boxClass);
+                        box.innerHTML = "";
 
-                    const summary = document.createElement("div");
-                    summary.textContent = item.summary;
+                        const title = document.createElement("div");
+                        const summary = document.createElement("div");
 
-                    placeInfo.appendChild(title);
-                    placeInfo.appendChild(summary);
-                });
-            })
-            .catch(error => console.log("fetch 에러:", error));
+                        title.textContent = data.response.body.items.item[0].title;
+                        summary.textContent = data.response.body.items.item[0].summary;
+
+                        box.appendChild(title);
+                        box.appendChild(summary);
+                })
+                .catch(error => console.log("fetch 에러:", error));
+            });
         }
-
+        
         getPlace();
     </script>
 </body>
