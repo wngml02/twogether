@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="sightSeeing.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <div>
@@ -33,17 +35,21 @@
     </script>
     <script>
         $.ajax({
-            method: "GET",
-            url: "https://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=5&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=A&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D",
-            dataType: 'json',
-            data: { "title":title, "summary":summary }
-        })
-            .done(function (msg) {
+                method: "GET",
+                url: "https://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=5&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=A&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D",
+                dataType: 'json',
+                data: {
+                    "title": title,
+                    "summary": summary
+                }
+            })
+            .done(function(msg) {
                 console.log(msg.documents[0].title);
                 console.log(msg.documents[0].mainimage);
-                $( "p" ).append( "<strong>" + msg.documents[0].title + "</strong>" );
-                $( "p" ).append( "<img src='" + msg.documents[0].mainimage + "'/>" );
+                $("p").append("<strong>" + msg.documents[0].title + "</strong>");
+                $("p").append("<img src='" + msg.documents[0].mainimage + "'/>");
             });
     </script>
 </body>
+
 </html>
