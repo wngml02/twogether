@@ -32,6 +32,7 @@ request(options, function(error, response, body) {
 
 app.use(express.static(__dirname + "/public"));
 
+/*
 app.get('', function(req, res) {
     return res.sendFile(__dirname + '/sightSeeing.html');
 });
@@ -42,7 +43,7 @@ app.get('/page', function(req, res) {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
-
+*/
 
 /*
 let parseString = require('xml2js').parseString;
