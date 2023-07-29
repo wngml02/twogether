@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관광지 추천</title>
-    <link rel="stylesheet" href="sightSeeing.css">
+    <link rel="stylesheet" href="/stylesheets/sightSeeing.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 </head>
 
@@ -40,17 +40,17 @@
                 method: "get"
             };
             fetch("https://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=165&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D", config)
-            .then(response => response.json())
-            .then(data => {
-                const title = document.createElement("div");
-                const summary = documnet.createElement("div");
-                title.textContent = data.title;
-                summary.textContent = data.summary;
-                const placeInfo = document.getElementById("placeInfo");
-                placeInfo.appendChild(title);
-                placeInfo.appendChild(summary);
-            })
-            .catch(error => console.log("fetch 에러"));
+                .then(response => response.json())
+                .then(data => {
+                    const title = document.createElement("div");
+                    const summary = documnet.createElement("div");
+                    title.textContent = data.title;
+                    summary.textContent = data.summary;
+                    const placeInfo = document.getElementById("placeInfo");
+                    placeInfo.appendChild(title);
+                    placeInfo.appendChild(summary);
+                })
+                .catch(error => console.log("fetch 에러"));
         }
     </script>
 </body>
