@@ -28,17 +28,21 @@
         <div class="box2">관광지2</div>
         <div class="box3">관광지3</div>
     </div>
-    <script type="text/javascript" src="/app.js">
+    <p></p>
+    <script type="text/javascript" src="/tour.js">
     </script>
     <script>
         $.ajax({
             method: "GET",
             url: "https://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=5&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=A&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D",
-            data: { title: "" }
+            dataType: 'json',
+            data: { "title":title, "summary":summary }
         })
             .done(function (msg) {
+                console.log(msg.documents[0].title);
+                console.log(msg.documents[0].mainimage);
                 $( "p" ).append( "<strong>" + msg.documents[0].title + "</strong>" );
-                $( "p" ).append( "<img src='" + msg.documents[0].thumbnail + "'/>" );
+                $( "p" ).append( "<img src='" + msg.documents[0].mainimage + "'/>" );
             });
     </script>
 </body>
