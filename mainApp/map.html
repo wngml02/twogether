@@ -26,31 +26,238 @@
             <span class="menu4"> <a href="">나무 키우기</a></span>
         </ul>
     </nav>
-    <div id='map' style="width:1000px;height:1500px;"></div>
+    <div id='map' style="width:1000px;height:1000px;"></div>
 
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
+                center: new kakao.maps.LatLng(36.220024, 127.947228), // 지도의 중심좌표 
+                level: 12 // 지도의 확대 레벨
             };
 
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
         // 지도에 표시할 원을 생성합니다
-        var circle = new kakao.maps.Circle({
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 원의 중심좌표 입니다 
-            radius: 50, // 미터 단위의 원의 반지름입니다 
-            strokeWeight: 5, // 선의 두께입니다 
-            strokeColor: '#75B8FA', // 선의 색깔입니다
+        // 서울
+        var circle1 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(37.555425, 126.99197), // 원의 중심좌표 입니다 
+            radius: 15000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-            strokeStyle: 'dashed', // 선의 스타일 입니다
-            fillColor: '#CFE7FF', // 채우기 색깔입니다
-            fillOpacity: 0.7 // 채우기 불투명도 입니다   
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
+        circle1.setMap(map);
+        // 지도에 원을 표시합니다
 
-        // 지도에 원을 표시합니다 
-        circle.setMap(map);
+        //인천
+        var circle2 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(37.450542763, 126.701041), // 원의 중심좌표 입니다 
+            radius: 10000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle2.setMap(map);
+
+        //대전
+        var circle3 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(36.363792, 127.38555749), // 원의 중심좌표 입니다 
+            radius: 15000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle3.setMap(map);
+
+        //대구
+        var circle4 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(35.89230, 128.602428), // 원의 중심좌표 입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle4.setMap(map);
+
+        //광주
+        var circle5 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(35.1738156, 126.8796307), // 원의 중심좌표 입니다 
+            radius: 15000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle5.setMap(map);
+
+        //부산
+        var circle6 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(35.1748085, 129.0602685), // 원의 중심좌표 입니다 
+            radius: 25000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle6.setMap(map);
+
+        //울산
+        var circle7 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(35.5471352, 129.385876), // 원의 중심좌표 입니다 
+            radius: 25000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle7.setMap(map);
+
+        //세종
+        var circle8 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(36.50712515, 127.2776754), // 원의 중심좌표 입니다 
+            radius: 15000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle8.setMap(map);
+
+        //경기도
+        var circle31 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(37.175275999, 127.009132), // 원의 중심좌표 입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle31.setMap(map);
+
+        //강원도
+        var circle32 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(37.6049422, 128.423935), // 원의 중심좌표 입니다 
+            radius: 40000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle32.setMap(map);
+
+        //충청북도
+        var circle33 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(36.850001468, 127.74390949), // 원의 중심좌표 입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle33.setMap(map);
+
+        //충청남도
+        var circle34 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(36.5546054, 126.8203359), // 원의 중심좌표 입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle34.setMap(map);
+
+        //경상북도
+        var circle35 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(36.4941751, 128.7004477), // 원의 중심좌표 입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle35.setMap(map);
+
+        //경상남도
+        var circle36 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(35.439432198, 128.15924652), // 원의 중심좌표 입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle36.setMap(map);
+
+        //전라북도
+        var circle37 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(35.7495554, 127.04293078), // 원의 중심좌표 입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle37.setMap(map);
+
+        //전라님도
+        var circle38 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(34.9511999, 127.0032734), // 원의 중심좌표 입니다 
+            radius: 15000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle38.setMap(map);
+
+        //제주도
+        var circle39 = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(33.38323338, 126.5189878), // 원의 중심좌표 입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 3, // 선의 두께입니다 
+            strokeColor: '#F6D875', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid', // 선의 스타일 입니다
+            fillColor: '#FFF7DD', // 채우기 색깔입니다
+            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+        });
+        circle39.setMap(map);
     </script>
 
 </html>
