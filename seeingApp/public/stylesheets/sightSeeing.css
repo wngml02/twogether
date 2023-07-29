@@ -77,9 +77,9 @@ body {
 #image-box > div {
     float: left;
     width: 300px;
-    height: 400px;
-    font-size: 20px;
-    line-height: 100px;
+    height: 900px;
+    font-size: 15px;
+    line-height: 25px;
     text-align: center;
     margin: 50px;
     padding: 50px;
@@ -93,14 +93,20 @@ body {
 
 .box1 {
     background-color: rgba(66, 133, 91, 0.7);
+    font: 10px Noto Sans KR;
+    color: #FFFFFF;
 }
 
 .box2 {
     background-color: rgba(66, 133, 91, 0.7);
+    font: 10px Noto Sans KR;
+    color: #FFFFFF;
 }
 
 .box3 {
     background-color: rgba(66, 133, 91, 0.7);
+    font: 10px Noto Sans KR;
+    color: #FFFFFF;
 }
 
 .button1 {
