@@ -21,8 +21,8 @@ request(options, function(error, response, body) {
     let info = JSON.parse(body);
 
     for (i in info['response']['body']['items']['item']) {
-        console.log('설명:' + info['response']['body']['items']['item'][i]['summary']);
-        console.log('전화번호:' + info['response']['body']['items']['item'][i]['tel']);
+        console.log('관광지명:' + info['response']['body']['items']['item'][i]['title']);
+        console.log('소개:' + info['response']['body']['items']['item'][i]['summary']);
         console.log('');
     }
     i++;
@@ -88,19 +88,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-*/
-
-/*
-const url = "http://apis.data.go.kr/B551011/GreenTourService1";
-const SERVICE_KEY = "iPOcFKrhHgswObtTYryGrWDTZq4ck8a/GIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7/+MsO52yqttO72Zw==";
-const requestUrl = '${url}?serviceKey=${SERVICE_KEY}&seriesCd=01'
-
-request(requestUrl,(err,response,body)=>{
-  if(err) throw err;
-  parseString(body, (err,result)=>{
-    if(err) throw err;
-    let parseData = result;
-    console.log(body);
-  })
-})
 */
