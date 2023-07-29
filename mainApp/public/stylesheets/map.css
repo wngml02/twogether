@@ -10,6 +10,16 @@
     border-radius: 60px;
 }
 
+#map {
+    display: flex;
+    margin: 10px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    text-align: center;
+    flex-direction: row;
+    border: rgba(144, 184, 124, 0.2) solid 50px;
+    background-color: rgba(144, 184, 124, 0.2);
+}
+
 .menu1 {
     display: flex;
     width: 100%;
@@ -61,9 +71,4 @@
 .button2 {
     font: 17px Nanum Gothic Coding;
     color: #90B77D;
-}
-
-.mapMain {
-    width: 100%;
-    height: auto;
 }
