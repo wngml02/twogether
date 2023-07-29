@@ -25,6 +25,8 @@
             <span class="menu4"> <a href="">나무 키우기</a></span>
         </ul>
     </nav>
+    <input type="number" id="areaCodeInput">
+    <button onclick="getUserInputPlace()">지역코드 선택</button>
     <div id="image-box">
         <div class="box1"></div>
         <div class="box2"></div>
@@ -38,30 +40,37 @@
 
         const boxClassNames = [".box1",".box2",".box3"];
 
-        function getPlace() {
-            boxClassNames.forEach((boxClass, index) => {
-                const apiUrlWithPageNo = `${apiUrlBase}?${queryParams}&pageNo=${index + 1}`;
+        function getPlace(apiUrlWithPageNo, boxClass) {
+            fetch(apiUrlWithPageNo)
+                .then(response => response.json())
+                .then(data => {
+                    const box = document.querySelector(boxClass);
+                    box.innerHTML = "";
 
-                fetch(apiUrlWithPageNo)
-                    .then(response => response.json())
-                    .then(data => {
-                        const box = document.querySelector(boxClass);
-                        box.innerHTML = "";
+                    const title = document.createElement("div");
+                    title.textContent = data.response.body.items.item[0].title;
 
-                        const title = document.createElement("div");
-                        const summary = document.createElement("div");
+                    const summary = document.createElement("div");
+                    summary.textContent = data.response.body.items.item[0].summary;
 
-                        title.textContent = data.response.body.items.item[0].title;
-                        summary.textContent = data.response.body.items.item[0].summary;
-
-                        box.appendChild(title);
-                        box.appendChild(summary);
+                    box.appendChild(title);
+                    box.appendChild(summary);
                 })
                 .catch(error => console.log("fetch 에러:", error));
+        }
+
+        function getPlaceByAreaCode(areaCode) {
+            boxClassNames.forEach((boxClass, index) => {
+                const apiUrlWithPageNo = `${apiUrlBase}?${queryParams}&pageNo=${index + 1}&areaCode=${areaCode}`;
+                getPlace(apiUrlWithPageNo, boxClass);
             });
         }
-        
-        getPlace();
+
+        function getUserInputPlace() {
+            const areaCodeInput = document.getElementById("areaCodeInput").value;
+            const areaCode = parseInt(areaCodeInput);
+            getPlaceByAreaCode(areaCode);
+        }
     </script>
 </body>
 
