@@ -2,30 +2,63 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-let request = require('request');
-let options = {
-    'method': 'GET',
-    'url': 'https://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=165&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D',
-    'headers': {
-        'Accept': 'application/json',
-        'Cookie': 'NCPVPCLB=53dc2963a8054bd57870a8b2355dc148919c5a02851f15d4ffafa945a766b4a1'
-    }
-};
+// Define the API URL
+const apiUrl = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
-request(options, function(error, response, body) {
-    if (error) {
-        throw new Error(error);
-    }
-    let info = JSON.parse(body);
+// Function to fetch data from the API and update the HTML
+function getPlace() {
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const placeInfo = document.getElementById("placeInfo");
+            placeInfo.innerHTML = ""; // Clear previous content if any
 
-    for (i in info['response']['body']['items']['item']) {
-        console.log('관광지명:' + info['response']['body']['items']['item'][i]['title']);
-        console.log('소개:' + info['response']['body']['items']['item'][i]['summary']);
-        console.log('');
-    }
-});
+            // Loop through the data and create elements to display the information
+            data.response.body.items.item.forEach(item => {
+                const title = document.createElement("div");
+                title.textContent = item.title;
 
-// module.exports = app;
+                const summary = document.createElement("div");
+                summary.textContent = item.summary;
+
+                // Append the title and summary to the "placeInfo" div
+                placeInfo.appendChild(title);
+                placeInfo.appendChild(summary);
+            });
+        })
+        .catch(error => console.log("fetch 에러:", error));
+}
+
+getPlace();
+
+
+/*
+
+function getPlaceInfo() {
+    const apiUrl = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
+    const serviceKey = "iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
+    const queryParams = `?numOfRows=5&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=${encodeURIComponent(serviceKey)}`;
+
+    fetch(apiUrl + queryParams)
+        .then(response => response.json())
+        .then(data => {
+        const placeInfoDiv = document.getElementById("placeInfo");
+        
+        data.response.body.items.item.forEach(item => {
+            const title = document.createElement("div");
+            const summary = document.createElement("div");
+            title.textContent = item.title;
+            summary.textContent = item.summary;
+            placeInfoDiv.appendChild(title);
+            placeInfoDiv.appendChild(summary);
+        });
+    })
+    .catch(error => console.log("fetch 에러:", error));
+}
+
+getPlaceInfo();
+
+*/
 
 app.use(express.static(__dirname + "/public"));
 

@@ -29,29 +29,33 @@
         <div class="box1">관광지1</div>
         <div class="box2">관광지2</div>
         <div class="box3">관광지3</div>
-        <div id="placeInfo"></div>
     </div>
-    <p></p>
+    <div id="placeInfo"> </div>
+    <script src="tour.js"> </script>
     <script>
+        const apiUrl = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
+
         function getPlace() {
-            const config = {
-                method: "get"
-            };
-            fetch("https://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1?numOfRows=165&pageNo=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D", config)
-                .then(response => response.json())
-                .then(data => {
+            fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const placeInfo = document.getElementById("placeInfo");
+                placeInfo.innerHTML = "";
+
+                data.response.body.items.item.forEach(item => {
                     const title = document.createElement("div");
-                    const summary = documnet.createElement("div");
-                    title.textContent = data.title;
-                    summary.textContent = data.summary;
-                    const placeInfo = document.getElementById("placeInfo");
+                    title.textContent = item.title;
+
+                    const summary = document.createElement("div");
+                    summary.textContent = item.summary;
+
                     placeInfo.appendChild(title);
                     placeInfo.appendChild(summary);
-                })
-                .catch(error => console.log("fetch 에러"));
+                });
+            })
+            .catch(error => console.log("fetch 에러:", error));
         }
-    </script>
-    <script>
+
         getPlace();
     </script>
 </body>
