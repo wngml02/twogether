@@ -39,17 +39,33 @@
         // 지도에 표시할 원을 생성합니다
         // 서울
         var circle1 = new kakao.maps.Circle({
-            center: new kakao.maps.LatLng(37.555425, 126.99197), // 원의 중심좌표 입니다 
+            center: new kakao.maps.LatLng(37.555425, 126.99197),
+            // 원의 중심좌표 입니다 
             radius: 15000, // 미터 단위의 원의 반지름입니다 
             strokeWeight: 3, // 선의 두께입니다 
             strokeColor: '#F6D875', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid', // 선의 스타일 입니다
             fillColor: '#FFF7DD', // 채우기 색깔입니다
-            fillOpacity: 0.5 // 채우기 불투명도 입니다   
+            fillOpacity: 0.5, // 채우기 불투명도 입니다   
         });
-        circle1.setMap(map);
-        // 지도에 원을 표시합니다
+        circle1.setMap(map); // 지도에 원을 표시합니다
+
+        //서울 마크
+        var content1 = '<div class ="label"><span class="left"></span><span class="center">서울</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position1 = new kakao.maps.LatLng(37.555425, 126.99197);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position1,
+            content: content1
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
+
 
         //인천
         var circle2 = new kakao.maps.Circle({
@@ -63,6 +79,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle2.setMap(map);
+        //인천 마크
+        var content2 = '<div class ="label"><span class="left"></span><span class="center">인천</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position2 = new kakao.maps.LatLng(37.450542763, 126.701041);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position2,
+            content: content2
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //대전
         var circle3 = new kakao.maps.Circle({
@@ -77,6 +107,21 @@
         });
         circle3.setMap(map);
 
+        //대전 마크
+        var content3 = '<div class ="label"><span class="left"></span><span class="center">대전</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position3 = new kakao.maps.LatLng(36.363792, 127.38555749);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position3,
+            content: content3
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
+
         //대구
         var circle4 = new kakao.maps.Circle({
             center: new kakao.maps.LatLng(35.89230, 128.602428), // 원의 중심좌표 입니다 
@@ -89,6 +134,21 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle4.setMap(map);
+        //대구 마크
+        var content4 = '<div class ="label"><span class="left"></span><span class="center">대구</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position4 = new kakao.maps.LatLng(35.89230, 128.602428);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position4,
+            content: content4
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
+
 
         //광주
         var circle5 = new kakao.maps.Circle({
@@ -102,6 +162,21 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle5.setMap(map);
+        //광주 마크
+        var content5 = '<div class ="label"><span class="left"></span><span class="center">광주</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position5 = new kakao.maps.LatLng(35.1738156, 126.8796307);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position5,
+            content: content5
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
+
 
         //부산
         var circle6 = new kakao.maps.Circle({
@@ -115,6 +190,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle6.setMap(map);
+        //부산 마크
+        var content6 = '<div class ="label"><span class="left"></span><span class="center">부산</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position6 = new kakao.maps.LatLng(35.1748085, 129.0602685);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position6,
+            content: content6
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //울산
         var circle7 = new kakao.maps.Circle({
@@ -128,6 +217,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle7.setMap(map);
+        //울산 마크
+        var content7 = '<div class ="label"><span class="left"></span><span class="center">울산</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position7 = new kakao.maps.LatLng(35.5471352, 129.385876);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position7,
+            content: content7
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //세종
         var circle8 = new kakao.maps.Circle({
@@ -141,6 +244,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle8.setMap(map);
+        //세종 마크
+        var content8 = '<div class ="label"><span class="left"></span><span class="center">세종</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position8 = new kakao.maps.LatLng(36.50712515, 127.2776754);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position8,
+            content: content8
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //경기도
         var circle31 = new kakao.maps.Circle({
@@ -154,6 +271,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle31.setMap(map);
+        //경기도 마크
+        var content31 = '<div class ="label"><span class="left"></span><span class="center">경기도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position31 = new kakao.maps.LatLng(37.175275999, 127.009132);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position31,
+            content: content31
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //강원도
         var circle32 = new kakao.maps.Circle({
@@ -167,6 +298,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle32.setMap(map);
+        //강원도 마크
+        var content32 = '<div class ="label"><span class="left"></span><span class="center">강원도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position32 = new kakao.maps.LatLng(37.6049422, 128.423935);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position32,
+            content: content32
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //충청북도
         var circle33 = new kakao.maps.Circle({
@@ -180,6 +325,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle33.setMap(map);
+        //충청북도 마크
+        var content33 = '<div class ="label"><span class="left"></span><span class="center">충청북도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position33 = new kakao.maps.LatLng(36.850001468, 127.74390949);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position33,
+            content: content33
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //충청남도
         var circle34 = new kakao.maps.Circle({
@@ -193,6 +352,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle34.setMap(map);
+        //충청남도 마크
+        var content34 = '<div class ="label"><span class="left"></span><span class="center">충청남도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position34 = new kakao.maps.LatLng(36.5546054, 126.8203359);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position34,
+            content: content34
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //경상북도
         var circle35 = new kakao.maps.Circle({
@@ -206,6 +379,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle35.setMap(map);
+        //경상북도 마크
+        var content35 = '<div class ="label"><span class="left"></span><span class="center">경상북도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position35 = new kakao.maps.LatLng(36.4941751, 128.7004477);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position35,
+            content: content35
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //경상남도
         var circle36 = new kakao.maps.Circle({
@@ -219,6 +406,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle36.setMap(map);
+        //경상남도 마크
+        var content36 = '<div class ="label"><span class="left"></span><span class="center">경상남도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position36 = new kakao.maps.LatLng(35.439432198, 128.15924652);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position36,
+            content: content36
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //전라북도
         var circle37 = new kakao.maps.Circle({
@@ -232,6 +433,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle37.setMap(map);
+        //전라북도 마크
+        var content37 = '<div class ="label"><span class="left"></span><span class="center">전라북도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position37 = new kakao.maps.LatLng(35.7495554, 127.04293078);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position37,
+            content: content37
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //전라님도
         var circle38 = new kakao.maps.Circle({
@@ -245,6 +460,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle38.setMap(map);
+        //전라남도 마크
+        var content38 = '<div class ="label"><span class="left"></span><span class="center">전라남도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position38 = new kakao.maps.LatLng(34.9511999, 127.0032734);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position38,
+            content: content38
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
 
         //제주도
         var circle39 = new kakao.maps.Circle({
@@ -258,6 +487,20 @@
             fillOpacity: 0.5 // 채우기 불투명도 입니다   
         });
         circle39.setMap(map);
+        //제주도 마크
+        var content39 = '<div class ="label"><span class="left"></span><span class="center">제주도</span><span class="right"></span></div>';
+
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position39 = new kakao.maps.LatLng(33.38323338, 126.5189878);
+
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position39,
+            content: content39
+        });
+
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
     </script>
 
 </html>
