@@ -25,8 +25,6 @@
             <span class="menu4"> <a href="">나무 키우기</a></span>
         </ul>
     </nav>
-    <input type="number" id="areaCodeInput">
-    <button onclick="getUserInputPlace()">지역코드 선택</button>
     <div id="image-box">
         <div class="box1"></div>
         <div class="box2"></div>
@@ -35,11 +33,17 @@
     <div id="placeInfo"> </div>
     <script src="tour.js"> </script>
     <script>
+        // URL 파라미터에서 areaCodeInput 값을 읽어옴
+        var areaCodeInput = new URLSearchParams(window.location.search).get('areaCodeInput');
+        document.write(areaCodeInput);
+    </script>
+    <script>
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
         const boxClassNames = [".box1",".box2",".box3"];
 
+        // 박스 안에 관광지 정보 표시
         function getPlace(apiUrlWithPageNo, boxClass) {
             fetch(apiUrlWithPageNo)
                 .then(response => response.json())
@@ -59,18 +63,15 @@
                 .catch(error => console.log("fetch 에러:", error));
         }
 
-        function getPlaceByAreaCode(areaCode) {
+        function getPlaceByAreaCode(areaCodeInput) {
             boxClassNames.forEach((boxClass, index) => {
-                const apiUrlWithPageNo = `${apiUrlBase}?${queryParams}&pageNo=${index + 1}&areaCode=${areaCode}`;
+                const apiUrlWithPageNo = `${apiUrlBase}?${queryParams}&pageNo=${index + 1}&areaCode=${areaCodeInput}`;
                 getPlace(apiUrlWithPageNo, boxClass);
             });
         }
 
-        function getUserInputPlace() {
-            const areaCodeInput = document.getElementById("areaCodeInput").value;
-            const areaCode = parseInt(areaCodeInput);
-            getPlaceByAreaCode(areaCode);
-        }
+        getPlaceByAreaCode(areaCodeInput);
+
     </script>
 </body>
 

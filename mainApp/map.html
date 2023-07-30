@@ -56,6 +56,12 @@
         //서울 마크
         var content1 = '<div class ="label"><span class="left"></span><span class="center">서울</span><span class="right"></span></div>';
 
+        //클릭 이벤트 
+        kakao.maps.event.addListener(circle1, 'click', function(mouseEvent) {
+            var areaCodeInput = 1; // 지역코드
+            window.location.href = "/sightSeeing";
+        });
+
         // 커스텀 오버레이가 표시될 위치입니다 
         var position1 = new kakao.maps.LatLng(37.555425, 126.99197);
 
