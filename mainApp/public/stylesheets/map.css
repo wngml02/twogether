@@ -12,7 +12,7 @@
 
 #map {
     display: flex;
-    margin: 10px;
+    margin: 0 auto;
     font-family: 'Nanum Gothic Coding', monospace;
     text-align: center;
     flex-direction: row;
