@@ -36,10 +36,35 @@ app.use(cookieParser());
 // x-www-form-urlencoded 타입의 form 데이터를 파싱하기 위한 미들웨어
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(3000, () => {
-    console.log('server is running at 3000');
-});
 
+app.get('/', async (req, res) => {
+  // 'user'라는 쿠키 데이터를 가져옴
+  // 쿠키가 존재하지 않을 경우 로그인이 되지 않았다는 뜻
+  const userCookie = req.cookies[USER_COOKIE_KEY];
+  
+  if (userCookie) {
+      // 쿠키가 존재하는 경우, 쿠키 VALUE를 JS 객체로 변환
+      const userData = JSON.parse(userCookie);
+      // user 객체에 저장된 username이 db에 존재하는 경우,
+      // 유효한 user이며 로그인이 잘 되어 있다는 뜻.
+      const user = await fetchUser(userData.id);
+      if (db.get(userData.id)) {
+          // JS 객체로 변환된 user 데이터에서 username, name, password를 추출하여 클라이언트에 렌더링
+          res.status(200).send(`
+              <a href="/logout">Log Out</a>
+              <h1>아이디: ${userData.username}, 전화번호: ${userData.num}, 아이디: ${userData.id}, 비밀번호: ${userData.pw}</h1>
+          `);
+          return;
+      }
+  }
+
+  // 쿠키가 존재하지 않는 경우, 로그인 되지 않은 것으로 간주
+  res.status(200).send(`
+      <a href="/login.html">Log In</a>
+      <a href="/signup.html">Sign Up</a>
+      <h1>Not Logged In</h1>
+  `);
+});
 
 // 회원가입
 app.post('/signup', (req, res) => {
@@ -68,35 +93,6 @@ app.post('/signup', (req, res) => {
     res.redirect('/');
 });
 
-app.get('/signup.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'signup.html'));
-
-    // 'user'라는 쿠키 데이터를 가져옴
-    // 쿠키가 존재하지 않을 경우 로그인이 되지 않았다는 뜻
-    const userCookie = req.cookies[USER_COOKIE_KEY];
-    
-    if (user) {
-        // 쿠키가 존재하는 경우, 쿠키 VALUE를 JS 객체로 변환
-        const userData = JSON.parse(user);
-        // user 객체에 저장된 username이 db에 존재하는 경우,
-        // 유효한 user이며 로그인이 잘 되어 있다는 뜻.
-        if (db.get(userData.id)) {
-            // JS 객체로 변환된 user 데이터에서 username, name, password를 추출하여 클라이언트에 렌더링
-            res.status(200).send(`
-                <a href="/logout">Log Out</a>
-                <h1>이름: ${userData.username}, 전화번호: ${userData.num}, 아이디: ${userData.id}, 비밀번호: ${userData.pw}</h1>
-            `);
-            return;
-        }
-    }
-
-    // 쿠키가 존재하지 않는 경우, 로그인 되지 않은 것으로 간주
-    res.status(200).send(`
-        <a href="/login.html">Log In</a>
-        <a href="/signup.html">Sign Up</a>
-        <h1>Not Logged In</h1>
-    `);
-});
 
 // 로그인
 app.post('/login', (req, res) => {
@@ -121,6 +117,37 @@ app.post('/login', (req, res) => {
 });
 
 
+app.get('/signup.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'signup.html'));
+
+  // 'user'라는 쿠키 데이터를 가져옴
+  // 쿠키가 존재하지 않을 경우 로그인이 되지 않았다는 뜻
+  const userCookie = req.cookies[USER_COOKIE_KEY];
+  
+  if (userCookie) {
+      // 쿠키가 존재하는 경우, 쿠키 VALUE를 JS 객체로 변환
+      const userData = JSON.parse(user);
+      // user 객체에 저장된 username이 db에 존재하는 경우,
+      // 유효한 user이며 로그인이 잘 되어 있다는 뜻.
+      if (db.get(userData.id)) {
+          // JS 객체로 변환된 user 데이터에서 username, name, password를 추출하여 클라이언트에 렌더링
+          res.status(200).send(`
+              <a href="/logout">Log Out</a>
+              <h1>이름: ${userData.username}, 전화번호: ${userData.num}, 아이디: ${userData.id}, 비밀번호: ${userData.pw}</h1>
+          `);
+          return;
+      }
+  }
+
+  // 쿠키가 존재하지 않는 경우, 로그인 되지 않은 것으로 간주
+  res.status(200).send(`
+      <a href="/login.html">Log In</a>
+      <a href="/signup.html">Sign Up</a>
+      <h1>Not Logged In</h1>
+  `);
+});
+
+
 // 로그아웃
 app.get('/logout', (req, res) => {
   // 쿠키 삭제 후 루트 페이지로 이동
@@ -129,7 +156,9 @@ app.get('/logout', (req, res) => {
 });
 
 
-
+app.listen(3000, () => {
+  console.log('server is running at 3000');
+});
 
 /*
 var createError = require('http-errors');
