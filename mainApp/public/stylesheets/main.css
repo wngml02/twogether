@@ -126,6 +126,10 @@ span>a {
     margin: 0 auto;
 }
 
+.hand {
+    margin: 10% auto;
+}
+
 #main2 {
     position: relative;
     width: auto;
