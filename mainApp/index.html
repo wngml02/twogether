@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <title>메인화면</title>
     <link rel="stylesheet" href="/stylesheets/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -16,16 +17,16 @@
         </div>
         <input type="button" onclick="location.href='myPage.html'" value="마이페이지" class="button1" style="float:right;">
         <input type="button" value="로그인" class="button2" style="float:right;">
+        <nav>
+            <ul class="menubar">
+                <span class="menu1"> <a href="/">홈</a></span>
+                <span class="menu2"> <a href="/map">지역 선택</a></span>
+                <span class="menu3"> <a href="">관광 안내소</a></span>
+                <span class="menu4"> <a href="">나무 키우기</a></span>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul class="menubar">
-            <span class="menu1"> <a href="/">홈</a></span>
-            <span class="menu2"> <a href="/map">지역 선택</a></span>
-            <span class="menu3"> <a href="">관광 안내소</a></span>
-            <span class="menu4"> <a href="">나무 키우기</a></span>
-        </ul>
-    </nav>
-    <div class="main1">
+    <div class="main" id="main1">
         <div class="main1-in" id="main1-in">
             <img src="images/twogether-logo-black.jpg" style="width:660x; height:240px">
         </div>
@@ -43,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="main2" id="main2">
+    <div class="main" id="main2">
         <div class="qment">
             <p class="qment">
                 <span class="or">TWO</span><span class="gr">gether</span> 이용방법
@@ -69,7 +70,7 @@
             </em>
         </div>
     </div>
-    <div class="main3" id="main3">
+    <div class="main" id="main3">
         <div class="main3-first">
             <p class="main3-ment">
                 관광객과 주민들이 공생하는 재생 여행<br>
@@ -93,6 +94,42 @@
         </div>
     </div>
     </article>
+    <script>
+        window.addEventListener("wheel", function(e) {
+            e.preventDefault();
+        }, {
+            passive: false
+        });
+        var $html = $("html");
+
+        var page = 1;
+
+        var lastPage = $(".main").length;
+
+        $html.animate({
+            scrollTop: 0
+        }, 10);
+        $(window).on("wheel", function(e) {
+
+            if ($html.is(":animated")) return;
+
+            if (e.originalEvent.deltaY > 0) {
+                if (page == lastPage) return;
+
+                page++;
+            } else if (e.originalEvent.deltaY < 0) {
+                if (page == 1) return;
+
+                page--;
+            }
+            var posTop = (page - 1) * $(window).height();
+
+            $html.animate({
+                scrollTop: posTop
+            });
+
+        });
+    </script>
 </body>
 
 </html>
