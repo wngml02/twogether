@@ -50,7 +50,7 @@
         margin: 10px;
         padding: 10px;
         font-family: 'Noto Sans KR', monospace;
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 900;
         text-align: center;
         flex-direction: row;
@@ -121,7 +121,6 @@
         width: auto;
         height: 1024px;
         left: 0px;
-        top: 265px;
         border: 100px solid #E9F1E5;
     }
     
@@ -155,7 +154,7 @@
         /* Travel With ecO의 약자이면서 함께한다(Together)는 의미로 환경과 함께, 이용자와 함께, 모두가 공존하는 여행이 될 수 있도록 도와주는 서비스입니다. */
         position: relative;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 35px;
         /* or 36px */
         display: flex;
@@ -193,7 +192,6 @@
         width: auto;
         height: 1024px;
         left: 0px;
-        top: 265px;
         border: 100px solid #90B77d;
     }
     
@@ -202,7 +200,6 @@
         width: auto;
         height: 1024px;
         left: 0px;
-        top: 265px;
         border: 100px solid #42855b;
     }
     
@@ -211,11 +208,12 @@
         text-align: center;
         margin-top: 50px;
         margin-bottom: 30px;
-        font-weight: 700;
+        font-weight: 900;
+        font-family: 'Noto Sans KR', monospace;
     }
     
     .question {
-        font-size: 70px;
+        font-size: 400%;
         font-weight: 700;
         margin-top: 100px;
         margin-bottom: 10px;
@@ -245,7 +243,8 @@
         text-align: left;
         font-size: 50px;
         font-weight: 800;
-        margin: 5% 20% 5% 20%;
+        /*margin: auto;*/
+        margin: 5% auto 5% auto;
         padding: 20px;
     }
     
