@@ -40,16 +40,27 @@
         color: #90B77D;
     }
     
+    nav {
+        margin: 0 auto;
+    }
+    
     .menubar {
         display: flex;
         width: 97%;
         margin: 10px;
         padding: 10px;
         font-family: 'Noto Sans KR', monospace;
+        font-size: 30px;
+        font-weight: 900;
         text-align: center;
         flex-direction: row;
         background-color: rgba(144, 184, 124, 0.2);
         border-radius: 60px;
+    }
+    
+    span>a {
+        color: #739264;
+        text-decoration: none;
     }
     
     .menu1 {

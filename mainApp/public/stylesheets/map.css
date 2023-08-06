@@ -1,13 +1,56 @@
+nav {
+    margin: 0 auto;
+}
+
 .menubar {
     display: flex;
     width: 97%;
     margin: 10px;
     padding: 10px;
-    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', monospace;
+    font-size: 30px;
+    font-weight: 900;
     text-align: center;
     flex-direction: row;
     background-color: rgba(144, 184, 124, 0.2);
     border-radius: 60px;
+}
+
+span>a {
+    color: #739264;
+    text-decoration: none;
+}
+
+.menu1 {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    font-family: 'Noto Sans KR', monospace;
+}
+
+.menu2 {
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Noto Sans KR', monospace;
+}
+
+.menu3 {
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Noto Sans KR', monospace;
+}
+
+.menu4 {
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Noto Sans KR', monospace;
 }
 
 #map {
@@ -18,38 +61,6 @@
     flex-direction: row;
     border: rgba(144, 184, 124, 0.2) solid 50px;
     background-color: rgba(144, 184, 124, 0.2);
-}
-
-.menu1 {
-    display: flex;
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-    font-family: 'Nanum Gothic Coding', monospace;
-}
-
-.menu2 {
-    display: flex;
-    width: 100%;
-    margin: 7px;
-    padding: 15px;
-    font-family: 'Nanum Gothic Coding', monospace;
-}
-
-.menu3 {
-    display: flex;
-    width: 100%;
-    margin: 7px;
-    padding: 15px;
-    font-family: 'Nanum Gothic Coding', monospace;
-}
-
-.menu4 {
-    display: flex;
-    width: 100%;
-    margin: 7px;
-    padding: 15px;
-    font-family: 'Nanum Gothic Coding', monospace;
 }
 
 .button1 {
