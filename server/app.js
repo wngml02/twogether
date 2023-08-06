@@ -48,7 +48,7 @@ app.get('/', async (req, res) => {
       // user 객체에 저장된 username이 db에 존재하는 경우,
       // 유효한 user이며 로그인이 잘 되어 있다는 뜻.
       const user = await fetchUser(userData.id);
-      if (db.get(userData.id)) {
+      if (user) {
           // JS 객체로 변환된 user 데이터에서 username, name, password를 추출하여 클라이언트에 렌더링
           res.status(200).send(`
               <a href="/logout">Log Out</a>
@@ -67,9 +67,9 @@ app.get('/', async (req, res) => {
 });
 
 // 회원가입
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
     const { username, num, id, pw } = req.body;
-    const exists = db.get(id);
+    const exists = db.get(id); 
 
     // 이미 존재하는 id일 경우 회원 가입 실패
     if (exists) {
@@ -83,9 +83,16 @@ app.post('/signup', (req, res) => {
         username,
         num,
         id,
-        pw
+        pw,
     };
-    db.set(id, newUser);
+    await createUser({
+      username,
+      num,
+      id,
+      pw,
+    });
+
+    console.log(newUser);
 
     // db에 저장된 user 객체를 문자열 형태로 변환하여 쿠키에 저장
     res.cookie(USER_COOKIE_KEY, JSON.stringify(newUser));
@@ -96,11 +103,11 @@ app.post('/signup', (req, res) => {
 
 // 로그인
 app.post('/login', (req, res) => {
-  const { username, num, id, pw } = req.body;
+  const { id, pw } = req.body;
   const user = db.get(id);
 
   // 가입 안 된 id인 경우
-  if (!id) {
+  if (!user) {
       res.status(400).send(`not registered id: ${id}`);
       return;
   }
@@ -114,37 +121,6 @@ app.post('/login', (req, res) => {
   res.cookie(USER_COOKIE_KEY, JSON.stringify(user));
   // 로그인(쿠키 발급) 후, 루트 페이지로 이동
   res.redirect('/');
-});
-
-
-app.get('/signup.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'signup.html'));
-
-  // 'user'라는 쿠키 데이터를 가져옴
-  // 쿠키가 존재하지 않을 경우 로그인이 되지 않았다는 뜻
-  const userCookie = req.cookies[USER_COOKIE_KEY];
-  
-  if (userCookie) {
-      // 쿠키가 존재하는 경우, 쿠키 VALUE를 JS 객체로 변환
-      const userData = JSON.parse(user);
-      // user 객체에 저장된 username이 db에 존재하는 경우,
-      // 유효한 user이며 로그인이 잘 되어 있다는 뜻.
-      if (db.get(userData.id)) {
-          // JS 객체로 변환된 user 데이터에서 username, name, password를 추출하여 클라이언트에 렌더링
-          res.status(200).send(`
-              <a href="/logout">Log Out</a>
-              <h1>이름: ${userData.username}, 전화번호: ${userData.num}, 아이디: ${userData.id}, 비밀번호: ${userData.pw}</h1>
-          `);
-          return;
-      }
-  }
-
-  // 쿠키가 존재하지 않는 경우, 로그인 되지 않은 것으로 간주
-  res.status(200).send(`
-      <a href="/login.html">Log In</a>
-      <a href="/signup.html">Sign Up</a>
-      <h1>Not Logged In</h1>
-  `);
 });
 
 
