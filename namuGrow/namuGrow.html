@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>treeANDheart</title>
   <link rel="stylesheet" href="namuGrow.css">
-  <script src="namuGrow.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 </head>
 <body style="font-size: 22px;">
@@ -32,8 +31,12 @@
   <div class="box2">
     <b>친환경적인 행동 실천 사항</b>
     <br>
-    쓰레기 줍기
-    <img src="emptyh.png" width="4%" class="emptyh">
+    <div class='large-font text-center top-20'>
+      쓰레기 줍기
+      <ion-icon name="heart">
+          <div class='red-bg'></div>
+      </ion-icon>
+  </div>
     <br>
     텀블러 사용하기
     <br>
@@ -67,5 +70,14 @@
   </p>
 </div>
 
+<script>
+  let icon = document.querySelector('ion-icon');
+  icon.onclick = function() {
+      icon.classList.toggle('active');
+  }
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -151,10 +151,28 @@ body {
   margin-top: 16%;
 }
 
-.emptyh:hover {
-  cursor: pointer;
+.large-font{
+  font-size: xx-large;
+}
+.top-20{
+  position:relative;
+  top: 10vh;
+}
+ion-icon.active{
+  animation:like 0.5s 1;
+  fill:red;
+  stroke: none;
+}
+ion-icon{
+  fill:transparent;
+  stroke:black;
+  stroke-width:30;
+  transition:all 0.5s;
 }
 
-.heart.emptyh{
-  color: var(--red-color);
+
+@keyframes like {
+  0%   { transform: scale(1); }
+  90%   { transform: scale(1.2); }
+  100% { transform: scale(1.1); }
 }
