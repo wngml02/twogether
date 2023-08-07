@@ -87,8 +87,8 @@ body {
 
 .box1{
   background-color: #E9F1E5;
-  width: 85%;
-  height: 90%;
+  width: 45%;
+  height: 85%;
   margin-top: 5%;
   margin-left: 7%;
   border-radius: 50px;
@@ -97,7 +97,7 @@ body {
 .box2{
   background-color: white;
   width: 90%;
-  height: 85%;
+  height: 90%;
   border-radius: 50px;
 }
 
@@ -116,9 +116,9 @@ body {
 .box3{
   background-color: #E9F1E5;
   width: 40%;
-  height: 50%;
-  margin-top: 5%;
-  margin-left: 7%;
+  height: 60%;
+  margin-top: -47%;
+  margin-left: 56%;
   border-radius: 50px;
 }
 
@@ -139,4 +139,22 @@ body {
   bottom: 0;
   right: 0;
   margin: auto;
+}
+
+.nam{
+  margin-top: 6%;
+  margin-left: 60%;
+}
+
+.na{
+  margin-left: 15%;
+  margin-top: 16%;
+}
+
+.emptyh:hover {
+  cursor: pointer;
+}
+
+.heart.emptyh{
+  color: var(--red-color);
 }
