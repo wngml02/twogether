@@ -62,7 +62,7 @@ app.get('/', async (req, res) => {
   res.status(200).send(`
       <a href="/login.html">Log In</a>
       <a href="/signup.html">Sign Up</a>
-      <h1>Not Logged In</h1>
+      <h1>로그인이 필요합니다.</h1>
   `);
 });
 
