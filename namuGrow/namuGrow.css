@@ -87,58 +87,29 @@ body {
 
 .box1{
   background-color: #E9F1E5;
-  width: 45%;
-  height: 85%;
+  width: 80%;
+  height: 90%;
   margin-top: 5%;
-  margin-left: 7%;
-  border-radius: 50px;
+  margin-left: 9%;
+  border-radius: 20px;
 }
 
 .box2{
   background-color: white;
-  width: 90%;
-  height: 90%;
-  border-radius: 50px;
-}
-
-.box1 {
-  position: relative;
-}
-.box1 > div {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
+  width: 40%;
+  height: 83%;
+  border-radius: 20px;
+  margin-left: 11%;
+  margin-top: -49%;
 }
 
 .box3{
-  background-color: #E9F1E5;
-  width: 40%;
-  height: 60%;
-  margin-top: -47%;
-  margin-left: 56%;
-  border-radius: 50px;
-}
-
-.box4{
   background-color: white;
   width: 85%;
-  height: 80%;
-  border-radius: 50px;
-}
-
-.box3 {
-  position: relative;
-}
-.box3 > div {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
+  height: 99.5%;
+  border-radius: 20px;
+  margin-left: 104%;
+  margin-top: -30%;
 }
 
 .nam{
@@ -170,9 +141,29 @@ ion-icon{
   transition:all 0.5s;
 }
 
-
 @keyframes like {
   0%   { transform: scale(1); }
   90%   { transform: scale(1.2); }
   100% { transform: scale(1.1); }
+}
+
+.title{
+  font-size: 35px;
+  margin-left: 4%;
+}
+
+.tree{
+  width: 70%;
+  height: 50%;
+  border: 3px solid green;
+  border-radius: 50% 50% 0px 0px;
+  text-align: center;
+  margin-left: 15%;
+}
+
+.nam{
+  width: 70%;
+  height: 30%;
+  border: 3px solid green;
+  margin-left: 15%;
 }
