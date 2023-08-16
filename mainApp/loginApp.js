@@ -51,19 +51,19 @@ app.get('/', async(req, res) => {
         if (user) {
             // JS 객체로 변환된 user 데이터에서 username, name, password를 추출하여 클라이언트에 렌더링
             res.status(200).send(`
-              <a href="/logout">Log Out</a>
-              <h1>아이디: ${userData.username}, 전화번호: ${userData.num}, 아이디: ${userData.id}, 비밀번호: ${userData.pw}</h1>
-          `);
+                <a href="/logout">Log Out</a>
+                <h1>아이디: ${userData.username}, 전화번호: ${userData.num}, 아이디: ${userData.id}, 비밀번호: ${userData.pw}</h1>
+            `);
             return;
         }
     }
 
     // 쿠키가 존재하지 않는 경우, 로그인 되지 않은 것으로 간주
     res.status(200).send(`
-      <a href="/login">Log In</a>
-      <a href="/signup">Sign Up</a>
-      <h1>로그인이 필요합니다.</h1>
-  `);
+        <a href="/login">Log In</a>
+        <a href="/signup">Sign Up</a>
+        <h1>로그인이 필요합니다.</h1>
+    `);
 });
 
 // 회원가입
