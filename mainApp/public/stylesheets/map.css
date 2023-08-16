@@ -59,7 +59,8 @@ span>a {
     font-family: 'Nanum Gothic Coding', monospace;
     text-align: center;
     flex-direction: row;
-    border: rgba(144, 184, 124, 0.2) solid 50px;
+    border: #E9f1E5 solid 50px;
+    ;
     background-color: rgba(144, 184, 124, 0.2);
 }
 
