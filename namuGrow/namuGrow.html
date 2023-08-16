@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>treeANDheart</title>
   <link rel="stylesheet" href="namuGrow.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 </head>
 <body style="font-size: 22px;">
@@ -32,27 +34,50 @@
 
   <div class="box2">
     <b class="title">친환경적인 행동 실천 사항</b>
-    <br>
+
+    <div class="textBox">
     <div class='large-font text-center top-20'>
       <ion-icon name="heart">
           <div class='red-bg'></div>
       </ion-icon>
-    쓰레기 줍기
+      쓰레기 줍기
+    <div class='large-font text-center top-20'>
+      <ion-icon name="heart">
+          <div class='red-bg'></div>
+      </ion-icon>
     텀블러 사용하기
     <div class='large-font text-center top-20'>
       <ion-icon name="heart">
           <div class='red-bg'></div>
       </ion-icon>
     포장용기 직접 가져오기
-    <br>
-    
+    <div class='large-font text-center top-20'>
+      <ion-icon name="heart">
+          <div class='red-bg'></div>
+      </ion-icon>
     대중교통 이용하기
-    <br>
+    <div class='large-font text-center top-20'>
+      <ion-icon name="heart">
+          <div class='red-bg'></div>
+      </ion-icon>
     친환경 관광지 방문하기
-    <br>
+    <div class='large-font text-center top-20'>
+      <ion-icon name="heart">
+          <div class='red-bg'></div>
+      </ion-icon>
     봉지 대신 에코백 사용하기
-    <br>
+    <div class='large-font text-center top-20'>
+      <ion-icon name="heart">
+          <div class='red-bg'></div>
+      </ion-icon>
     녹색매장 이용하기
+
+        <ul class="items">
+        </ul>
+        <div class="item--add--icon">
+            <i class="fas fa-plus-circle before"></i>
+        </div>
+
   </div>
 
   <div class="box3">
@@ -60,16 +85,15 @@
       tree
     </div>
     <div class="nam">
-      <p>
-        *나무 키우기 사용 설명서
+      <b class="n">*나무 키우기 사용 설명서*</b>
       <br>
-      <br>
+      <p class="g">
         1. 실천 사항은 매일 초기화됩니다
         <br>
         2. 나무는 실천하는 행동들이 많아질수록 성장합니다
         <br>
         3. 나무의 성장 단계는 총 3단계입니다
-      </p>
+        </p>
     </div>
   </div>
 
@@ -81,6 +105,65 @@ icon.forEach(function(icons){
     icons.classList.toggle('active');
   }
 })
+
+const items = document.querySelector('.items');
+        const itemPlus = document.querySelector('.item--add--icon');
+        itemPlus.addEventListener('click', e => {
+            let thisElement = e.target;
+            if(thisElement.nodeName !== 'I'){
+                thisElement = e.target.firstElementChild;
+            }
+            if (thisElement.classList.contains('fa-plus-circle')) {
+                const itemElement = document.createElement('li');
+                itemElement.classList.add('item');
+                const checkTag = document.createElement('input');
+                checkTag.setAttribute('type','checkbox');
+                checkTag.classList.add('item--check');
+                const textTag = document.createElement('input');
+                textTag.setAttribute('type','text');
+                textTag.classList.add('item--title');
+                const spanTag = document.createElement('span');
+                spanTag.classList.add('item--delete');
+                spanTag.innerHTML = `<i class="fas fa-trash-alt"></i>`;
+
+                itemElement.append(checkTag,textTag,spanTag);
+                items.append(itemElement);
+                thisElement.classList.remove('fa-plus-circle');
+                thisElement.classList.add('fa-check');
+
+                textTag.focus();
+            } else if (thisElement.classList.contains('fa-check')) {
+                const itemTitles = document.querySelectorAll('.item--title');
+                const itemTitle = itemTitles[itemTitles.length-1];
+                if(itemTitle.value === null || itemTitle.value === '') {
+                    const items = document.querySelectorAll('.item');
+                    items[items.length-1].remove();
+                }
+                itemTitle.setAttribute('disabled', true);
+                itemTitle.style.border = 'none';
+                itemTitle.style.backgroundColor = 'transparent';
+                thisElement.classList.remove('fa-check');
+                thisElement.classList.add('fa-plus-circle');
+            }
+        });
+        const deleteBtns = document.querySelectorAll('.fa-trash-alt');
+        items.addEventListener('click',e=>{
+            if(e.target.classList.contains('fa-trash-alt')){
+                const checkboxs = document.querySelectorAll('.item--check:checked');
+                if(checkboxs.length > 0)
+                    checkboxs.forEach(item => item.parentElement.remove());
+                else
+                    e.target.parentElement.parentElement.remove();
+            }
+        });
+        window.addEventListener('keydown',e=>{
+            if(e.keyCode !== 13) {
+                e.stopPropagation();
+                return;
+            }
+            itemPlus.click();
+        })
+
 </script>
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
