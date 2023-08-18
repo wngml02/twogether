@@ -15,6 +15,9 @@ app.get('/map', function(req, res) {
 app.get('/sightSeeing', function(req, res) {
     return res.sendFile(__dirname + '/sightSeeing.html');
 });
+app.get('/signup', function(req, res) {
+    return res.sendFile(__dirname + '/signup.html');
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

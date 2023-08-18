@@ -8,6 +8,9 @@ app.get('', function(req, res) {
 app.get('/page', function(req, res) {
     return res.send('/page');
 });
+app.get('/signup', function(req, res) {
+    return res.sendFile(__dirname + '/signup.html');
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
