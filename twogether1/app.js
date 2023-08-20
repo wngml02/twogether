@@ -15,45 +15,80 @@ app.get('/signup', function(req, res) {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
-/*
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+///////////// 로그인
+var mysql = require('mysql');
+var db = mysql.createConnection({
+    host: '',
+    user: '',
+    password: '',
+    database: ''
+});
+db.connect();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    next(createError(404));
+module.exports = db;
+app.post('/login', function(request, response) {
+    var username = request.body.username;
+    var password = request.body.password;
+    if (username && password) {
+        connection.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+            if (error) throw error;
+            if (results.length > 0) {
+                request.session.loggedin = true;
+                request.session.username = username;
+                response.redirect('/');
+                response.end();
+            } else {
+                response.send('<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); document.location.href="/login";</script>');
+            }
+        });
+    } else {
+        response.send('<script type="text/javascript">alert("username과 password를 입력하세요!"); document.location.href="/login";</script>');
+        response.end();
+    }
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+///////////// 로그아웃
+app.get('/logout', function(request, response) {
+    request.session.loggedin = false;
+    response.send('<script type="text/javascript">alert("성공적으로 로그아웃 되었습니다."); document.location.href="/";</script>');
+    response.end();
 });
 
-module.exports = app;*/
+
+
+/////////////// 회원가입
+app.get('/signup', function(request, response) {
+    response.sendFile(path.join(__dirname + '/signup.html'));
+});
+
+app.post('/signup', function(request, response) {
+    var username = request.body.username;
+    var password = request.body.password;
+    var password2 = request.body.password2;
+    var email = request.body.email;
+    console.log(username, password, email);
+    if (username && password && email) {
+        connection.query('SELECT * FROM user WHERE username = ? AND password = ? AND email = ?', [username, password, email], function(error, results, fields) {
+            if (error) throw error;
+            if (results.length <= 0 && password == password2) {
+                connection.query('INSERT INTO user (username, password, email) VALUES(?,?,?)', [username, password, email],
+                    function(error, data) {
+                        if (error)
+                            console.log(error);
+                        else
+                            console.log(data);
+                    });
+                response.send('<script type="text/javascript">alert("회원가입을 환영합니다!"); document.location.href="/";</script>');
+            } else if (password != password2) {
+                response.send('<script type="text/javascript">alert("입력된 비밀번호가 서로 다릅니다."); document.location.href="/register";</script>');
+            } else {
+                response.send('<script type="text/javascript">alert("이미 존재하는 아이디 입니다."); document.location.href="/register";</script>');
+            }
+            response.end();
+        });
+    } else {
+        response.send('<script type="text/javascript">alert("모든 정보를 입력하세요"); document.location.href="/register";</script>');
+        response.end();
+    }
+});
