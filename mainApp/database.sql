@@ -1,4 +1,5 @@
-SHOW TABLES;
+CREATE DATABASE user;
+USE user;
 
 DROP TABLE userTable;
 
@@ -9,3 +10,5 @@ CREATE TABLE userTable (
     password varchar(255) NOT NULL,
     PRIMARY KEY(id)
 );
+
+SELECT * FROM userTable;
