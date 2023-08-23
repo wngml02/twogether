@@ -15,7 +15,7 @@ app.post('/signup', (req, res, next) => {
     dbConfig.query('INSERT INTO userTable(`username`,`num`,`id`,`password`) VALUES (?,?,?,?)', user, (err, row) => {
         if (err) console.error(err)
     })
-    res.end()
+    res.end()    
 })
 
 app.use(express.static(__dirname + "/public"));
