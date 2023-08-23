@@ -3,8 +3,8 @@ const dbInfo = {
     host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'minseok0326',
-    database: 'twogether'
+    password: '',
+    database: 'TWOGETHER'
 };
 
 module.exports = {
