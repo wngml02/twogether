@@ -3,6 +3,8 @@ const app = express()
 const port = 3000
 var dbConfig = require(__dirname + '/config/db.js');
 var conn = dbConfig.init();
+dbConfig.connect(conn);
+
 
 app.use(express.static(__dirname + "/public"));
 
@@ -24,7 +26,6 @@ app.get('/signup', function(req, res) {
 
 
 
-dbConfig.connect(conn);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
