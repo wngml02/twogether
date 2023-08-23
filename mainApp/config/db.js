@@ -10,10 +10,10 @@ var options = {
 var sessionStore = new MySQLStore(options);
 
 app.use(session({
-    secret:"sleepy",
-    resave:false,
-    saveUninitialized:true,
-    store:sessionStore
+    secret: "sleepy",
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore
 }))
 
 const mysql = require('mysql');
@@ -24,7 +24,6 @@ const dbInfo = {
     password: '',
     database: 'TWOGETHER'
 };
-
 module.exports = {
     init: function() {
         return mysql.createConnection(dbInfo);
