@@ -31,7 +31,8 @@
         <div class="box3"></div>
     </div>
     <div id="placeInfo"> </div>
-    <script src="tour.js"> </script>
+    <script src="public/javascripts/tour.js">
+    </script>
     <script>
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
         var areaCodeInput = new URLSearchParams(window.location.search).get('areaCodeInput');
@@ -41,7 +42,7 @@
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
-        const boxClassNames = [".box1",".box2",".box3"];
+        const boxClassNames = [".box1", ".box2", ".box3"];
 
         // 박스 안에 관광지 정보 표시
         function getPlace(apiUrlWithPageNo, boxClass) {
@@ -71,7 +72,6 @@
         }
 
         getPlaceByAreaCode(areaCodeInput);
-
     </script>
 </body>
 
