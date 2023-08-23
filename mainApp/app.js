@@ -8,7 +8,7 @@ var dbConfig = require(__dirname + '/config/db.js');
 
 app.post('/signup', (req, res, next) => {
     var user = [req.body.username, req.body.num, req.body.id, req.body.password]
-    dbConfig.query('INSERT INTO userTable(`username`,`num`,`id`,`password`) VALUES (?,?,?,?,)', user, (err, row) => {
+    dbConfig.query('INSERT INTO userTable(`username`,`num`,`id`,`password`) VALUES (?,?,?,?)', user, (err, row) => {
         if (err) console.error(err)
     })
     res.end()
