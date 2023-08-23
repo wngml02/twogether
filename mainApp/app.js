@@ -6,6 +6,10 @@ var dbConfig = require(__dirname + '/config/db.js');
 //var conn = dbConfig.init();
 //dbConfig.connect(conn);
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.post('/', function(req, res) {
+    console.log(req.body)
+});
 app.post('/signup', (req, res, next) => {
     var user = [req.body.username, req.body.num, req.body.id, req.body.password]
     dbConfig.query('INSERT INTO userTable(`username`,`num`,`id`,`password`) VALUES (?,?,?,?)', user, (err, row) => {
