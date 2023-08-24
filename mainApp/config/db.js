@@ -9,12 +9,12 @@ var options = {
 };
 var sessionStore = new MySQLStore(options);
 
-app.use(session({
-    secret: "sleepy",
-    resave: false,
-    saveUninitialized: true,
-    store: sessionStore
-}))
+//app.use(session({
+//secret: "sleepy",
+//resave: false,
+//saveUninitialized: true,
+//store: sessionStore
+//}))
 
 const mysql = require('mysql');
 const dbInfo = {

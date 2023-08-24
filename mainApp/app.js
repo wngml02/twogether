@@ -6,7 +6,7 @@ var dbConfig = require(__dirname + '/config/db.js');
 //var conn = dbConfig.init();
 //dbConfig.connect(conn);
 
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.post('/', function(req, res) {
     console.log(req.body)
 });
