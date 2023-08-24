@@ -23,6 +23,9 @@ app.get('/sightSeeing', function(req, res) {
 app.get('/signup', function(req, res) {
     return res.sendFile(__dirname + '/signup.html');
 });
+app.get('/login', function(req, res) {
+    return res.sendFile(__dirname + '/login.html');
+});
 app.get('/namuGrow', function(req, res) {
     return res.sendFile(__dirname + '/namuGrow.html');
 });
