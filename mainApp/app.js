@@ -15,7 +15,7 @@ app.post('/signup', (req, res, next) => {
     dbConfig.query('INSERT INTO userTable(`username`,`num`,`id`,`password`) VALUES (?,?,?,?)', user, (err, row) => {
         if (err) console.error(err)
     })
-    res.end()    
+    res.end()
 })
 
 app.use(express.static(__dirname + "/public"));
@@ -35,7 +35,7 @@ app.get('/sightSeeing', function(req, res) {
 app.get('/signup', function(req, res) {
     return res.sendFile(__dirname + '/signup.html');
 });
-app.get('/signup', function(req, res) {
+app.get('/namuGrow', function(req, res) {
     return res.sendFile(__dirname + '/namuGrow.html');
 });
 
