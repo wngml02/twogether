@@ -8,6 +8,8 @@ const port = 3000
 
 app.use(express.static(__dirname + "/public"));
 
+app.use(bodyParser.json());
+
 app.get('', function(req, res) {
     return res.sendFile(__dirname + '/main.html');
 });

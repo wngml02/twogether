@@ -52,7 +52,7 @@ app.get('/', async(req, res) => {
             // JS 객체로 변환된 user 데이터에서 username, name, password를 추출하여 클라이언트에 렌더링
             res.status(200).send(`
                 <a href="/logout">Log Out</a>
-                <h1>아이디: ${userData.username}, 전화번호: ${userData.num}, 아이디: ${userData.id}, 비밀번호: ${userData.pw}</h1>
+                <h1>아이디: ${userData.username}, 전화번호: ${userData.num}, 아이디: ${userData.id}, 비밀번호: ${userData.password}</h1>
             `);
             return;
         }
@@ -68,7 +68,7 @@ app.get('/', async(req, res) => {
 
 // 회원가입
 app.post('/signup', async(req, res) => {
-    const { username, num, id, pw } = req.body;
+    const { username, num, id, password } = req.body;
     const exists = db.get(id);
 
     // 이미 존재하는 id일 경우 회원 가입 실패
@@ -83,13 +83,13 @@ app.post('/signup', async(req, res) => {
         username,
         num,
         id,
-        pw,
+        password,
     };
     await createUser({
         username,
         num,
         id,
-        pw,
+        password,
     });
 
     console.log(newUser);
@@ -103,7 +103,7 @@ app.post('/signup', async(req, res) => {
 
 // 로그인
 app.post('/login', (req, res) => {
-    const { id, pw } = req.body;
+    const { id, password } = req.body;
     const user = db.get(id);
 
     // 가입 안 된 id인 경우
@@ -112,7 +112,7 @@ app.post('/login', (req, res) => {
         return;
     }
     // 비밀번호가 틀렸을 경우
-    if (pw !== user.pw) {
+    if (password !== user.password) {
         res.status(400).send('incorrect password');
         return;
     }
