@@ -37,8 +37,39 @@
                         <input type="password" id="password" name="password" required/>
                         <br/>
                         <br/>
-                        <button class="submit">가입하기</button>
+                        <button class="submit" id="submit">가입하기</button>
     </form>
+    <script>
+        document.getElementById('submit').addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const num = document.getElementById('num').value;
+            const id = document.getElementById('id').value;
+            const password = document.getElementById('password').value;
+
+            const formData = {
+                username: username,
+                num: num,
+                id: id,
+                password: password
+            };
+
+            fetch('/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 서버 응답 처리
+                console.log("회원가입이 완료되었습니다.");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
     <p></p>
     <b>이미 계정이 있으신가요?</b>
     <p class="user" onclick="location.href='/login'">로그인하기</p>
