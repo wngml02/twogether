@@ -1,65 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <title>TODO List Example</title>
-    <style>
-        * {
-            box-sizing: content-box;
-        }
-
-        ul {
-            list-style: none;
-            margin: 0;
-            font-size : 20px;
-        }
-        
-        .item--add,
-        .item--delete {
-            cursor: pointer;
-        }
-
-        .main .item--add {
-            margin-right: 5px;
-        }
-
-        .item--add--icon {
-            cursor: pointer;
-            font-size : 20px;
-        }
-
-        .item--check {
-            transform: scale(1.5);
-            margin-right: 5px;
-        }
-
-        .item {
-            margin : 20px 0;
-        }
-
-        .item--title {
-            font-size : 20px;
-            margin : 0 10px;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="box">
-            <ul class="items">
-            </ul>
-            <div class="item--add--icon">
-                <i class="fas fa-plus-circle before"></i>
-            </div>
-          </div>
-        
-    <script>
-        const items = document.querySelector('.items');
+const items = document.querySelector('.items');
         const itemPlus = document.querySelector('.item--add--icon');
         itemPlus.addEventListener('click', e => {
             let thisElement = e.target;
@@ -116,7 +55,3 @@
             }
             itemPlus.click();
         })
-    </script>
-</body>
-
-</html>
