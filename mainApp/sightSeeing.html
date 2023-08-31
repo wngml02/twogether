@@ -36,9 +36,18 @@
     </script>
     <script>
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
-        var areaCodeInput = new URLSearchParams(window.location.search);
-        var receivedVariable = areaCodeInput.get('variable');
-        console.log(receivedVariable);
+        $.ajax({
+            type: 'GET',
+            url: '/map', // Express 라우트 경로
+            success: function(result) {
+                // 두 번째 페이지 내부에서 변수값 사용
+                console.log('Stored Variable in Second Page:', result);
+                var receivedVariable = result;
+            },
+            error: function() {
+                console.log('Error');
+            }
+        });
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 

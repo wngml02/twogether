@@ -10,8 +10,8 @@ app.use(session({
 const port = 3000
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-    //var conn = dbConfig.init();
-    //dbConfig.connect(conn);
+//var conn = dbConfig.init();
+//dbConfig.connect(conn);
 
 // bodyParser를 사용하여 POST 데이터를 파싱합니다.
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,11 +57,11 @@ app.listen(PORT, () => {
 
 // MySQL 연결 설정
 const connection = mysql.createConnection({
-    host     : 'localhost',
-    port     : 3306,
-    user     : 'root',
-    password : '',
-    database : 'TWOGETHER'
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: '',
+    database: 'TWOGETHER'
 });
 
 connection.connect((err) => {
@@ -102,4 +102,13 @@ app.get('/', function(req, res) {
     } else {
         return res.redirect('/login');
     }
+});
+let storedVariable = "";
+app.get('/map', (req, res) => {
+    storedVariable = req.query.variable; // 변수값 저장
+    res.send('Variable stored successfully.');
+});
+
+app.get('/sightSeeing', (req, res) => {
+    res.send(storedVariable); // 저장된 변수값 반환
 });
