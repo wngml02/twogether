@@ -2,7 +2,7 @@ const express = require('express')
 const session = require('express-session');
 const app = express()
 app.use(session({
-    secret: '0115',
+    secret: '',
     resave: false,
     saveUninitialized: true
 }));
@@ -87,6 +87,7 @@ app.post('/login', (req, res) => {
                 const user = results[0];
                 if (user.password === password) {
                     req.session.user = user; // 사용자 정보를 세션에 저장
+                    res.redirect('/main');
                 } else {
                     res.status(401).send('비밀번호가 일치하지 않습니다.');
                 }
@@ -95,11 +96,10 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.get('', function(req, res) {
+app.get('/', function(req, res) {
     if (req.session.user) {
-        return res.sendFile(__dirname + '/main.html');
+        return res.redirect('/main');
     } else {
-        // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
         return res.redirect('/login');
     }
 });
