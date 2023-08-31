@@ -2,7 +2,7 @@ const express = require('express')
 const session = require('express-session');
 const app = express()
 app.use(session({
-    secret: '',
+    secret: '0000',
     resave: false,
     saveUninitialized: true
 }));
