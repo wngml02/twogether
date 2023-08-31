@@ -65,17 +65,25 @@ connection.connect((err) => {
     }
 });
 
-// 회원가입 정보를 처리하는 라우트
-app.post('/signup', (req, res) => {
-    const { username, num, id, password } = req.body;
+app.post('/login', (req, res) => {
+    const { id, password } = req.body;
 
-    const insertQuery = `INSERT INTO usertable (username, num, id, password) VALUES (?, ?, ?, ?)`;
-    connection.query(insertQuery, [username, num, id, password], (error, results, fields) => {
+    const selectQuery = 'SELECT * FROM usertable WHERE id = ?';
+    connection.query(selectQuery, [id], (error, results) => {
         if (error) {
             console.error(error);
-            res.status(500).send('회원가입 중 오류가 발생했습니다.');
+            res.status(500).send('로그인 중 오류가 발생했습니다.');
         } else {
-            res.send('회원가입이 완료되었습니다!');
+            if (results.length === 0) {
+                res.status(401).send('해당 아이디를 찾을 수 없습니다.');
+            } else {
+                const user = results[0];
+                if (user.password === password) {
+                    res.send('로그인이 성공했습니다!');
+                } else {
+                    res.status(401).send('비밀번호가 일치하지 않습니다.');
+                }
+            }
         }
     });
 });
