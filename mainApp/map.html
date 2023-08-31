@@ -31,6 +31,8 @@
     <div id="Gotoseeing" style="background-color: #90B77D;">
         <form type="button" onclick="location.href='/sightSeeing'" value="관광지 확인" class="gotoseeing">
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
@@ -509,7 +511,7 @@
 
         //데이터 저장
 
-        function storeData(clicked_id) {
+        $(function storeData(clicked_id) {
             var areadata = clicked_id;
             console.log(areadata);
             $.ajax({
@@ -524,7 +526,7 @@
                     alert('Error')
                 }
             });
-        }
+        });
     </script>
 
 </html>
