@@ -111,7 +111,7 @@ body {
   height: 930px;
   border-radius: 20px;
   margin-left: 102%;
-  margin-top: -140%;
+  margin-top: -90%;
 }
 
 .nam{
@@ -208,10 +208,10 @@ ul {
   cursor: pointer;
   font-size : 30px;
   position: relative;
-  margin-top: 60%;
+  margin-top: 30px;
 }
 
 .item--check {
   transform: scale(1.5);
-  margin-right: 5px;
+  margin-right: 6px;
 }
