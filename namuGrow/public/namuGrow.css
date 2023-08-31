@@ -111,7 +111,7 @@ body {
   height: 930px;
   border-radius: 20px;
   margin-left: 102%;
-  margin-top: -140%;
+  margin-top: -90%;
 }
 
 .nam{
@@ -208,10 +208,27 @@ ul {
   cursor: pointer;
   font-size : 30px;
   position: relative;
-  margin-top: 60%;
+  margin-top: 30px;
 }
 
 .item--check {
   transform: scale(1.5);
-  margin-right: 5px;
+  margin-right: 6px;
+}
+/*쓰레기통 아이콘*/
+.item--delete{
+  font-size: 30px;
+  margin-left: 0.5em;
+}
+/*리스트 작성란*/
+.item--title{
+  font-size: 31px;
+  color: black;
+}
+/*하트 아이콘*/
+.item--heart{
+  position: relative;
+  margin-left: -1.22em;
+  top: 1.3em;
+  font-size: 32px;
 }
