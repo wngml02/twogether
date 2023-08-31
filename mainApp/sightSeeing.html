@@ -35,10 +35,9 @@
     </script>
     <script>
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
-        var areaCodeInput = new URLSearchParams(window.location.search).get('areaCodeInput');
-        document.write(areaCodeInput);
-    </script>
-    <script>
+        var areaCodeInput = new URLSearchParams(window.location.search);
+        var receivedVariable = areaCodeInput.get('variable');
+        console.log(receivedVariable);
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
@@ -64,14 +63,15 @@
                 .catch(error => console.log("fetch 에러:", error));
         }
 
-        function getPlaceByAreaCode(areaCodeInput) {
+
+        function getPlaceByAreaCode(receivedVariable) {
             boxClassNames.forEach((boxClass, index) => {
-                const apiUrlWithPageNo = `${apiUrlBase}?${queryParams}&pageNo=${index + 1}&areaCode=${areaCodeInput}`;
+                const apiUrlWithPageNo = `${apiUrlBase}?${queryParams}&pageNo=${index + 1}&areaCode=${receivedVariable}`;
                 getPlace(apiUrlWithPageNo, boxClass);
             });
         }
 
-        getPlaceByAreaCode(areaCodeInput);
+        getPlaceByAreaCode(receivedVariable);
     </script>
 </body>
 

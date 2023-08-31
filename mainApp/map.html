@@ -512,14 +512,14 @@
         //데이터 저장
 
         $(".center").click(function() {
-            let areadata = $(this).attr('id');
+            var areadata = $(this).attr('id');
             console.log(areadata);
             $.ajax({
-                type: 'POST',
-                url: 'http://localhost:3000/sightSeeing',
-                data: areadata,
-                contentType: "application/json; charset=utf-8",
-                dataType: 'text',
+                type: 'GET',
+                url: '/sightSeeing',
+                data: {
+                    variable: variableValue
+                },
                 success: function(result) {
                     alert('Success')
                 },
@@ -528,7 +528,6 @@
                 }
             });
         });
-
     </script>
 
 </html>
