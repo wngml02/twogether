@@ -14,7 +14,7 @@
     <header>
         <div><img src="/images/twogether-logo.png" alt="로고" width="380px" height="140px"></div>
     </header>
-    <form method="POST" action="/login">
+    <form action="/login" method="POST">
         <!-- <label for="id">아이디: </label> -->
         <b class="text">아이디</b>
         <p>
@@ -26,8 +26,39 @@
                 <input type="password" name="password" />
                 <br/>
                 <br/>
-                <button class="log">로그인</button>
+                <button type="submit" class="log" id="log">로그인</button>
     </form>
+    <script>
+        document.getElementById('log').addEventListener('click', function() {
+            const id = document.getElementById('id').value;
+            const password = document.getElementById('password').value;
+
+            const formData = {
+                id: id,
+                password: password
+            };
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 서버 응답 처리
+                if (data.success) {
+                    console.log("로그인이 성공했습니다.");
+                } else {
+                    console.log("로그인에 실패했습니다.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
     <button class="logka">카카오톡으로 로그인하기</button>
     <p></p>
     <p class="find">아이디/비밀번호 찾기</p>
