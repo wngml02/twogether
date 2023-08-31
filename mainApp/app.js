@@ -1,5 +1,12 @@
 const express = require('express')
+const session = require('express-session');
 const app = express()
+app.use(session({
+    secret: '0115',
+    resave: false,
+    saveUninitialized: true
+}));
+
 const port = 3000
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
@@ -79,11 +86,20 @@ app.post('/login', (req, res) => {
             } else {
                 const user = results[0];
                 if (user.password === password) {
-                    res.send('로그인이 성공했습니다!');
+                    req.session.user = user; // 사용자 정보를 세션에 저장
                 } else {
                     res.status(401).send('비밀번호가 일치하지 않습니다.');
                 }
             }
         }
     });
+});
+
+app.get('', function(req, res) {
+    if (req.session.user) {
+        return res.sendFile(__dirname + '/main.html');
+    } else {
+        // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+        return res.redirect('/login');
+    }
 });
