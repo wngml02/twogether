@@ -121,12 +121,15 @@ const items = document.querySelector('.items');
             if (thisElement.classList.contains('fa-plus-circle')) {
                 const itemElement = document.createElement('li');
                 itemElement.classList.add('item');
-                const checkTag = document.createElement('input');
-                checkTag.setAttribute('type','checkbox');
-                checkTag.classList.add('item--check');
+                //체크를 하트로 바꿈
+                const checkTag = document.createElement('div');
+                checkTag.classList.add('item--heart');
+                checkTag.innerHTML = `<ion-icon name="heart"></ion-icon>`;
+                //리스트 작성
                 const textTag = document.createElement('input');
                 textTag.setAttribute('type','text');
                 textTag.classList.add('item--title');
+                //리스트 삭제 아이콘
                 const spanTag = document.createElement('span');
                 spanTag.classList.add('item--delete');
                 spanTag.innerHTML = `<i class="fas fa-trash-alt"></i>`;
@@ -154,7 +157,7 @@ const items = document.querySelector('.items');
         const deleteBtns = document.querySelectorAll('.fa-trash-alt');
         items.addEventListener('click',e=>{
             if(e.target.classList.contains('fa-trash-alt')){
-                const checkboxs = document.querySelectorAll('.item--check:checked');
+                const checkboxs = document.querySelectorAll('.item--heart:checked');
                 if(checkboxs.length > 0)
                     checkboxs.forEach(item => item.parentElement.remove());
                 else
