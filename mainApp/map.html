@@ -508,31 +508,22 @@
         customOverlay.setMap(map);
 
         //데이터 저장
+
         function storeData(clicked_id) {
-            var data = clicked_id;
-            console.log(data);
-        }
-
-        function to_ajax() {
-
-
-
-            var queryString = $("label[name]").serialize();
-
+            var areadata = clicked_id;
+            console.log(areadata);
             $.ajax({
                 type: 'post',
-                url: '/sightseeing',
-                data: queryString,
-                dataType: 'json',
-                error: function(xhr, status, error) {
-                    alert(error);
+                url: '/sightSeeing',
+                data: areaCode,
+                dataType: 'text',
+                success: function(result) {
+                    alert('Success')
                 },
-                success: function(json) {
-                    alert(json)
-
+                error: function() {
+                    alert('Error')
                 }
             });
-
         }
     </script>
 
