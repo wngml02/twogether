@@ -103,12 +103,12 @@ app.get('/', function(req, res) {
         return res.redirect('/login');
     }
 });
-let storedVariable = "";
+let data = "";
 app.get('/map', (req, res) => {
-    storedVariable = req.query.variable; // 변수값 저장
+    data = req.query.variable; // 변수값 저장
     res.send('Variable stored successfully.');
 });
 
 app.get('/sightSeeing', (req, res) => {
-    res.send(storedVariable); // 저장된 변수값 반환
+    res.send(data); // 저장된 변수값 반환
 });

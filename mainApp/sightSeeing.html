@@ -41,8 +41,9 @@
             url: '/map', // Express 라우트 경로
             success: function(result) {
                 // 두 번째 페이지 내부에서 변수값 사용
+
+                var data = result;
                 console.log('Stored Variable in Second Page:', result);
-                var receivedVariable = result;
             },
             error: function() {
                 console.log('Error');
@@ -81,7 +82,7 @@
             });
         }
 
-        getPlaceByAreaCode(receivedVariable);
+        getPlaceByAreaCode(data);
     </script>
 </body>
 
