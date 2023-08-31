@@ -6,7 +6,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-
 const port = 3000
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
@@ -26,9 +25,12 @@ app.get('/placeInfo', function(req, res) {
     return res.sendFile(__dirname + '/placeInfo.html');
 });
 app.get('/map', function(req, res) {
+
+    data = req.query.variable;
     return res.sendFile(__dirname + '/map.html');
 });
 app.get('/sightSeeing', function(req, res) {
+    res.send(data);
     return res.sendFile(__dirname + '/sightSeeing.html');
 });
 app.get('/signup', function(req, res) {
@@ -102,13 +104,4 @@ app.get('/', function(req, res) {
     } else {
         return res.redirect('/login');
     }
-});
-let data = "";
-app.get('/map', (req, res) => {
-    data = req.query.variable; // 변수값 저장
-    res.send('Variable stored successfully.');
-});
-
-app.get('/sightSeeing', (req, res) => {
-    res.send(data); // 저장된 변수값 반환
 });
