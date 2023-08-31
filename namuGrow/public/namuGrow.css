@@ -102,21 +102,19 @@ body {
   border-radius: 20px;
   margin-left: 11%;
   margin-top: -57%;
+  overflow: auto;
+  
 }
 
 .box3{
   position: relative;
   background-color: white;
   width: 600px;
-  height: 930px;
+  height: 890px;
   border-radius: 20px;
-  margin-left: 102%;
-  margin-top: -90%;
-}
-
-.nam{
-  margin-top: 6%;
-  margin-left: 60%;
+  margin-left: 52%;
+  margin-top: -55%;
+  padding-top: 2em;
 }
 
 .na{
@@ -131,6 +129,7 @@ body {
 .top-20{
   position:relative;
   top: 2vh;
+  margin-top: 1.2em;
 }
 
 ion-icon.active{
@@ -166,10 +165,10 @@ ion-icon{
 
 .nam{
   width: 460px;
-  height: 350px;
+  height: 310px;
   border: 3px solid green;
   margin: 0 auto;
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .title{
@@ -185,17 +184,18 @@ ion-icon{
 
 .n{
   position: relative;
-  top: 4%;
+  top: 1.5em;
 }
 
 .g{
-  line-height: 4.5vh;
+  line-height: 5vh;
+  position: relative;
+  top: 1.7em;
 }
 
 
 ul {
   list-style: none;
-  margin: 0;
   font-size : 30px;
 }
 
@@ -208,7 +208,7 @@ ul {
   cursor: pointer;
   font-size : 30px;
   position: relative;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .item--check {
@@ -229,6 +229,11 @@ ul {
 .item--heart{
   position: relative;
   margin-left: -1.22em;
+  margin-top: 0.5em;
   top: 1.3em;
   font-size: 32px;
+}
+
+li{
+  margin-top: -0.5em;
 }
