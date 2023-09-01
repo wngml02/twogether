@@ -30,7 +30,6 @@ app.get('/map', function(req, res) {
     return res.sendFile(__dirname + '/map.html');
 });
 app.get('/sightSeeing', function(req, res) {
-    res.send(data);
     return res.sendFile(__dirname + '/sightSeeing.html');
 });
 app.get('/signup', function(req, res) {
