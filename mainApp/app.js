@@ -19,27 +19,27 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
 app.get('', function(req, res) {
-    return res.sendFile(__dirname + '/main.html');
+    res.sendFile(__dirname + '/main.html');
 });
 app.get('/placeInfo', function(req, res) {
-    return res.sendFile(__dirname + '/placeInfo.html');
+    res.sendFile(__dirname + '/placeInfo.html');
 });
 app.get('/map', function(req, res) {
 
     data = req.query.variable;
-    return res.sendFile(__dirname + '/map.html');
+    res.sendFile(__dirname + '/map.html');
 });
 app.get('/sightSeeing', function(req, res) {
-    return res.sendFile(__dirname + '/sightSeeing.html');
+    res.sendFile(__dirname + '/sightSeeing.html');
 });
 app.get('/signup', function(req, res) {
-    return res.sendFile(__dirname + '/signup.html');
+    res.sendFile(__dirname + '/signup.html');
 });
 app.get('/login', function(req, res) {
-    return res.sendFile(__dirname + '/login.html');
+    res.sendFile(__dirname + '/login.html');
 });
 app.get('/namuGrow', function(req, res) {
-    return res.sendFile(__dirname + '/namuGrow.html');
+    res.sendFile(__dirname + '/namuGrow.html');
 });
 
 
