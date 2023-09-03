@@ -107,17 +107,23 @@
 
     <script>
         //하트 아이콘 js
-        let icon = document.querySelectorAll('ion-icon');
+        const icons = document.querySelectorAll('ion-icon');
+        icons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                icon.classList.toggle('active');
+            });
+        });
 
-        icon.forEach(function(icons) {
-                icons.onclick = function() {
-                    icons.classList.toggle('active');
-                }
-            })
-            //리스트 추가삭제 js
+        //리스트 추가삭제 js
         const items = document.querySelector('.items');
         const itemPlus = document.querySelector('.item--add--icon');
         itemPlus.addEventListener('click', e => {
+            const icons = document.querySelectorAll('ion-icon');
+            icons.forEach(icon => {
+                icon.addEventListener('click', () => {
+                    icon.classList.toggle('active');
+                });
+            });
             let thisElement = e.target;
             if (thisElement.nodeName !== 'I') {
                 thisElement = e.target.firstElementChild;
@@ -161,10 +167,10 @@
         const deleteBtns = document.querySelectorAll('.fa-trash-alt');
         items.addEventListener('click', e => {
             if (e.target.classList.contains('fa-trash-alt')) {
-                const checkboxs = document.querySelectorAll('.item--heart:checked');
-                if (checkboxs.length > 0)
-                    checkboxs.forEach(item => item.parentElement.remove());
-                else
+                //const checkboxs = document.querySelectorAll('.item--heart:checked');
+                //if (checkboxs.length > 0)
+                    //checkboxs.forEach(item => item.parentElement.remove());
+                //else
                     e.target.parentElement.parentElement.remove();
             }
         });
@@ -174,7 +180,7 @@
                 return;
             }
             itemPlus.click();
-        })
+        });
     </script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
