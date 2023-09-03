@@ -163,8 +163,8 @@ app.get('/login/auth/kakao/callback', async(req, res) => {
     req.session.kakao = user.data;
     res.send('success');
 })
-app.get(`/home/ + id= + {user}`, (req, res) => {
-    res.redirect('/');
+app.get('/home', (req, res) => {
+    res.redirect('');
 
 })
 app.listen(port, () => {
