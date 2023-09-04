@@ -163,10 +163,17 @@ app.get('/login/auth/kakao/callback', async(req, res) => {
     req.session.kakao = user.data;
     res.send('success');
 })
-app.get('/home', (req, res) => {
-    res.redirect('');
+app.get('/auth/info', (req, res) => {
+    let { nickname } = req.session.kakao.properties;
+    res.render('info.html', {
+        nickname,
+    })
+})
+app.get('/', (req, res) => {
+    res.render('main.html');
 
 })
+app.get(kakao.redirectUri)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
