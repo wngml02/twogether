@@ -88,9 +88,9 @@
 
         <div class="box3">
             <div class="tree">
-                <i class="fas fa-solid fa-leaf" style="font-size: 100px; margin-top: 2.5em; margin-left: 1.5em; color: green;"></i>
-                <i class="fab fa-brands fa-pagelines"></i>
-                <i class="fas fa-solid fa-tree"></i>
+                <i class="fas fa-solid fa-leaf" id="leaf-icon" style="display: none;"></i>
+                <i class="fab fa-brands fa-pagelines" id="pagelines-icon" style="display: none;"></i>
+                <i class="fas fa-solid fa-tree" id="tree-icon" style="display: none;"></i>
             </div>
             <div class="nam">
                 <b class="n">*나무 키우기 사용 설명서*</b>
@@ -181,6 +181,56 @@
             }
             itemPlus.click();
         });
+
+        
+    const heartIcons = document.querySelectorAll('.item--heart ion-icon');
+    let heartCount = 0; // 하트 클릭 횟수 초기화
+
+    function updateIcon() {
+        const leafIcon = document.getElementById('leaf-icon');
+        const pagelinesIcon = document.getElementById('pagelines-icon');
+        const treeIcon = document.getElementById('tree-icon');
+
+        if (heartCount >= 5) {
+            leafIcon.style.display = 'none';
+            pagelinesIcon.style.display = 'none';
+            treeIcon.style.display = 'block';
+            treeIcon.style.fontSize = '150px'; // 크게 보이도록 설정
+        } else if (heartCount >= 3) {
+            leafIcon.style.display = 'none';
+            pagelinesIcon.style.display = 'block';
+            treeIcon.style.display = 'none';
+            pagelinesIcon.style.fontSize = '150px';
+        } else if (heartCount >= 2) {
+            leafIcon.style.display = 'block';
+            pagelinesIcon.style.display = 'none';
+            treeIcon.style.display = 'none';
+            leafIcon.style.fontSize = '150px';
+        } else {
+            // 하트 카운트가 10 미만인 경우 모든 아이콘 숨김
+            leafIcon.style.display = 'none';
+            pagelinesIcon.style.display = 'none';
+            treeIcon.style.display = 'none';
+        }
+    }
+
+    heartIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            icon.classList.toggle('active');
+
+            if (icon.classList.contains('active')) {
+                heartCount++;
+            } else {
+                heartCount--;
+            }
+
+            // 클릭할 때마다 아이콘 업데이트
+            updateIcon();
+        });
+    });
+
+    updateIcon();
+
     </script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
