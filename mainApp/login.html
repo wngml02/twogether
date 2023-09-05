@@ -8,39 +8,54 @@
     <title>login</title>
     <link rel="stylesheet" href="/stylesheets/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f9a5c956172b9d5f4228f9b7b68540e1"></script>
 </head>
 
 <body style="font-size: 22px;">
     <header>
-        <div>
-            <img src="images/twogether-logo.png" alt="로고" width="380px" height="140px">
-            <input type="button" onclick="location.href='myPage.html'" value="마이페이지" class="button1" style="float:right;">
-            <input type="button" value="로그인" class="button2" style="float:right;">
-        </div>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f9a5c956172b9d5f4228f9b7b68540e1"></script>
+        <img src="images/twogether-logo.png" alt="로고" width="380px" height="140px" style="text-align: center;margin-right:100px;">
+        <div class="before">
+            <input class="beforebtn" type="button" value="<" onclick="history_back()"></div>
     </header>
-    <nav>
-        <ul class="menubar">
-            <span class="menu1"> <a href="/">홈</a></span>
-            <span class="menu2"> <a href="/map">지역 선택</a></span>
-            <span class="menu3"> <a href="">관광 안내소</a></span>
-            <span class="menu4"> <a href="">나무 키우기</a></span>
-        </ul>
-    </nav>
-    <form action="/login" method="POST">
-        <!-- <label for="id">아이디: </label> -->
-        <b class="text">아이디</b>
-        <p>
-            <input type="text" id="id" name="id" />
-            <br/>
+    <div class="container">
+        <form action="/login" method="POST">
+            <div class="id">
+                <!-- <label for="id">아이디: </label> -->
+                <p class="text">아이디</p>
+                <input type="text" id="id" placeholder=" 아이디" name="id">
+            </div>
+
             <!-- <label for="pw">비밀번호: </label> -->
-            <b class="text">비밀번호</b>
-            <p>
-                <input type="password" id="password" name="password" />
-                <br/>
-                <br/>
+            <div class="pw">
+                <p class="text">비밀번호</p>
+                <input type="password" id="password" placeholder=" 비밀번호" name="password">
+            </div>
+            <div class="login-btn">
                 <button type="submit" class="log" id="log">로그인</button>
-    </form>
+            </div>
+        </form>
+        <div class="kakao-login-btn">
+            <button class="logka"><a href="/login/auth/kakao">카카오톡으로 로그인하기</a></button>
+        </div>
+        <div class="find">
+            <a href="">
+                <p>비밀번호 찾기</p>
+            </a>
+        </div>
+        <div>
+            <p>아직 TWOgether 회원이 아니신가요?</p>
+        </div>
+        <div class="user" onclick="location.href='/signup'">
+            <p>회원가입 하기</p><br><br>
+        </div>
+    </div>
+    <footer class="foot">
+        <p><a href="">개인정보처리방침</a> |
+            <a href="">문의사항</a></p>
+        <p>Infomation: Twogether
+            <br>Copyright 2023 Team twogether. All rights reserved.</p>
+    </footer>
+
     <script>
         document.getElementById('log').addEventListener('click', function() {
             const id = document.getElementById('id').value;
@@ -71,13 +86,12 @@
                     console.error('Error:', error);
                 });
         });
+
+        function history_back() {
+            history.back();
+        }
     </script>
-    <button class="logka"><a href="/login/auth/kakao">카카오톡으로 로그인하기</a></button>
-    <p></p>
-    <p class="find">아이디/비밀번호 찾기</p>
-    <p></p>
-    <b>아직 TWOgether 회원이 아니신가요?</b>
-    <p class="user" onclick="location.href='/signup'">회원가입하기</p>
+
 </body>
 
 </html>
