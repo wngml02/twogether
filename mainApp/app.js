@@ -118,7 +118,7 @@ app.use(session({
 const kakao = {
     clientID: '18f1f5174d57449e61102b40f59207e4',
     clientSecret: 'dsqOVxIa5Hgy9de5wogSDqaGm6COhILH',
-    redirectUri: 'https://localhost:3000/login/auth/kakao'
+    redirectUri: 'https://localhost:3000/login/auth/kakao/callback'
 }
 app.get('/login/auth/kakao', (req, res) => {
     const kakaoAuthURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao.clientID}&redirect_uri=${kakao.redirectUri}&response_type=code&scope=profile_image,profile_nickname,account_email`;
@@ -163,10 +163,17 @@ app.get('/login/auth/kakao/callback', async(req, res) => {
     req.session.kakao = user.data;
     res.send('success');
 })
-app.get('/home', (req, res) => {
-    res.redirect('');
+app.get('/auth/info', (req, res) => {
+        let { nickname } = req.session.kakao.properties;
+        res.render('info.html', {
+            nickname
+        })
+    })
+    //app.get('/', (req, res) => {
+    //res.render('main.html');
 
-})
+//})
+app.get(kakao.redirectUri)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
