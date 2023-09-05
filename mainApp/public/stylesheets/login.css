@@ -33,6 +33,7 @@ span>a {
 }
 
 .beforebtn {
+    border: 0;
     font-size: 40px;
     color: #42855B;
     background-color: #90B77D;
