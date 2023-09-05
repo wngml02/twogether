@@ -1,52 +1,128 @@
-body{
-  text-align: center;
+body {
+    text-align: center;
 }
 
-.user{
-  font-size: 20px;
-  text-decoration: underline;
+nav {
+    margin: 0 auto;
 }
 
-input[type="text"]{
-  background-color: #F2F2F2;
-  border: 1.5px #F2F2F2;
-  border-radius: 10px;
-  width: 25%;
-  height: 42px;
-  box-sizing:border-box;
+.menubar {
+    display: flex;
+    width: 97%;
+    margin: 10px;
+    padding: 10px;
+    font-family: 'Noto Sans KR', monospace;
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+    flex-direction: row;
+    background-color: rgba(144, 184, 124, 0.2);
+    border-radius: 60px;
 }
 
-input[type="password"]{
-  background-color: #F2F2F2;
-  border: 1.5px #F2F2F2;
-  border: none;
-  border-radius: 10px;
-  width: 25%;
-  height: 42px;
-  box-sizing:border-box;
+span>a {
+    color: #739264;
+    text-decoration: none;
 }
 
-.find{
-  font-size: 20px;
+.menu1 {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    font-family: 'Noto Sans KR', monospace;
 }
 
-.log{
-  font-size: 20px;
-  background-color: #42855B;
-  border: none;
-  border-radius: 10px;
-  width: 25%;
-  height: 42px;
-  font-weight: bolder;
-  color: white;
+.menu2 {
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Noto Sans KR', monospace;
 }
 
-.logka{
-  font-size: 20px;
-  background-color: #F6D875;
-  border: none;
-  border-radius: 10px;
-  width: 25%;
-  height: 42px;
-  font-weight: bolder;
+.menu3 {
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Noto Sans KR', monospace;
+}
+
+.menu4 {
+    display: flex;
+    width: 100%;
+    margin: 7px;
+    padding: 15px;
+    font-family: 'Noto Sans KR', monospace;
+}
+
+.button1 {
+    border: 0;
+    background-color: #90B77D;
+    border-radius: 30px;
+    font: 17px Nanum Gothic Coding;
+    color: #FFFFFF;
+    width: 160;
+    height: 50;
+    margin: 10px;
+}
+
+.button2 {
+    all: unset;
+    margin: 10px;
+}
+
+.button2 {
+    font: 17px Nanum Gothic Coding;
+    color: #90B77D;
+}
+
+.user {
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+input[type="text"] {
+    background-color: #F2F2F2;
+    border: 1.5px #F2F2F2;
+    border-radius: 10px;
+    width: 25%;
+    height: 42px;
+    box-sizing: border-box;
+}
+
+input[type="password"] {
+    background-color: #F2F2F2;
+    border: 1.5px #F2F2F2;
+    border: none;
+    border-radius: 10px;
+    width: 25%;
+    height: 42px;
+    box-sizing: border-box;
+}
+
+.find {
+    font-size: 20px;
+}
+
+.log {
+    font-size: 20px;
+    background-color: #42855B;
+    border: none;
+    border-radius: 10px;
+    width: 25%;
+    height: 42px;
+    font-weight: bolder;
+    color: white;
+}
+
+.logka {
+    font-size: 20px;
+    background-color: #F6D875;
+    border: none;
+    border-radius: 10px;
+    width: 25%;
+    height: 42px;
+    font-weight: bolder;
 }

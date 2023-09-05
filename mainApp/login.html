@@ -12,8 +12,21 @@
 
 <body style="font-size: 22px;">
     <header>
-        <div><img src="/images/twogether-logo.png" alt="로고" width="380px" height="140px"></div>
+        <div>
+            <img src="images/twogether-logo.png" alt="로고" width="380px" height="140px">
+            <input type="button" onclick="location.href='myPage.html'" value="마이페이지" class="button1" style="float:right;">
+            <input type="button" value="로그인" class="button2" style="float:right;">
+        </div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f9a5c956172b9d5f4228f9b7b68540e1"></script>
     </header>
+    <nav>
+        <ul class="menubar">
+            <span class="menu1"> <a href="/">홈</a></span>
+            <span class="menu2"> <a href="/map">지역 선택</a></span>
+            <span class="menu3"> <a href="">관광 안내소</a></span>
+            <span class="menu4"> <a href="">나무 키우기</a></span>
+        </ul>
+    </nav>
     <form action="/login" method="POST">
         <!-- <label for="id">아이디: </label> -->
         <b class="text">아이디</b>
