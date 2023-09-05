@@ -167,11 +167,12 @@
         const deleteBtns = document.querySelectorAll('.fa-trash-alt');
         items.addEventListener('click', e => {
             if (e.target.classList.contains('fa-trash-alt')) {
-                //const checkboxs = document.querySelectorAll('.item--heart:checked');
-                //if (checkboxs.length > 0)
-                    //checkboxs.forEach(item => item.parentElement.remove());
-                //else
-                    e.target.parentElement.parentElement.remove();
+                if (e.target.classList.contains('fa-trash-alt')) {
+                    const itemToDelete = e.target.closest('.item');
+                    if (itemToDelete) {
+                        itemToDelete.remove();
+        }
+    }
             }
         });
         window.addEventListener('keydown', e => {
