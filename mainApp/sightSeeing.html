@@ -7,6 +7,7 @@
     <title>관광지 추천</title>
     <link rel="stylesheet" href="/stylesheets/sightSeeing.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 
@@ -20,10 +21,10 @@
     </header>
     <nav>
         <ul class="menubar">
-            <span class="menu1"> <a href="">홈</a></span>
-            <span class="menu2"> <a href="">지역 선택</a></span>
-            <span class="menu3"> <a href="">관광 안내소</a></span>
-            <span class="menu4"> <a href="">나무 키우기</a></span>
+            <span class="menu1"> <a href="/">홈</a></span>
+            <span class="menu2"> <a href="/map">지역 선택</a></span>
+            <span class="menu3"> <a href="/scH">관광 안내소</a></span>
+            <span class="menu4"> <a href="/namuGrow">나무 키우기</a></span>
         </ul>
     </nav>
     <div id="image-box">
@@ -70,7 +71,6 @@
                     title.style.margin = "30px";
 
                     const summary = document.createElement("div");
-                    //summary.textContent = data.response.body.items.item[0].summary;
                     const originalSummary = data.response.body.items.item[0].summary;
 
                     summary.style.fontSize = "20px";
@@ -88,7 +88,7 @@
 
                     summary.style.whiteSpace = "pre-line"; // 텍스트가 여러 줄로 표시되도록 설정
                     summary.style.overflow = "hidden"; // 내용이 넘칠 경우 숨김 처리
-                    summary.style.maxHeight = "30em"; // 최대 높이 지정
+                    summary.style.maxHeight = "35em"; // 최대 높이 지정
 
                     // html 태그 보여지는 현상 삭제
                     function removeHtmlTags(input) {
