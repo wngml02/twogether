@@ -184,7 +184,7 @@
         });
 
         
-    const heartIcons = document.querySelectorAll('.item--heart ion-icon');
+    const heartIcons = document.querySelectorAll('.large-font text-center top-20 ion-icon');
     let heartCount = 0; // 하트 클릭 횟수 초기화
 
     function updateIcon() {
@@ -208,7 +208,6 @@
             treeIcon.style.display = 'none';
             leafIcon.style.fontSize = '150px';
         } else {
-            // 하트 카운트가 10 미만인 경우 모든 아이콘 숨김
             leafIcon.style.display = 'none';
             pagelinesIcon.style.display = 'none';
             treeIcon.style.display = 'none';

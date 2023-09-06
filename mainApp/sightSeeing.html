@@ -65,8 +65,39 @@
                     const title = document.createElement("div");
                     title.textContent = data.response.body.items.item[0].title;
 
+                    title.style.fontSize = "30px";
+                    title.style.fontWeight = "bold";
+                    title.style.margin = "30px";
+
                     const summary = document.createElement("div");
-                    summary.textContent = data.response.body.items.item[0].summary;
+                    //summary.textContent = data.response.body.items.item[0].summary;
+                    const originalSummary = data.response.body.items.item[0].summary;
+
+                    summary.style.fontSize = "20px";
+
+                    // 최대 10줄까지 표시
+                    const maxLines = 10;
+                    const summaryLines = originalSummary.split("\n");
+                    if (summaryLines.length <= maxLines) {
+                        // 10줄 이하인 경우 전체 내용 표시
+                        summary.textContent = originalSummary;
+                    } else {
+                        // 10줄을 넘는 경우 생략 부호 포함하여 10줄까지만 표시
+                        summary.textContent = summaryLines.slice(0, maxLines).join("\n") + " (...)"; // 생략 부호 추가
+                    }
+
+                    summary.style.whiteSpace = "pre-line"; // 텍스트가 여러 줄로 표시되도록 설정
+                    summary.style.overflow = "hidden"; // 내용이 넘칠 경우 숨김 처리
+                    summary.style.maxHeight = "30em"; // 최대 높이 지정
+
+                    // html 태그 보여지는 현상 삭제
+                    function removeHtmlTags(input) {
+                        return input.replace(/<\/?[^>]+(>|$)/g, "");
+                    }
+
+                    // HTML 태그 제거
+                    const cleanedSummary = removeHtmlTags(originalSummary);
+                    summary.textContent = cleanedSummary;
 
                     box.appendChild(title);
                     box.appendChild(summary);
