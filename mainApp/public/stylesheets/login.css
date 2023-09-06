@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    background-color: #EBECF0;
 }
 
 nav {
@@ -35,8 +36,7 @@ span>a {
 .beforebtn {
     border: 0;
     font-size: 40px;
-    color: #42855B;
-    background-color: #90B77D;
+    color: #616161;
     border-radius: 30px;
     background-color: transparent;
 }
@@ -95,6 +95,7 @@ span>a {
 }
 
 .container {
+    background-color: white;
     align-content: center;
     padding: 10px;
     max-width: 700px;
@@ -109,7 +110,7 @@ span>a {
 
 input[type="text"] {
     padding: 2px;
-    font-size: 25px;
+    font-size: 20px;
     background-color: #F2F2F2;
     border: 1.5px #F2F2F2;
     border-radius: 10px;
@@ -120,7 +121,7 @@ input[type="text"] {
 
 input[type="password"] {
     padding: 2px;
-    font-size: 25px;
+    font-size: 20px;
     background-color: #F2F2F2;
     border: 1.5px #F2F2F2;
     border: none;
