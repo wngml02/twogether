@@ -13,28 +13,48 @@
 <body style="font-size: 22px;">
 
     <header>
-        <div><img src="/images/twogether-logo.png" alt="로고" width="380px" height="140px"></div>
+        <div><img src="/images/twogether-logo.png" alt="로고" width="600px" height="200px"></div>
     </header>
-    <form action="/signup" method="POST">
-        <b>이름</b>
-        <p>
-            <input type="text" id="username" name="username" required/>
-            <br/>
-            <b>핸드폰 번호</b>
-            <p>
-                <input type="text" id="num" name="num" required/>
-                <br/>
-                <b>아이디</b>
-                <p>
-                    <input type="text" id="id" name="id" required/>
-                    <br/>
-                    <b>비밀번호</b>
-                    <p>
-                        <input type="password" id="password" name="password" required/>
-                        <br/>
-                        <br/>
-                        <button type="submit" class="submit" id="submit">가입하기</button>
-    </form>
+    <div class="container">
+        <form action="/signup" method="POST">
+            <div class="username">
+                <p class="name">
+                    이름
+                </p>
+                <input type="text" id="username" placeholder=" ex 홍길동" name="username" required/>
+            </div>
+            <div class="num">
+                <p class="phonenum">
+                    전화번호
+                </p>
+                <input type="text" id="num" placeholder=" ex 01012345678" name="num" required/>
+            </div>
+            <div class="id">
+                <p class="_id">
+                    아이디
+                </p>
+                <input type="text" id="id" placeholder=" 영문, 숫자 포함 4자리 이상" name="id" required/>
+            </div>
+            <div class="password">
+                <p class="pw">
+                    비밀번호
+                </p>
+                <input type="password" id="password" placeholder=" 영문, 숫자 포함 8자리 이상" name="password" required/>
+            </div>
+            <br>
+            <div class="agree">
+                <div class="agreeAll"></div>
+            </div>
+            <div class="submitBtn">
+                <button type="submit" class="submit" id="submit">가입하기</button>
+            </div>
+            <br><br>
+            <div class="q">
+                <p>이미 계정이 있으신가요?</p>
+                <p class="user" onclick="location.href='/login'">로그인하기</p>
+            </div>
+        </form>
+    </div>
     <script>
         document.getElementById('submit').addEventListener('click', function() {
             const username = document.getElementById('username').value;
@@ -50,25 +70,23 @@
             };
 
             fetch('/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // 서버 응답 처리
-                console.log("회원가입이 완료되었습니다.");
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // 서버 응답 처리
+                    console.log("회원가입이 완료되었습니다.");
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
     </script>
-    <p></p>
-    <b>이미 계정이 있으신가요?</b>
-    <p class="user" onclick="location.href='/login'">로그인하기</p>
+
 </body>
 
 </html>

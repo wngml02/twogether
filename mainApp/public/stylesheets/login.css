@@ -1,6 +1,7 @@
 body {
     text-align: center;
     background-color: #EBECF0;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 nav {
@@ -114,7 +115,7 @@ input[type="text"] {
     background-color: #F2F2F2;
     border: 1.5px #F2F2F2;
     border-radius: 10px;
-    width: 400px;
+    width: 500px;
     height: 50px;
     box-sizing: border-box;
 }
@@ -125,7 +126,7 @@ input[type="password"] {
     background-color: #F2F2F2;
     border: 1.5px #F2F2F2;
     border: none;
-    width: 400px;
+    width: 500px;
     border-radius: 10px;
     height: 50px;
     box-sizing: border-box;
