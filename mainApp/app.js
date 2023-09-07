@@ -41,6 +41,9 @@ app.get('/login', function(req, res) {
 app.get('/namuGrow', function(req, res) {
     res.sendFile(__dirname + '/namuGrow.html');
 });
+app.get('/myPage', function(req, res) {
+    res.sendFile(__dirname + '/myPage.html');
+});
 
 
 

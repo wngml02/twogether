@@ -171,10 +171,11 @@
                     const itemToDelete = e.target.closest('.item');
                     if (itemToDelete) {
                         itemToDelete.remove();
-        }
-    }
+                    }
+                }
             }
         });
+        
         window.addEventListener('keydown', e => {
             if (e.keyCode !== 13) {
                 e.stopPropagation();
