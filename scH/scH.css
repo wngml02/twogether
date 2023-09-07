@@ -96,8 +96,8 @@ body {
 
 .box2{
   background-color: white;
-  width: 90%;
-  height: 85%;
+  width: 95%;
+  height: 93%;
   border-radius: 50px;
 }
 
@@ -111,4 +111,33 @@ body {
   bottom: 0;
   right: 0;
   margin: auto;
+}
+
+.sh{
+  width: 80%;
+  height: 28px;
+  border: 1px solid #90B77D;
+  border-radius: 25px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.search{
+  color: #90B77D;
+  background-color: #FFFFFF;
+  border: 1px;
+  font-size: 30px;
+  position: relative;
+  top: 5px;
+}
+
+.searchBox{
+  position: relative;
+  top: 30px;
+  left: 25px;
+}
+
+.search:hover{
+  color: #90B77D;
+  background-color: white;
 }
