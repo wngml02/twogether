@@ -2,6 +2,9 @@ const express = require('express')
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const app = express()
+const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth');
+
 app.use(session({
     secret: '0000',
     resave: false,
@@ -19,7 +22,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
 
-app.get('', function(req, res) {
+app.get('/', function(req, res) {
     res.sendFile(__dirname + '/main.html');
 });
 app.get('/placeInfo', function(req, res) {
@@ -47,6 +50,9 @@ app.get('/myPage', function(req, res) {
 app.get('/signupka', function(req, res) {
     res.sendFile(__dirname + '/signupka.html');
 });
+
+app.use('/', pageRouter);
+app.use('/auth', authRouter);
 
 
 
@@ -106,82 +112,4 @@ app.get('/', function(req, res) {
     } else {
         return res.redirect('/login');
     }
-});
-
-//kakao login
-//const nunjucks = require('nunjucks');
-const axios = require('axios');
-const qs = require('qs');
-app.set('view engine', 'html');
-nunjucks.configure('views', {
-    express: app,
-})
-
-app.use(session({
-    secret: 'two',
-    resave: true,
-    secure: false,
-    saveUninitialized: false,
-}));
-
-const kakao = {
-    clientID: '18f1f5174d57449e61102b40f59207e4',
-    clientSecret: 'dsqOVxIa5Hgy9de5wogSDqaGm6COhILH',
-    redirectUri: 'https://localhost:3000/login/auth/kakao/callback'
-}
-app.get('/login/auth/kakao', (req, res) => {
-    const kakaoAuthURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao.clientID}&redirect_uri=${kakao.redirectUri}&response_type=code&scope=profile_image,profile_nickname,account_email`;
-    res.redirect(kakaoAuthURL);
-})
-
-app.get('/login/auth/kakao/callback', async(req, res) => {
-    try {
-        token = await axios({
-            method: 'POST',
-            url: 'https://kauth.kakao.com/oauth/token',
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: qs.stringify({ //객체를 string 으로 변환
-                grant_type: 'authorization_code', //특정 스트링
-                client_id: kakao.clientID,
-                client_secret: kakao.clientSecret,
-                redirectUri: kakao.redirectUri,
-                code: req.query.code,
-            })
-        })
-    } catch (err) {
-        res.json(err.data);
-    }
-
-    let user;
-    try {
-        console.log(token); //access정보를 가지고 또 요청해야 정보를 가져올 수 있음.
-        user = await axios({
-            method: 'get',
-            url: 'https://kapi.kakao.com/v2/user/me',
-            headers: {
-                Authorization: `Bearer ${token.data.access_token}`
-            }
-        })
-    } catch (e) {
-        res.json(e.data);
-    }
-    console.log(user);
-
-    req.session.kakao = user.data;
-    res.send('success');
-})
-app.get('/auth/info', (req, res) => {
-    let { nickname } = req.session.kakao.properties;
-    res.render('info', {
-        nickname,
-    })
-})
-app.get('/', (req, res) => {
-
-    res.render('main');
-});
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
 });
