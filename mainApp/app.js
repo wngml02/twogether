@@ -25,7 +25,6 @@ app.get('/placeInfo', function(req, res) {
     res.sendFile(__dirname + '/placeInfo.html');
 });
 app.get('/map', function(req, res) {
-
     data = req.query.variable;
     res.sendFile(__dirname + '/map.html');
 });
