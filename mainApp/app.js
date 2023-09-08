@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session');
+const nunjucks = require('nunjucks');
 const app = express()
 app.use(session({
     secret: '0000',
@@ -111,6 +112,10 @@ app.get('/', function(req, res) {
 //const nunjucks = require('nunjucks');
 const axios = require('axios');
 const qs = require('qs');
+app.set('view engine', 'html');
+nunjucks.configure('views', {
+    express: app,
+})
 
 app.use(session({
     secret: 'two',
@@ -166,19 +171,17 @@ app.get('/login/auth/kakao/callback', async(req, res) => {
 
     req.session.kakao = user.data;
     res.send('success');
-    res.redirect('/main');
 })
 app.get('/auth/info', (req, res) => {
-        let { nickname } = req.session.kakao.properties;
-        res.render('info.html', {
-            nickname
-        })
+    let { nickname } = req.session.kakao.properties;
+    res.render('info', {
+        nickname,
     })
-    //app.get('/', (req, res) => {
-    //res.render('main.html');
+})
+app.get('/', (req, res) => {
 
-//})
-app.get(kakao.redirectUri)
+    res.render('main');
+});
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
