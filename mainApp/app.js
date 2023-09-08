@@ -166,6 +166,7 @@ app.get('/login/auth/kakao/callback', async(req, res) => {
 
     req.session.kakao = user.data;
     res.send('success');
+    res.redirect('/main');
 })
 app.get('/auth/info', (req, res) => {
         let { nickname } = req.session.kakao.properties;
