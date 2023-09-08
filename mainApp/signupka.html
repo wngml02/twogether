@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signupka</title>
-    <link rel="stylesheet" href="/stylesheets/newLogin.css">
+    <link rel="stylesheet" href="/stylesheets/signupka.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 </head>
 
@@ -16,13 +16,14 @@
         <div><img src="/images/twogether-logo.png" alt="로고" width="600px" height="230px"></div>
     </header>
     <div class="container">
+        <br><br>
         <div class="kakao-login-btn">
-            <button class="logka"><a href="/login/auth/kakao">카카오톡으로 로그인하기</a></button>
+            <button class="logka"><a href="/login/auth/kakao">카카오톡으로 가입하기</a></button>
         </div>
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
         <script>
         // 카카오 로그인 초기화
-        //Kakao.init('18f1f5174d57449e61102b40f59207e4');
+        Kakao.init('18f1f5174d57449e61102b40f59207e4');
 
         // 카카오 로그인 버튼 클릭 시
         document.getElementById('kakao-login-btn').addEventListener('click', () => {
@@ -88,7 +89,6 @@
                         const formData = new FormData(e.target);
 
                         // 폼 데이터를 부모 창(원래 창)으로 전달 또는 서버로 전송 또는 처리하기
-                        // 여기서는 예시로 콘솔에 출력합니다.
                         for (const pair of formData.entries()) {
                             console.log(pair[0] + ': ' + pair[1]);
                         }
@@ -103,7 +103,7 @@
             });
         });
     </script>
-        <br><br>
+        <br>
         <div class="q">
             <p>이미 계정이 있으신가요?</p>
             <p class="user" onclick="location.href='/login'">로그인하기</p>
