@@ -22,35 +22,37 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
 
-app.get('/', function(req, res) {
-    res.render('main.html');
+app.get('', function(req, res) {
+    res.render('/main.html');
 });
 app.get('/placeInfo', function(req, res) {
-    res.render('placeInfo.html');
+    res.render('/placeInfo.html');
 });
 app.get('/map', function(req, res) {
-    res.render('map.html');
+    res.render('/map.html');
 });
 app.get('/sightSeeing', function(req, res) {
-    res.render('sightSeeing.html');
+    res.render('/sightSeeing.html');
 });
 app.get('/signup', function(req, res) {
-    res.render('signup.html');
+    res.render('/signup.html');
 });
 app.get('/login', function(req, res) {
-    res.render('login.html');
+    res.render('/login.html');
 });
 app.get('/namuGrow', function(req, res) {
-    res.render('namuGrow.html');
+    res.render('/namuGrow.html');
 });
 app.get('/myPage', function(req, res) {
-    res.render('myPage.html');
+    res.render('/myPage.html');
 });
 app.get('/signupka', function(req, res) {
-    res.render('signupka.html');
+    res.render('/signupka.html');
 });
 
-
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+});
 
 /*
 const PORT = process.env.PORT || 3000;
