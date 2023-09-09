@@ -127,7 +127,7 @@ app.use(session({
 const kakao = {
         clientID: '18f1f5174d57449e61102b40f59207e4',
         clientSecret: 'dsqOVxIa5Hgy9de5wogSDqaGm6COhILH',
-        redirectUri: 'https://localhost:3000/auth/kakao/callback'
+        redirectUri: 'http://localhost:3000/auth/kakao/callback'
     }
     //profile account_email
 app.get('/auth/kakao', (req, res) => {
