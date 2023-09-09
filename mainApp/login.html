@@ -57,6 +57,12 @@
     </footer>
 
     <script>
+
+        new KaKaoStrategy{
+            clientID: process.env.b0611de705800851f3917f45eae31eeb,
+            callbackURL: '/mainApp/login',
+        } //이걸 어디에 넣지;;
+
         document.getElementById('log').addEventListener('click', function() {
             const id = document.getElementById('id').value;
             const password = document.getElementById('password').value;
