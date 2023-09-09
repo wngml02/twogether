@@ -5,6 +5,11 @@ const app = express()
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 
+app.set('view engine', 'html');
+nunjucks.configure("./views", {
+    express: app
+})
+
 app.use(session({
     secret: '0000',
     resave: false,
@@ -22,7 +27,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
 
-app.get('/', function(req, res) {
+app.get('', function(req, res) {
     res.render('main.html');
 });
 app.get('/placeInfo', function(req, res) {
@@ -50,7 +55,9 @@ app.get('/signupka', function(req, res) {
     res.render('signupka.html');
 });
 
-
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+});
 
 /*
 const PORT = process.env.PORT || 3000;
