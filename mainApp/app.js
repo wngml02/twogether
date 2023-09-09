@@ -3,6 +3,7 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const app = express();
 const qs = require('qs');
+const axios = require('axios');
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 
@@ -11,11 +12,11 @@ nunjucks.configure("./views", {
     express: app
 })
 
-//app.use(session({
-//secret: '0000',
-//resave: false,
-//saveUninitialized: true
-//}));
+app.use(session({
+    secret: '0000',
+    resave: false,
+    saveUninitialized: true
+}));
 const port = 3000
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
@@ -56,9 +57,7 @@ app.get('/signupka', function(req, res) {
     res.render('signupka.html');
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-});
+
 
 /*
 const PORT = process.env.PORT || 3000;
@@ -192,4 +191,7 @@ app.get('', (req, res) => {
     res.render('main');
 });
 
-app.get(kakao.redirectUri)
+app.get(kakao.redirectUri);
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+});
