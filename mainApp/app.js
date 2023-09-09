@@ -173,13 +173,13 @@ app.get('/auth/kakao/callback', async(req, res) => {
 
     req.session.kakao = user.data;
     //req.session = {['kakao'] : user.data};
-
     res.redirect('/');
 })
 
 const kakaoUser = user.data;
 const username = kakaoUser.properties.nickname;
 const userId = kakaoUser.id;
+console.log(kakaoUser);
 
 // MySQL에 사용자 정보 저장
 const newUser = {
