@@ -23,37 +23,32 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res) {
-    res.redirect('/main.html');
+    res.render('main.html');
 });
 app.get('/placeInfo', function(req, res) {
-    res.sendFile(__dirname + '/placeInfo.html');
+    res.render('placeInfo.html');
 });
 app.get('/map', function(req, res) {
-    data = req.query.variable;
-    res.sendFile(__dirname + '/map.html');
+    res.render('map.html');
 });
 app.get('/sightSeeing', function(req, res) {
-    res.sendFile(__dirname + '/sightSeeing.html');
+    res.render('sightSeeing.html');
 });
 app.get('/signup', function(req, res) {
-    res.sendFile(__dirname + '/signup.html');
+    res.render('signup.html');
 });
 app.get('/login', function(req, res) {
-    res.sendFile(__dirname + '/login.html');
+    res.render('login.html');
 });
 app.get('/namuGrow', function(req, res) {
-    res.sendFile(__dirname + '/namuGrow.html');
+    res.render('namuGrow.html');
 });
 app.get('/myPage', function(req, res) {
-    res.sendFile(__dirname + '/myPage.html');
+    res.render('myPage.html');
 });
 app.get('/signupka', function(req, res) {
-    res.sendFile(__dirname + '/signupka.html');
+    res.render('signupka.html');
 });
-
-app.use('/', pageRouter);
-app.use('/auth', authRouter);
-
 
 
 
