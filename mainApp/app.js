@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/main.html');
+    res.redirect('/main.html');
 });
 app.get('/placeInfo', function(req, res) {
     res.sendFile(__dirname + '/placeInfo.html');
