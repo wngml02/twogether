@@ -152,6 +152,39 @@ app.get('/auth/kakao/callback', async(req, res) => {
                     code: req.query.code, //결과값을 반환했다. 안됐다.
                 }) //객체를 string 으로 변환
         })
+        const kakaoId = user.data.id;
+        const username = user.data.properties.nickname;
+        const email = user.data.kakao_account.email;
+
+        // 데이터베이스에 해당 사용자가 이미 있는지 확인
+        const checkUserQuery = 'SELECT * FROM users WHERE kakao_id = ?';
+        db.query(checkUserQuery, [kakaoId], (err, results) => {
+            if (err) {
+                console.error('Error checking user in database: ' + err.message);
+                res.json({ error: 'Internal server error' });
+                return;
+            }
+
+            if (results.length === 0) {
+                // 사용자가 데이터베이스에 없는 경우, 새로운 사용자로 등록
+                const insertUserQuery = 'INSERT INTO users (kakao_id, username, email) VALUES (?, ?, ?)';
+                db.query(insertUserQuery, [kakaoId, username, email], (err, results) => {
+                    if (err) {
+                        console.error('Error inserting user into database: ' + err.message);
+                        res.json({ error: 'Internal server error' });
+                        return;
+                    }
+
+                    // 이후 로그인 또는 세션 설정 등의 로직 수행
+                    console.log('User registered in the database');
+                    res.redirect('/');
+                });
+            } else {
+                // 사용자가 이미 데이터베이스에 있는 경우, 로그인 또는 세션 설정 등의 로직 수행
+                console.log('User already exists in the database');
+                res.redirect('/');
+            }
+        });
     } catch (err) {
         res.json(err.data);
     }
