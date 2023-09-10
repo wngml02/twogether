@@ -119,15 +119,8 @@ app.get('/', function(req, res) {
     }
 });
 
-// 세션 및 쿠키 설정
+// 쿠키 설정
 app.use(cookieParser());
-app.use(
-    session({
-        secret: '',
-        resave: true,
-        saveUninitialized: true,
-    })
-);
 
 // Passport 초기화 및 세션 사용
 app.use(passport.initialize());
