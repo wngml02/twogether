@@ -5,10 +5,6 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const qs = require('qs');
 const axios = require('axios');
-const KakaoStrategy = require('passport-kakao').Strategy;
-const passport = require('passport');
-const pageRouter = require('./routes/page');
-const authRouter = require('./routes/auth');
 
 app.set('view engine', 'html');
 nunjucks.configure("./views", {
@@ -118,6 +114,14 @@ app.get('/', function(req, res) {
         return res.redirect('/login');
     }
 });
+// 로그아웃 처리
+app.get('/auth/logout', (req, res) => {
+    delete req.session.authData;
+    res.redirect('/signupka');
+    console.log(req.session.authData);
+    console.log("로그아웃");
+});
+
 
 
 //카카오
@@ -156,7 +160,6 @@ app.get('/auth/kakao/callback', async(req, res) => {
                     code: req.query.code, //결과값을 반환했다. 안됐다.
                 }) //객체를 string 으로 변환
         })
-        res.redirect('/signup')
     } catch (err) {
         res.json(err.data);
     }

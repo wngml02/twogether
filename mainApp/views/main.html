@@ -13,7 +13,7 @@
 
 <body>
     <div class="header">
-        <input type="button" onclick="location.href='/signup'" value="마이페이지" class="button1" style="float:right;">
+        <input type="button" onclick="location.href='/auth/logout'" value="로그아웃" class="button1" style="float:right;">
         <input type="button" value="로그인" onclick="location.href='/login'" class="button2" style="float:right;">
         <nav>
             <ul class="menubar">
@@ -136,7 +136,19 @@
                 i++;
             }
         }
-        setInterval(typing, 100)
+        setInterval(typing, 100);
+
+        function signOut() {
+            $.ajax({
+                type: "delete",
+                url: '/logout',
+                data: {},
+                dataType: 'text',
+                success: function(res) {
+                    location.reload();
+                }
+            });
+        }
     </script>
 </body>
 
