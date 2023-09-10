@@ -3,6 +3,7 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const app = express();
 const qs = require('qs');
+const axios = require('axios');
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 
@@ -11,11 +12,11 @@ nunjucks.configure("./views", {
     express: app
 })
 
-//app.use(session({
-//secret: '0000',
-//resave: false,
-//saveUninitialized: true
-//}));
+app.use(session({
+    secret: '0000',
+    resave: false,
+    saveUninitialized: true
+}));
 const port = 3000
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
@@ -56,9 +57,7 @@ app.get('/signupka', function(req, res) {
     res.render('signupka.html');
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-});
+
 
 /*
 const PORT = process.env.PORT || 3000;
@@ -128,7 +127,7 @@ app.use(session({
 const kakao = {
         clientID: '18f1f5174d57449e61102b40f59207e4',
         clientSecret: 'dsqOVxIa5Hgy9de5wogSDqaGm6COhILH',
-        redirectUri: 'https://localhost:3000/auth/kakao/callback'
+        redirectUri: 'http://localhost:3000/auth/kakao/callback'
     }
     //profile account_email
 app.get('/auth/kakao', (req, res) => {
@@ -175,9 +174,30 @@ app.get('/auth/kakao/callback', async(req, res) => {
     req.session.kakao = user.data;
     //req.session = {['kakao'] : user.data};
 
-    res.send('success');
+    res.redirect('/');
 })
 
+const kakaoUser = user.data;
+const username = kakaoUser.properties.nickname;
+const userId = kakaoUser.id;
+
+// MySQL에 사용자 정보 저장
+const newUser = {
+    username: username,
+    id: userId
+};
+
+const insertQuery = 'INSERT INTO userTable SET ?';
+
+connection.query(insertQuery, newUser, (err, result) => {
+    if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to insert user data' });
+        return;
+    }
+
+    res.status(200).json({ message: 'User data saved successfully' });
+});
 
 app.get('/auth/info', (req, res) => {
     let { nickname } = req.session.kakao.properties;
@@ -186,10 +206,13 @@ app.get('/auth/info', (req, res) => {
     })
 })
 
-
 app.get('', (req, res) => {
 
     res.render('main');
 });
 
-app.get(kakao.redirectUri)
+app.get(kakao.redirectUri);
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+});
