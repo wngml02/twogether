@@ -119,41 +119,9 @@ app.get('/', function(req, res) {
     }
 });
 
-// 쿠키 설정
-app.use(cookieParser());
-
-// Passport 초기화 및 세션 사용
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.use(
-    new KakaoStrategy({
-            clientID: '18f1f5174d57449e61102b40f59207e4',
-            clientSecret: 'dsqOVxIa5Hgy9de5wogSDqaGm6COhILH',
-            callbackURL: 'http://localhost:3000/auth/kakao/callback', // 리다이렉트 URI
-        },
-        (accessToken, refreshToken, profile, done) => {
-            // 사용자 정보가 profile에 들어 있음
-            return done(null, profile);
-        }
-    )
-);
-app.get('/auth/kakao', passport.authenticate('kakao'));
-
-app.get(
-    '/auth/kakao/callback',
-    passport.authenticate('kakao', {
-        failureRedirect: '/signup', // 로그인 실패 시 회원가입 페이지로 리다이렉트
-    }),
-    (req, res) => {
-        // 로그인 성공 시 처리
-        res.redirect('/');
-    }
-);
-
 
 //카카오
-/*app.use(session({
+app.use(session({
         secret: 'ras',
         resave: true,
         secure: false,
@@ -188,28 +156,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
                     code: req.query.code, //결과값을 반환했다. 안됐다.
                 }) //객체를 string 으로 변환
         })
-        const kakaoUser = user.data;
-        const username = kakaoUser.properties.nickname;
-        const userId = kakaoUser.id;
-
-        // MySQL에 사용자 정보 저장
-        const newUser = {
-            username: username,
-            id: userId
-        };
-
-        const insertQuery = 'INSERT INTO userTable SET ?';
-
-        connection.query(insertQuery, newUser, (err, result) => {
-            if (err) {
-                console.error(err);
-                res.status(500).json({ error: 'Failed to insert user data' });
-                return;
-            }
-
-            res.status(200).json({ message: 'User data saved successfully' });
-        });
-
+        res.redirect('/signup')
     } catch (err) {
         res.json(err.data);
     }
@@ -234,7 +181,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
 
     res.redirect('/');
 })
-*/
+
 /*
 const kakaoUser = user.data;
 const username = kakaoUser.properties.nickname;
@@ -270,9 +217,9 @@ app.get('', (req, res) => {
 
     res.render('main');
 });
-
-app.get(kakao.redirectUri);
 */
+app.get(kakao.redirectUri);
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
