@@ -177,6 +177,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
     res.redirect('/');
 })
 
+/*
 const kakaoUser = user.data;
 const username = kakaoUser.properties.nickname;
 const userId = kakaoUser.id;
@@ -198,6 +199,7 @@ connection.query(insertQuery, newUser, (err, result) => {
 
     res.status(200).json({ message: 'User data saved successfully' });
 });
+*/
 
 app.get('/auth/info', (req, res) => {
     let { nickname } = req.session.kakao.properties;
