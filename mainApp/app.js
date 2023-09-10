@@ -2,8 +2,11 @@ const express = require('express')
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const app = express();
+const cookieParser = require('cookie-parser');
 const qs = require('qs');
 const axios = require('axios');
+const KakaoStrategy = require('passport-kakao').Strategy;
+const passport = require('passport');
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 
@@ -116,8 +119,48 @@ app.get('/', function(req, res) {
     }
 });
 
+// 세션 및 쿠키 설정
+app.use(cookieParser());
+app.use(
+    session({
+        secret: '',
+        resave: true,
+        saveUninitialized: true,
+    })
+);
+
+// Passport 초기화 및 세션 사용
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(
+    new KakaoStrategy({
+            clientID: '18f1f5174d57449e61102b40f59207e4',
+            clientSecret: 'dsqOVxIa5Hgy9de5wogSDqaGm6COhILH',
+            callbackURL: 'http://localhost:3000/auth/kakao/callback', // 리다이렉트 URI
+        },
+        (accessToken, refreshToken, profile, done) => {
+            // 사용자 정보가 profile에 들어 있음
+            return done(null, profile);
+        }
+    )
+);
+app.get('/auth/kakao', passport.authenticate('kakao'));
+
+app.get(
+    '/auth/kakao/callback',
+    passport.authenticate('kakao', {
+        failureRedirect: '/signup', // 로그인 실패 시 회원가입 페이지로 리다이렉트
+    }),
+    (req, res) => {
+        // 로그인 성공 시 처리
+        res.redirect('/');
+    }
+);
+
+
 //카카오
-app.use(session({
+/*app.use(session({
         secret: 'ras',
         resave: true,
         secure: false,
@@ -198,7 +241,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
 
     res.redirect('/');
 })
-
+*/
 /*
 const kakaoUser = user.data;
 const username = kakaoUser.properties.nickname;
@@ -221,7 +264,7 @@ connection.query(insertQuery, newUser, (err, result) => {
 
     res.status(200).json({ message: 'User data saved successfully' });
 });
-*/
+
 
 app.get('/auth/info', (req, res) => {
     let { nickname } = req.session.kakao.properties;
@@ -236,7 +279,7 @@ app.get('', (req, res) => {
 });
 
 app.get(kakao.redirectUri);
-
+*/
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
