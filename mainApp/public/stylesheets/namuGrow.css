@@ -269,3 +269,9 @@ ul {
 li {
     margin-top: -0.5em;
 }
+
+.tree img {
+    margin: auto;
+    padding-top: 50px;
+    display: block;
+}
