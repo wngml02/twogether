@@ -28,7 +28,7 @@
         </ul>
     </nav>
     <div id="image-box">
-        <div class="box1"></div>
+        <div class="box1" id="placeInfo"></div>
         <div class="box2"></div>
         <div class="box3"></div>
     </div>
@@ -36,17 +36,19 @@
     <script type="application/json" src="/javascripts/tour.js">
     </script>
     <script>
+        var areacode;
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/map', // Express 라우트 경로
             async: false,
             dataType: 'text',
-            success: function(result) {
+            success: function(areadata) {
+                areacode = areadata;
                 // 두 번째 페이지 내부에서 변수값 사용
-
-                var data = result;
-                console.log('Stored Variable in Second Page:', result);
+                console.log(areacode);
+                // areaCode를 표시하는 코드 추가
+                // areaCode를 표시하는 코드 추가
             },
             error: function() {
                 console.log('Error');
@@ -114,6 +116,8 @@
                 getPlace(apiUrlWithPageNo, boxClass);
             });
         }
+
+        getPlaceByAreaCode(areacode);
     </script>
 </body>
 

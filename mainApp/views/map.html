@@ -516,13 +516,13 @@
             console.log(areadata);
             $.ajax({
                 type: 'GET',
-                url: '/sightSeeing',
+                url: '/sightSeeing?areaData=',
                 data: {
                     variable: areadata
                 },
                 success: function(result) {
-                    
-                    var page = '/sightSeeing?areaCode='+areadata;
+
+                    var page = '/sightSeeing?areaCode=' + areadata;
                     console.log(page);
                     alert('Success');
                     window.location.replace(page)
