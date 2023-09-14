@@ -521,8 +521,11 @@
                     variable: areadata
                 },
                 success: function(result) {
+                    
+                    var page = '/sightSeeing?areaCode='+areadata;
+                    console.log(page);
                     alert('Success');
-                    window.location.replace('/sightSeeing')
+                    window.location.replace(page)
                 },
                 error: function() {
                     alert('Error')
