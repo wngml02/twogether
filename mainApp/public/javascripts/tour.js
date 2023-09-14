@@ -65,8 +65,8 @@ app.use(express.static(__dirname + "/public"));
 app.get('', function(req, res) {
     return res.sendFile(__dirname + '/sightSeeing.html');
 });
-app.get('/page', function(req, res) {
-    return res.send('/page');
+app.get('/map', function(req, res) {
+    return res.send('/map');
 });
 
 app.listen(port, () => {
