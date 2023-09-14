@@ -33,14 +33,14 @@
         <div class="box3"></div>
     </div>
     <div id="placeInfo"> </div>
-    <script type="application/json" src="public/javascripts/tour.js">
+    <script type="application/json" src="/javascripts/tour.js">
     </script>
     <script>
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
         $.ajax({
-            type: 'post',
+            type: 'GET',
             url: '/map', // Express 라우트 경로
-            async:false,
+            async: false,
             dataType: 'text',
             success: function(result) {
                 // 두 번째 페이지 내부에서 변수값 사용
@@ -114,8 +114,6 @@
                 getPlace(apiUrlWithPageNo, boxClass);
             });
         }
-
-
     </script>
 </body>
 
