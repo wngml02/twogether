@@ -38,14 +38,17 @@
     <script>
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
 
+        $(document).ready(function() {
+
         $.ajax({
             type: 'GET',
             url: '/map', // Express 라우트 경로
             async: false,
+            dataType: 'text',
             success: function(areadata) {
                 // 두 번째 페이지 내부에서 변수값 사용
-                console.log(areacode);
-                // areaCode를 표시하는 코드 추가
+                var areadata = '<%= typeof areadata !== "undefined" ? areadata : "" %>';
+                console.log(areadata);
                 // areaCode를 표시하는 코드 추가
             },
             error: function() {
@@ -53,6 +56,7 @@
             }
 
         });
+    });
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
