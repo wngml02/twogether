@@ -182,21 +182,21 @@ app.get('/auth/kakao/callback', async(req, res) => {
     req.session.kakao = user.data;
     //req.session = {['kakao'] : user.data};
 
-    // 카카오 로그인 정보에서 id와 email 추출
+    // 카카오 로그인 정보에서 id와 nickname 추출
     const id = user.data.id;
-    const email = user.data.kakao_account.email;
+    const nickname = user.data.properties.nickname;
 
     // MySQL에 사용자 정보 저장
-    const insertQuery = 'INSERT INTO userTable (id, email) VALUES (?, ?)';
-    const values = [id, email];
+    const insertQuery = 'INSERT INTO userTable (id, nickname) VALUES (?, ?)';
+    const values = [id, nickname];
 
     connection.query(insertQuery, values, (err, result) => {
         if (err) {
             console.error('MySQL 저장 오류:', err);
-            res.status(500).json({ error: '사용자 정보를 저장하는 동안 오류가 발생했습니다.' });
+            return res.status(500).json({ error: '사용자 정보를 저장하는 동안 오류가 발생했습니다.' });
         } else {
             console.log('사용자 정보가 MySQL에 저장되었습니다.');
-            res.redirect('/');
+            return res.redirect('/');
         }
     });
 
