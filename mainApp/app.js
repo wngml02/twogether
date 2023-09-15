@@ -65,7 +65,7 @@ app.listen(PORT, () => {
 });
 */
 
-
+/*
 // MySQL 연결 설정
 const connection = mysql.createConnection({
     host: '127.0.0.1',
@@ -82,6 +82,7 @@ connection.connect((err) => {
         console.log('MySQL connected');
     }
 });
+*/
 
 app.post('/login', (req, res) => {
     const { id, password } = req.body;
@@ -182,6 +183,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
     req.session.kakao = user.data;
     //req.session = {['kakao'] : user.data};
 
+    /*
     // 카카오 로그인 정보에서 id와 nickname 추출
     const id = user.data.id;
     const nickname = user.data.properties.nickname;
@@ -199,6 +201,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
             return res.redirect('/');
         }
     });
+    */
 
     res.redirect('/');
 })
