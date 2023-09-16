@@ -65,13 +65,13 @@ app.listen(PORT, () => {
 });
 */
 
-/*
+
 // MySQL 연결 설정
 const connection = mysql.createConnection({
     host: '127.0.0.1',
     port: 40040,
-    user: 'user1',
-    password: '1',
+    user: 'TWO',
+    password: 'TWO',
     database: 'TWOGETHER'
 });
 
@@ -81,31 +81,6 @@ connection.connect((err) => {
     } else {
         console.log('MySQL connected');
     }
-});
-*/
-
-app.post('/login', (req, res) => {
-    const { id, password } = req.body;
-
-    const selectQuery = 'SELECT * FROM usertable WHERE id = ?';
-    connection.query(selectQuery, [id], (error, results) => {
-        if (error) {
-            console.error(error);
-            res.status(500).send('로그인 중 오류가 발생했습니다.');
-        } else {
-            if (results.length === 0) {
-                res.status(401).send('해당 아이디를 찾을 수 없습니다.');
-            } else {
-                const user = results[0];
-                if (user.password === password) {
-                    req.session.user = user; // 사용자 정보를 세션에 저장
-                    res.redirect('/main');
-                } else {
-                    res.status(401).send('비밀번호가 일치하지 않습니다.');
-                }
-            }
-        }
-    });
 });
 
 app.get('/', function(req, res) {
@@ -181,16 +156,15 @@ app.get('/auth/kakao/callback', async(req, res) => {
     console.log(user);
 
     req.session.kakao = user.data;
-    //req.session = {['kakao'] : user.data};
 
-    /*
+    
     // 카카오 로그인 정보에서 id와 nickname 추출
-    const id = user.data.id;
-    const nickname = user.data.properties.nickname;
+    const kakaoId = user.data.id;
+    const username = user.data.properties.nickname;
 
     // MySQL에 사용자 정보 저장
-    const insertQuery = 'INSERT INTO userTable (id, nickname) VALUES (?, ?)';
-    const values = [id, nickname];
+    const insertQuery = 'INSERT INTO userTable (kakaoId, username) VALUES (?, ?)';
+    const values = [kakaoId, username];
 
     connection.query(insertQuery, values, (err, result) => {
         if (err) {
@@ -201,7 +175,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
             return res.redirect('/');
         }
     });
-    */
+    
 
     res.redirect('/');
 })
