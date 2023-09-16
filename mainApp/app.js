@@ -55,6 +55,10 @@ app.get('/myPage', function(req, res) {
 app.get('/signupka', function(req, res) {
     res.render('signupka.html');
 });
+app.get("/sightSeeing?areaData=", function(req, res) {
+    var areaData = req.body.areadata;
+    res.json(areaData);
+});
 
 
 
@@ -157,7 +161,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
 
     req.session.kakao = user.data;
 
-    
+
     // 카카오 로그인 정보에서 id와 nickname 추출
     const kakaoId = user.data.id;
     const username = user.data.properties.nickname;
@@ -175,7 +179,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
             return res.redirect('/');
         }
     });
-    
+
 
     res.redirect('/');
 })
