@@ -91,15 +91,13 @@ body {
     display: flex;
     margin: 0 auto;
     border-radius: 20px;
-    width: 100%;
-    height: auto;
+    flex-wrap: nowrap;
 }
 
-.box2 {
+#box2 {
     float: left;
     width: 50%;
     margin: 20px;
-    position: relative;
     display: block;
     background-color: white;
     border-radius: 20px;
@@ -109,13 +107,13 @@ body {
     margin-left: 11%;
     margin-top: -57%;*/
     overflow: auto;
+    min-width: 500px;
 }
 
-.box3 {
+#box3 {
     float: right;
     width: 50%;
     margin: 20px;
-    position: relative;
     display: block;
     background-color: white;
     border-radius: 20px;
@@ -125,6 +123,7 @@ body {
     margin-left: 52%;
     margin-top: -55%;
     padding-top: 2em;*/
+    min-width: 500px;
 }
 
 .box1::after {
@@ -191,7 +190,7 @@ ion-icon {
     display: block;
     position: static;
     width: 100%;
-    height: 310px;
+    height: auto;
     border: 3px solid green;
 }
 
@@ -206,15 +205,19 @@ ion-icon {
     left: 5%;
 }
 
+.ntop {
+    text-align: center;
+}
+
 .n {
     position: relative;
-    top: 1.5em;
+    padding: 20px;
+    text-align: center;
 }
 
 .g {
-    line-height: 5vh;
-    position: relative;
-    top: 1.7em;
+    padding: 10px;
+    line-height: 30px;
 }
 
 ul {

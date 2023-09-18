@@ -90,17 +90,16 @@ span>a {
 }
 
 .box1 {
-    display: flex;
     margin: 0 auto;
     font-family: 'Nanum Gothic Coding', monospace;
     text-align: center;
-    flex-direction: row;
     border: #E9f1E5 solid 50px;
     border-radius: 50px;
 }
 
 .sh {
     height: 28px;
+    min-width: 50%;
     border: 1px solid #90B77D;
     border-radius: 25px;
     padding: 10px 12px;
@@ -109,18 +108,21 @@ span>a {
 
 .search {
     color: #90B77D;
-    background-color: #FFFFFF;
     border: 1px;
-    font-size: 30px;
+    font-size: 40px;
     position: relative;
-    top: 5px;
+    background-color: white;
 }
 
 .searchBox {
     position: relative;
 }
 
-.search:hover {
+#sIcon {
     color: #90B77D;
-    background-color: white;
+}
+
+#sIcon:hover {
+    color: #90B77D;
+    color: #739264;
 }
