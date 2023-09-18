@@ -55,13 +55,7 @@ app.get('/myPage', function(req, res) {
 app.get('/signupka', function(req, res) {
     res.render('signupka.html');
 });
-app.post('/sightSeeing?areaCode=', (req, res) => {
-    const receivedData = req.body; // POST 요청으로부터 데이터 추출
-    const variableValue = receivedData.variable;
-
-    // b.html 파일로 데이터 전송
-    res.send(variableValue);
-});
+app.post('/sightSeeing?areaCode=', (req, res) => {});
 
 
 
