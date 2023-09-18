@@ -511,7 +511,7 @@
 
         //데이터 저장
 
-        $(".center").click(function() {
+        /*$(".center").click(function() {
             var areadata = $(this).attr('id');
             console.log(areadata);
             $.ajax({
@@ -531,7 +531,24 @@
                     alert('Error')
                 }
             });
-        });
+        });*/
+        function sendData() {
+            $(".center").click(function() {
+                var areadata = $(this).attr('id');
+                console.log(areadata);
+                const dataToSend = {
+                    variable: areadata
+                }; // 전송할 데이터 객체 생성
+
+                // Ajax 요청 설정
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/sightSeeing?areaCode=' + areadata); // POST 요청을 보낼 엔드포인트 경로 설정
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                // 요청을 서버로 보냄
+                xhr.send(JSON.stringify(dataToSend));
+            });
+        };
     </script>
 
 </html>

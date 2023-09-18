@@ -55,6 +55,13 @@ app.get('/myPage', function(req, res) {
 app.get('/signupka', function(req, res) {
     res.render('signupka.html');
 });
+app.post('/sightSeeing?areaCode=', (req, res) => {
+    const receivedData = req.body; // POST 요청으로부터 데이터 추출
+    const variableValue = receivedData.variable;
+
+    // b.html 파일로 데이터 전송
+    res.send(variableValue);
+});
 
 
 
@@ -68,10 +75,10 @@ app.listen(PORT, () => {
 
 // MySQL 연결 설정
 const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
+    host: '127.0.0.1',
+    port: 40040,
+    user: 'TWO',
+    password: 'TWO',
     database: 'TWOGETHER'
 });
 
@@ -81,30 +88,6 @@ connection.connect((err) => {
     } else {
         console.log('MySQL connected');
     }
-});
-
-app.post('/login', (req, res) => {
-    const { id, password } = req.body;
-
-    const selectQuery = 'SELECT * FROM usertable WHERE id = ?';
-    connection.query(selectQuery, [id], (error, results) => {
-        if (error) {
-            console.error(error);
-            res.status(500).send('로그인 중 오류가 발생했습니다.');
-        } else {
-            if (results.length === 0) {
-                res.status(401).send('해당 아이디를 찾을 수 없습니다.');
-            } else {
-                const user = results[0];
-                if (user.password === password) {
-                    req.session.user = user; // 사용자 정보를 세션에 저장
-                    res.redirect('/main');
-                } else {
-                    res.status(401).send('비밀번호가 일치하지 않습니다.');
-                }
-            }
-        }
-    });
 });
 
 app.get('/', function(req, res) {
@@ -180,7 +163,26 @@ app.get('/auth/kakao/callback', async(req, res) => {
     console.log(user);
 
     req.session.kakao = user.data;
-    //req.session = {['kakao'] : user.data};
+
+
+    // 카카오 로그인 정보에서 id와 nickname 추출
+    const kakaoId = user.data.id;
+    const username = user.data.properties.nickname;
+
+    // MySQL에 사용자 정보 저장
+    const insertQuery = 'INSERT INTO userTable (kakaoId, username) VALUES (?, ?)';
+    const values = [kakaoId, username];
+
+    connection.query(insertQuery, values, (err, result) => {
+        if (err) {
+            console.error('MySQL 저장 오류:', err);
+            return res.status(500).json({ error: '사용자 정보를 저장하는 동안 오류가 발생했습니다.' });
+        } else {
+            console.log('사용자 정보가 MySQL에 저장되었습니다.');
+            return res.redirect('/');
+        }
+    });
+
 
     res.redirect('/');
 })

@@ -38,25 +38,40 @@
     <script>
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
 
-        $(document).ready(function() {
+        /*$(document).ready(function() {
 
-        $.ajax({
-            type: 'GET',
-            url: '/map', // Express 라우트 경로
-            async: false,
-            dataType: 'text',
-            success: function(areadata) {
-                // 두 번째 페이지 내부에서 변수값 사용
-                var areadata = '<%= typeof areadata !== "undefined" ? areadata : "" %>';
-                console.log(areadata);
-                // areaCode를 표시하는 코드 추가
-            },
-            error: function() {
-                console.log('Error');
-            }
+            $.ajax({
+                type: 'GET',
+                url: '/map', // Express 라우트 경로
+                dataType: 'text',
+                success: function(json) {
+                    // 두 번째 페이지 내부에서 변수값 사
+                    console.log(json.areadata);
+                    // areaCode를 표시하는 코드 추가
+                },
+                error: function() {
+                    console.log('Error');
+                }
 
-        });
-    });
+            });
+        });*/
+        function receiveData() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', '/sightSeeing?areaCode='); // 서버 엔드포인트 경로 설정
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const receivedData = xhr.responseText;
+                    //document.getElementById('receivedData').textContent = receivedData;
+                    console.log(receivedData);
+                }
+            };
+            xhr.send();
+        }
+
+        // 페이지 로드 시 데이터 받기
+        window.onload = receiveData;
+
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
@@ -120,8 +135,9 @@
             });
         }
 
-        getPlaceByAreaCode(3);
+        getPlaceByAreaCode(areadata);
     </script>
+
 </body>
 
 </html>
