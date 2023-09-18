@@ -43,11 +43,11 @@
             $.ajax({
                 type: 'GET',
                 url: '/map', // Express 라우트 경로
-                dataType: 'text',
-                success: function(json) {
-                    // 두 번째 페이지 내부에서 변수값 사
-                    console.log(json.areadata);
-                    // areaCode를 표시하는 코드 추가
+                dataType: 'json',
+                success: function(response) {
+                    const areadata = response.areadata;
+
+                    getPlaceByAreaCode(areadata);
                 },
                 error: function() {
                     console.log('Error');
@@ -118,7 +118,6 @@
             });
         }
 
-        getPlaceByAreaCode(areadata);
     </script>
 
 </body>

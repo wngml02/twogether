@@ -1,7 +1,7 @@
 const express = require('express')
+const app = express();
 const session = require('express-session');
 const nunjucks = require('nunjucks');
-const app = express();
 const cookieParser = require('cookie-parser');
 const qs = require('qs');
 const axios = require('axios');
@@ -27,6 +27,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
+
+  
+app.get('/map', (req, res) => {
+    // areadata를 포함한 JSON 형식의 응답을 보냅니다.
+    res.json({ areadata: areadata });
+});
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
 
 app.get('', function(req, res) {
     res.render('main.html');
@@ -54,6 +64,9 @@ app.get('/myPage', function(req, res) {
 });
 app.get('/signupka', function(req, res) {
     res.render('signupka.html');
+});
+app.get('/scH', function(req, res) {
+    res.render('scH.html');
 });
 app.post('/sightSeeing?areaCode=', (req, res) => {});
 

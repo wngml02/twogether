@@ -34,6 +34,7 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
+
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
                 center: new kakao.maps.LatLng(36.220024, 127.947228), // 지도의 중심좌표 
@@ -508,8 +509,8 @@
 
         // 커스텀 오버레이를 지도에 표시합니다
         customOverlay.setMap(map);
-
         //데이터 저장
+
 
         $(".center").click(function() {
             var areadata = $(this).attr('id');
