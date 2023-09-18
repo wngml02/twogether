@@ -157,13 +157,13 @@ app.get('/auth/kakao/callback', async(req, res) => {
         res.json(e.data);
     }
     console.log(user);
-
+    res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
 
     res.redirect('/');
 })
 
-app.get('/login', async (req, res) => {
+app.get('/login', async(req, res) => {
     try {
         const kakaoAccessToken = req.query.access_token;
 
