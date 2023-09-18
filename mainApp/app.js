@@ -68,15 +68,17 @@ app.listen(PORT, () => {
 
 
 // MySQL 연결 설정
-const connection = mysql.createConnection({
+const dbConfig = {
     host: '127.0.0.1',
     port: 40040,
-    user: 'TWO',
-    password: 'TWO',
+    user: 'user1',
+    password: '1',
     database: 'TWOGETHER'
-});
+};
 
-connection.connect((err) => {
+const mysqlClient = mysql.createConnection(dbConfig);
+
+mysqlClient.connect((err) => {
     if (err) {
         console.error('MySQL connection error:', err);
     } else {
@@ -155,31 +157,31 @@ app.get('/auth/kakao/callback', async(req, res) => {
         res.json(e.data);
     }
     console.log(user);
-
+    res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
-
-
-    // 카카오 로그인 정보에서 id와 nickname 추출
-    const kakaoId = user.data.id;
-    const username = user.data.properties.nickname;
-
-    // MySQL에 사용자 정보 저장
-    const insertQuery = 'INSERT INTO userTable (kakaoId, username) VALUES (?, ?)';
-    const values = [kakaoId, username];
-
-    connection.query(insertQuery, values, (err, result) => {
-        if (err) {
-            console.error('MySQL 저장 오류:', err);
-            return res.status(500).json({ error: '사용자 정보를 저장하는 동안 오류가 발생했습니다.' });
-        } else {
-            console.log('사용자 정보가 MySQL에 저장되었습니다.');
-            return res.redirect('/');
-        }
-    });
-
 
     res.redirect('/');
 })
+
+app.get('/login', async(req, res) => {
+    try {
+        const kakaoAccessToken = req.query.access_token;
+
+        const response = await axios.get('https://kapi.kakao.com/v2/user/me', {
+            headers: {
+                Authorization: `Bearer ${kakaoAccessToken}`,
+            },
+        });
+
+        const kakaoId = response.data.id;
+        const username = user.data.properties.nickname;
+
+        const query = `INSERT INTO userTable (kakaoId, username) VALUES (${kakaoId}, ${username})`;
+    } catch (error) {
+        console.error('오류 발생:', error);
+        res.status(500).json({ error: '서버 오류' });
+    }
+});
 
 /*
 const kakaoUser = user.data;
