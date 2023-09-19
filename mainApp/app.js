@@ -35,10 +35,10 @@ app.use(express.static(__dirname + "/public"));
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
-  });
+});
 
 app.get('', function(req, res) {
-    res.render('main.html');
+    res.render('mainF.html');
 });
 app.get('/placeInfo', function(req, res) {
     res.render('placeInfo.html');

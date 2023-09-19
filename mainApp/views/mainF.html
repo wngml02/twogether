@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Main</title>
+    <link rel="stylesheet" href="/stylesheets/mainF.css">
+</head>
+
+<body>
+    <div class="header">
+        <input type="button" onclick="location.href='/auth/logout'" value="로그아웃" class="button1" style="float:right;">
+        <input type="button" value="로그인" onclick="location.href='/login'" class="button2" style="float:right;">
+        <nav>
+            <ul class="menubar">
+                <span class="menu1"> <a href="/">홈</a></span>
+                <span class="menu2"> <a href="/map">지역 선택</a></span>
+                <span class="menu3"> <a href="/scH">관광 안내소</a></span>
+                <span class="menu4"> <a href="/namuGrow">나무 키우기</a></span>
+            </ul>
+        </nav>
+    </div>
+    <form action="/main" method="POST"></form>
+
+    <div class="main" id="main1">
+        <div class="main1-in">
+            <img src="/images/NEW.jpg" style="width: 100%; height:auto;">
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+
+</html>
