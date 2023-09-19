@@ -1,6 +1,6 @@
 // 실제 API 엔드포인트로 대체해야 합니다.
 var url = 'http://api.data.go.kr/openapi/tn_pubr_public_trsmic_api'; /*URL*/
-var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + `eJJp4cIsk7s0g0Dk2t1GVKzlyGledlhGUr8gHQiNewRzOBAPt0v/FOnEWGcmM5R6X6k5qn7FjIuXgqqB9o4w+Q==`; /*Service Key*/
+var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + `eJJp4cIsk7s0g0Dk2t1GVKzlyGledlhGUr8gHQiNewRzOBAPt0v%2FFOnEWGcmM5R6X6k5qn7FjIuXgqqB9o4w%2BQ%3D%3D`; /*Service Key*/
 queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /* */
 queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /* */
 queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('json'); /* */
