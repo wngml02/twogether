@@ -18,6 +18,8 @@
             <input type="button" onclick="location.href='myPage.html'" value="마이페이지" class="button1" style="float:right;">
             <input type="button" value="로그인" class="button2" style="float:right;">
         </div>
+        <script async src="http://t1.daumcdn.net/mapjsapi/js/main/4.4.14/kakao.js"></script>
+
     </header>
     <nav>
         <ul class="menubar">
@@ -39,22 +41,22 @@
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
 
         $(document).ready(function() {
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:3000/map',
+        dataType: 'json',
+        success: function(response) {
+            const areadata = response.areadata;
+            console.log(areadata);
 
-            $.ajax({
-                type: 'GET',
-                url: '/map', // Express 라우트 경로
-                dataType: 'json',
-                success: function(response) {
-                    const areadata = response.areadata;
+            getPlaceByAreaCode(areadata);
+        },
+        error: function() {
+            console.log('Error');
+        }
+    });
+});
 
-                    getPlaceByAreaCode(areadata);
-                },
-                error: function() {
-                    console.log('Error');
-                }
-
-            });
-        });
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
