@@ -176,6 +176,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
     } catch (err) {
         res.json(err.data);
     }
+
     //access토큰을 받아서 사용자 정보를 알기 위해 쓰는 코드
     let user;
     try {
@@ -194,9 +195,28 @@ app.get('/auth/kakao/callback', async(req, res) => {
     res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
 
+    try {
+        const kakaoAccessToken = req.query.access_token;
+
+        const response = await axios.get('https://kapi.kakao.com/v2/user/me', {
+            headers: {
+                Authorization: `Bearer ${kakaoAccessToken}`,
+            },
+        });
+
+        const kakaoId = response.data.id;
+        const username = user.data.properties.nickname;
+
+        const query = `INSERT INTO userTable (kakaoId, username) VALUES (${kakaoId}, ${username})`;
+    } catch (error) {
+        console.error('오류 발생:', error);
+        res.status(500).json({ error: '서버 오류' });
+    }
+
     res.redirect('/');
 })
 
+/*
 app.get('/login', async(req, res) => {
     try {
         const kakaoAccessToken = req.query.access_token;
@@ -216,6 +236,7 @@ app.get('/login', async(req, res) => {
         res.status(500).json({ error: '서버 오류' });
     }
 });
+*/
 
 /*
 const kakaoUser = user.data;
