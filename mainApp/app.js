@@ -5,6 +5,8 @@ const nunjucks = require('nunjucks');
 const cookieParser = require('cookie-parser');
 const qs = require('qs');
 const axios = require('axios');
+const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
+const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
 app.set('view engine', 'html');
 nunjucks.configure("./views", {
@@ -42,7 +44,19 @@ app.get('/placeInfo', function(req, res) {
     res.render('placeInfo.html');
 });
 app.get('/map', function(req, res) {
-    res.json({ areadata: areadata });
+    // API 호출 및 데이터 가공
+    axios.get(apiUrlBase + '?' + queryParams)
+        .then(response => {
+            const data = response.data; // 외부 API에서 받아온 데이터
+            // data를 가공하여 원하는 형태로 데이터를 만듭니다.
+
+            // 클라이언트로 데이터를 응답합니다.
+            res.json({ areadata: data });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            res.status(500).send('Internal Server Error');
+        });
     res.render('map.html');
 });
 app.get('/sightSeeing', function(req, res) {
