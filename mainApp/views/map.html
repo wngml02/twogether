@@ -517,11 +517,12 @@
             console.log(areadata);
             $.ajax({
                 type: 'GET',
-                url: '/sightSeeing?areaData=',
+                url: '/sightSeeing',
                 data: {
-                    variable: areadata
+                    areaCode: areadata
                 },
                 success: function(result) {
+                    console.log(result.relatedData);
 
                     var page = '/sightSeeing?areaCode=' + areadata;
                     console.log(page);
