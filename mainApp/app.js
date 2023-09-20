@@ -66,7 +66,7 @@ app.get('/signup', function(req, res) {
 app.get('/login', function(req, res) {
     res.render('login.html');
 });
-app.get('/namuGrow', function(req, res) {
+app.get('/namuGrow', loggedin, function(req, res) {
     res.render('namuGrow.html');
 });
 app.get('/myPage', function(req, res) {
@@ -120,6 +120,13 @@ mysqlClient.connect((err) => {
     }
 });
 */
+function loggedin(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        returnres.redirect('/signupka');
+    }
+}
 
 app.get('/', function(req, res) {
     if (req.session.user) {
@@ -224,7 +231,8 @@ app.get('/auth/kakao/callback', async(req, res) => {
 
         //const query = `INSERT INTO userTable (kakaoId, username) VALUES (${kakaoId}, ${username})`;
         const newUser = new User({
-            kakaoId, username
+            kakaoId,
+            username
         });
 
         await newUser.save();
