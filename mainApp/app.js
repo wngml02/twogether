@@ -60,9 +60,6 @@ app.get('/map', function(req, res) {
         });
     res.render('map.html');
 });
-app.get('/sightSeeing', function(req, res) {
-    res.render('sightSeeing.html');
-});
 app.get('/signup', function(req, res) {
     res.render('signup.html');
 });
@@ -90,6 +87,7 @@ app.get('/sightSeeing', (req, res) => {
     };
 
     res.json({ relatedData });
+    res.render('sightSeeing.html');
 });
 
 
