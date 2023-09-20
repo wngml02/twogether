@@ -38,25 +38,28 @@
     <script type="application/json" src="/javascripts/tour.js">
     </script>
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const variableValue = urlParams.get('variable');
+        console.log(variableValue);
         // URL 파라미터에서 areaCodeInput 값을 읽어옴
+        /*
+                $(document).ready(function() {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'https://localhost:3000/map',
+                        dataType: 'json',
+                        success: function(response) {
+                            const areadata = response.areadata;
+                            console.log(areadata);
 
-        $(document).ready(function() {
-            $.ajax({
-                type: 'GET',
-                url: 'https://localhost:3000/map',
-                dataType: 'json',
-                success: function(response) {
-                    const areadata = response.areadata;
-                    console.log(areadata);
-
-                    getPlaceByAreaCode(areadata);
-                },
-                error: function() {
-                    console.log('Error');
-                }
-            });
-        });
-
+                            getPlaceByAreaCode(areadata);
+                        },
+                        error: function() {
+                            console.log('Error');
+                        }
+                    });
+                });
+        */
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
@@ -119,6 +122,8 @@
                 getPlace(apiUrlWithPageNo, boxClass);
             });
         }
+
+        getPlaceByAreaCode(variableValue);
 
         function move() {
             location.href = "/";

@@ -45,6 +45,7 @@ app.get('/placeInfo', function(req, res) {
     res.render('placeInfo.html');
 });
 app.get('/map', function(req, res) {
+
     // API 호출 및 데이터 가공
     /*axios.get(apiUrlBase + '?' + queryParams)
         .then(response => {
@@ -87,11 +88,13 @@ app.get('/sightSeeing', (req, res) => {
     };
 
     res.json({ relatedData });*/
+
     res.render('sightSeeing.html');
 });
-
-
-
+app.get('/get-variable', (req, res) => {
+    const variableValue = req.query.variable;
+    res.json({ variable: variableValue });
+});
 /*
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
