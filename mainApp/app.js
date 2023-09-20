@@ -121,10 +121,10 @@ mysqlClient.connect((err) => {
 });
 */
 function loggedin(req, res, next) {
-    if (req.user) {
+    if (req.session.kakao) {
         next();
     } else {
-        returnres.redirect('/signupka');
+        res.redirect('/signupka');
     }
 }
 
@@ -218,7 +218,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
     res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
 
-    try {
+    /*try {
         const kakaoAccessToken = req.query.access_token;
 
         const response = await axios.get('https://kapi.kakao.com/v2/user/me', {
@@ -240,7 +240,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
     } catch (error) {
         console.error('오류 발생:', error);
         res.status(500).json({ error: '서버 오류' });
-    }
+    }*/
 
     res.redirect('/');
 })
