@@ -7,6 +7,7 @@ const qs = require('qs');
 const axios = require('axios');
 const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
 const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
+const mongoose = require('mongoose');
 
 app.set('view engine', 'html');
 nunjucks.configure("./views", {
@@ -101,6 +102,7 @@ app.listen(PORT, () => {
 */
 
 
+/*
 // MySQL 연결 설정
 const dbConfig = {
     host: '127.0.0.1',
@@ -119,6 +121,7 @@ mysqlClient.connect((err) => {
         console.log('MySQL connected');
     }
 });
+*/
 
 app.get('/', function(req, res) {
     if (req.session.user) {
@@ -136,6 +139,21 @@ app.get('/auth/logout', (req, res) => {
 });
 
 
+const User = require('./models/Users.js');
+
+mongoose.connect('mongodb://localhost:27017/TWOGETHER', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('MongoDB 연결 성공');
+
+        // 데이터 조회
+        return User.find({}); // 모든 사용자 조회
+    })
+    .then(users => {
+        console.log('조회된 사용자:', users);
+    })
+    .catch(err => {
+        console.error('데이터 조회 오류:', err);
+    });
 
 //카카오
 app.use(session({
@@ -203,11 +221,16 @@ app.get('/auth/kakao/callback', async(req, res) => {
                 Authorization: `Bearer ${kakaoAccessToken}`,
             },
         });
-
         const kakaoId = response.data.id;
         const username = user.data.properties.nickname;
 
-        const query = `INSERT INTO userTable (kakaoId, username) VALUES (${kakaoId}, ${username})`;
+        //const query = `INSERT INTO userTable (kakaoId, username) VALUES (${kakaoId}, ${username})`;
+        const newUser = new User({
+            kakaoId, username
+        });
+
+        await newUser.save();
+
     } catch (error) {
         console.error('오류 발생:', error);
         res.status(500).json({ error: '서버 오류' });
