@@ -46,7 +46,7 @@ app.get('/placeInfo', function(req, res) {
 });
 app.get('/map', function(req, res) {
     // API 호출 및 데이터 가공
-    axios.get(apiUrlBase + '?' + queryParams)
+    /*axios.get(apiUrlBase + '?' + queryParams)
         .then(response => {
             const data = response.data; // 외부 API에서 받아온 데이터
             // data를 가공하여 원하는 형태로 데이터를 만듭니다.
@@ -57,7 +57,7 @@ app.get('/map', function(req, res) {
         .catch(error => {
             console.error('Error:', error);
             res.status(500).send('Internal Server Error');
-        });
+        });*/
     res.render('map.html');
 });
 app.get('/signup', function(req, res) {
@@ -79,14 +79,14 @@ app.get('/scH', function(req, res) {
     res.render('scH.html');
 });
 app.get('/sightSeeing', (req, res) => {
-    const areaCode = req.query.areaCode;
+    /*const areaCode = req.query.areaCode;
 
     const relateData = {
         name: 'Example Data',
         description: 'This is an example of related data.'
     };
 
-    res.json({ relatedData });
+    res.json({ relatedData });*/
     res.render('sightSeeing.html');
 });
 

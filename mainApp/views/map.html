@@ -13,7 +13,7 @@
 <body>
     <header>
         <div>
-            <img src="images/twogether-logo.png" alt="로고" width="380px" height="140px">
+            <img src="images/twogether-logo.png" onclick="move()" alt="로고" width="380px" height="140px">
 
 
         </div>
@@ -534,6 +534,10 @@
                 }
             });
         });
+
+        function move() {
+            location.href = "/";
+        }
     </script>
 
 </html>

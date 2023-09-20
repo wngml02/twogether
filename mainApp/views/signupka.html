@@ -13,7 +13,7 @@
 <body style="font-size: 22px;">
 
     <header>
-        <div><img src="/images/twogether-logo.png" alt="로고" width="600px" height="230px"></div>
+        <div><img src="/images/twogether-logo.png" onclick="move()" alt="로고" width="600px" height="230px"></div>
     </header>
     <div class="container">
         <br><br>
@@ -22,16 +22,16 @@
         </div>
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
         <script>
-        // 카카오 로그인 초기화
-        Kakao.init('18f1f5174d57449e61102b40f59207e4');
+            // 카카오 로그인 초기화
+            Kakao.init('18f1f5174d57449e61102b40f59207e4');
 
-        // 카카오 로그인 버튼 클릭 시
-        document.getElementById('kakao-login-btn').addEventListener('click', () => {
-            Kakao.Auth.login({
-                success: function(authObj) {
-                    // 카카오 로그인 성공 시, 팝업 창을 열어 추가 정보 입력 폼을 표시
-                    const popup = window.open('', '_blank', 'width=400,height=400');
-                    popup.document.write(`
+            // 카카오 로그인 버튼 클릭 시
+            document.getElementById('kakao-login-btn').addEventListener('click', () => {
+                Kakao.Auth.login({
+                    success: function(authObj) {
+                        // 카카오 로그인 성공 시, 팝업 창을 열어 추가 정보 입력 폼을 표시
+                        const popup = window.open('', '_blank', 'width=400,height=400');
+                        popup.document.write(`
                         <h2>추가 정보 입력</h2>
                         <form id="user-info-form">
                             <label for="name">전화번호:</label>
@@ -81,28 +81,28 @@
                         </ul><br>
                     `);
 
-                    // 추가 정보 입력 폼 제출 시
-                    popup.document.getElementById('user-info-form').addEventListener('submit', (e) => {
-                        e.preventDefault();
+                        // 추가 정보 입력 폼 제출 시
+                        popup.document.getElementById('user-info-form').addEventListener('submit', (e) => {
+                            e.preventDefault();
 
-                        // 폼 데이터 가져오기
-                        const formData = new FormData(e.target);
+                            // 폼 데이터 가져오기
+                            const formData = new FormData(e.target);
 
-                        // 폼 데이터를 부모 창(원래 창)으로 전달 또는 서버로 전송 또는 처리하기
-                        for (const pair of formData.entries()) {
-                            console.log(pair[0] + ': ' + pair[1]);
-                        }
+                            // 폼 데이터를 부모 창(원래 창)으로 전달 또는 서버로 전송 또는 처리하기
+                            for (const pair of formData.entries()) {
+                                console.log(pair[0] + ': ' + pair[1]);
+                            }
 
-                        // 팝업 창 닫기
-                        popup.close();
-                    });
-                },
-                fail: function(error) {
-                    console.error('카카오 로그인 실패:', error);
-                },
+                            // 팝업 창 닫기
+                            popup.close();
+                        });
+                    },
+                    fail: function(error) {
+                        console.error('카카오 로그인 실패:', error);
+                    },
+                });
             });
-        });
-    </script>
+        </script>
         <br>
         <div class="q">
             <p>이미 계정이 있으신가요?</p>
@@ -110,7 +110,11 @@
         </div>
         </form>
     </div>
-
+    <script>
+        function move() {
+            location.href = "/";
+        }
+    </script>
 </body>
 
 </html>

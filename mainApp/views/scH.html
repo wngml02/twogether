@@ -16,7 +16,7 @@
 
     <header>
         <div>
-            <img src="images/twogether-logo.png" alt="로고" width="380px" height="140px">
+            <img src="images/twogether-logo.png" onclick="move()" alt="로고" width="380px" height="140px">
         </div>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f9a5c956172b9d5f4228f9b7b68540e1"></script>
     </header>
@@ -41,6 +41,11 @@
         </div>
     </div>
     <script src="/javascripts/trsmic.js"></script>
+    <script>
+        function move() {
+            location.href = "/";
+        }
+    </script>
 
 </body>
 

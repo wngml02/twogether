@@ -17,7 +17,7 @@
 
     <header>
         <div>
-            <img src="images/twogether-logo.png" alt="로고" width="380px" height="140px">
+            <img src="images/twogether-logo.png" onclick="move()" alt="로고" width="380px" height="140px">
         </div>
     </header>
 
@@ -217,7 +217,9 @@
 
         });
 
-
+        function move() {
+            location.href = "/";
+        }
         // 클릭할 때마다 아이콘 업데이트
     </script>
 
