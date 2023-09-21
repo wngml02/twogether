@@ -45,12 +45,10 @@
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
         // 지도에 표시할 원을 생성합니다
         // 서울
-        var circle1 = new kakao.maps.Ellipse({
+        var circle1 = new kakao.maps.Circle({
             center: new kakao.maps.LatLng(37.555425, 126.99197),
             // 원의 중심좌표 입니다 
-            rx: 50,
-            ry: 100,
-            // 미터 단위의 원의 반지름입니다 
+            radius: 15000, // 미터 단위의 원의 반지름입니다 
             strokeWeight: 3, // 선의 두께입니다 
             strokeColor: '#F6D875', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
