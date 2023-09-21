@@ -83,10 +83,10 @@
                     title.style.margin = "30px";
                     title.style.color = "#42855B"
 
-                    const mainimage = document.createElement("div");
-                    mainimage.innerHTML = `<div><img src ="${data.response.body.items.item[0].mainimage}" style: "width:50px; height:20px"></div>`;
-                    mainimage.style.width = "50px";
-                    mainimage.style.height = "10px";
+                    //const mainimage = document.createElement("div");
+                    //mainimage.innerHTML = `<div><img src ="${data.response.body.items.item[0].mainimage}" style: "width:50px; height:20px"></div>`;
+                    //mainimage.style.width = "50px";
+                    //mainimage.style.height = "10px";
 
                     const addr = document.createElement("div");
                     addr.textContent = "📌 " + data.response.body.items.item[0].addr;
@@ -124,7 +124,7 @@
                     summary.textContent = cleanedSummary;
 
                     box.appendChild(title);
-                    box.appendChild(mainimage);
+                    //box.appendChild(mainimage);
                     box.appendChild(addr);
                     box.appendChild(summary);
                 })
