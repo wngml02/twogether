@@ -1,4 +1,4 @@
-div{
+div {
     text-align: left;
 }
 
@@ -84,7 +84,7 @@ span>a {
     margin: 10px;
 }
 
-#image-box > div {
+#image-box>div {
     float: left;
     width: 300px;
     height: 900px;
@@ -102,26 +102,32 @@ span>a {
 }
 
 .box1 {
-    background-color: rgba(66, 133, 91, 0.7);
-    font: 10px Noto Sans KR;
-    color: #FFFFFF;
+    background-color: white;
+    border: #E9f1E5 solid 40px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: #000000;
 }
 
 .box2 {
-    background-color: rgba(66, 133, 91, 0.7);
-    font: 10px Noto Sans KR;
-    color: #FFFFFF;
+    background-color: white;
+    border: #E9f1E5 solid 40px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: #000000;
 }
 
 .box3 {
-    background-color: rgba(66, 133, 91, 0.7);
-    font: 10px Noto Sans KR;
-    color: #FFFFFF;
+    background-color: white;
+    border: #E9f1E5 solid 40px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: #000000;
 }
 
 .button1 {
     border: 0;
-    background-color:#90B77D;
+    background-color: #90B77D;
     border-radius: 30px;
     font: 17px Noto Sans KR;
     color: #FFFFFF;

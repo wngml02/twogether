@@ -76,6 +76,12 @@ span>a {
     margin: 10px;
 }
 
+.center {
+    font-family: 'Noto Sans KR', monospace;
+    font-size: 150%;
+    font-weight: 800;
+}
+
 .button2 {
     all: unset;
     margin: 10px;

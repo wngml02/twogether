@@ -60,3 +60,16 @@ span>a {
     height: 100px;
     width: 100%;
 }
+
+footer {
+    bottom: 0;
+}
+
+.foot {
+    font-size: 15px;
+    text-align: center;
+}
+
+#foot {
+    margin: 20px;
+}
