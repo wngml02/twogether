@@ -81,6 +81,18 @@
                     title.style.lineHeight = "40px";
                     title.style.fontWeight = "bold";
                     title.style.margin = "30px";
+                    title.style.color = "#42855B"
+
+                    const mainimage = document.createElement("div");
+                    mainimage.innerHTML = `<div><img src ="${data.response.body.items.item[0].mainimage}" style: "width:50px; height:20px"></div>`;
+                    mainimage.style.width = "50px";
+                    mainimage.style.height = "10px";
+
+                    const addr = document.createElement("div");
+                    addr.textContent = "📌 " + data.response.body.items.item[0].addr;
+                    addr.style.fontSize = "20px";
+                    addr.style.fontWeight = "bold";
+                    addr.style.margin = "10px";
 
                     const summary = document.createElement("div");
                     const originalSummary = data.response.body.items.item[0].summary;
@@ -112,6 +124,8 @@
                     summary.textContent = cleanedSummary;
 
                     box.appendChild(title);
+                    box.appendChild(mainimage);
+                    box.appendChild(addr);
                     box.appendChild(summary);
                 })
                 .catch(error => console.log("fetch 에러:", error));
