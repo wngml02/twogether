@@ -8,6 +8,7 @@ const axios = require('axios');
 const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
 const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 app.set('view engine', 'html');
 nunjucks.configure("./views", {
@@ -45,9 +46,8 @@ app.get('/placeInfo', function(req, res) {
     res.render('placeInfo.html');
 });
 app.get('/map', function(req, res) {
-
     // API 호출 및 데이터 가공
-    /*axios.get(apiUrlBase + '?' + queryParams)
+    axios.get(apiUrlBase + '?' + queryParams)
         .then(response => {
             const data = response.data; // 외부 API에서 받아온 데이터
             // data를 가공하여 원하는 형태로 데이터를 만듭니다.
@@ -58,7 +58,7 @@ app.get('/map', function(req, res) {
         .catch(error => {
             console.error('Error:', error);
             res.status(500).send('Internal Server Error');
-        });*/
+        });
     res.render('map.html');
 });
 app.get('/signup', function(req, res) {
@@ -80,21 +80,19 @@ app.get('/scH', function(req, res) {
     res.render('scH.html');
 });
 app.get('/sightSeeing', (req, res) => {
-    /*const areaCode = req.query.areaCode;
+    const areaCode = req.query.areaCode;
 
     const relateData = {
         name: 'Example Data',
         description: 'This is an example of related data.'
     };
 
-    res.json({ relatedData });*/
-
+    res.json({ relatedData });
     res.render('sightSeeing.html');
 });
-app.get('/get-variable', (req, res) => {
-    const variableValue = req.query.variable;
-    res.json({ variable: variableValue });
-});
+
+
+
 /*
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -147,8 +145,9 @@ app.get('/auth/logout', (req, res) => {
 });
 
 
-/*const User = require('./models/Users.js');
+const User = require('./models/Users.js');
 
+/*
 mongoose.connect('mongodb://localhost:27017/TWOGETHER', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('MongoDB 연결 성공');
@@ -163,11 +162,13 @@ mongoose.connect('mongodb://localhost:27017/TWOGETHER', { useNewUrlParser: true,
         console.error('데이터 조회 오류:', err);
     });
 */
-//mongoose
-const config = require("./.gitignore/config/key.js");
-mongoose.connect(config.mongoURI)
+
+const mongoURI = process.env.mongoURI;
+
+mongoose.connect(mongoURI)
     .then(() => console.log("MongoDB 연결 성공..."))
     .catch((err) => console.log(err));
+
 //카카오
 app.use(session({
         secret: 'ras',
