@@ -61,7 +61,6 @@ span>a {
     text-align: center;
     flex-direction: row;
     border: #E9f1E5 solid 50px;
-    ;
     background-color: rgba(144, 184, 124, 0.2);
 }
 
@@ -78,8 +77,10 @@ span>a {
 
 .center {
     font-family: 'Noto Sans KR', monospace;
-    font-size: 150%;
+    font-size: 120%;
     font-weight: 800;
+    color: #000000;
+    text-shadow: 2px 0 #F6D875;
 }
 
 .button2 {
