@@ -80,7 +80,7 @@ span>a {
     font-size: 120%;
     font-weight: 800;
     color: #000000;
-    text-shadow: 2px 0 #F6D875;
+    text-shadow: 2px 0 #F6D875, 2px 0 #F6D875;
 }
 
 .button2 {
