@@ -164,10 +164,9 @@ mongoose.connect('mongodb://localhost:27017/TWOGETHER', { useNewUrlParser: true,
     });
 */
 //mongoose
-
-mongoose.connect(
-        "mongodb+srv://wngml021211:minseok0326!@juhee.wdbnvin.mongodb.net/"
-    ).then(() => console.log("MongoDB 연결 성공..."))
+const config = require("./.gitignore/config/key.js");
+mongoose.connect(config.mongoURI)
+    .then(() => console.log("MongoDB 연결 성공..."))
     .catch((err) => console.log(err));
 //카카오
 app.use(session({
