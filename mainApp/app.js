@@ -147,7 +147,7 @@ app.get('/auth/logout', (req, res) => {
 });
 
 
-const User = require('./models/Users.js');
+/*const User = require('./models/Users.js');
 
 mongoose.connect('mongodb://localhost:27017/TWOGETHER', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -162,7 +162,13 @@ mongoose.connect('mongodb://localhost:27017/TWOGETHER', { useNewUrlParser: true,
     .catch(err => {
         console.error('데이터 조회 오류:', err);
     });
+*/
+//mongoose
 
+mongoose.connect(
+        "mongodb+srv://wngml021211:minseok0326!@juhee.wdbnvin.mongodb.net/"
+    ).then(() => console.log("MongoDB 연결 성공..."))
+    .catch((err) => console.log(err));
 //카카오
 app.use(session({
         secret: 'ras',
