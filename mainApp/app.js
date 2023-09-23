@@ -74,7 +74,10 @@ app.get('/get-variable', (req, res) => {
     res.json({ variable: variableValue });
 });
 
-
+app.get('/get-variable2', (req, res) => {
+    const variableValue2 = req.query.variable2;
+    res.json({ variable2: variableValue2 });
+});
 
 
 /*

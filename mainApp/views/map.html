@@ -526,24 +526,6 @@
                 .catch(error => {
                     console.error('변수 값을 가져오는 중 오류 발생:', error);
                 });
-            /*$.ajax({
-                type: 'GET',
-                url: '/sightSeeing',
-                data: {
-                    areaCode: areadata
-                },
-                success: function(result) {
-                    console.log(result.relatedData);
-
-                    var page = '/sightSeeing?areaCode=' + areadata;
-                    console.log(page);
-                    alert('Success');
-                    window.location.replace(page)
-                },
-                error: function() {
-                    alert('Error')
-                }
-            });*/
         });
 
         function move() {

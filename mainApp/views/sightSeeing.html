@@ -15,8 +15,7 @@
     <header>
         <div>
             <img src="/images/twogether-logo.png" onclick="move()" alt="로고" width="380px" height="140px">
-            <input type="button" onclick="location.href='myPage.html'" value="마이페이지" class="button1" style="float:right;">
-            <input type="button" value="로그인" class="button2" style="float:right;">
+
         </div>
         <script async src="http://t1.daumcdn.net/mapjsapi/js/main/4.4.14/kakao.js"></script>
 
@@ -30,9 +29,12 @@
         </ul>
     </nav>
     <div id="image-box">
-        <div class="box1" id="placeInfo"></div>
-        <div class="box2"></div>
-        <div class="box3"></div>
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box"></div>
+        <div id="box3" class="box"></div>
+        <div id="box4" class="box"></div>
+        <div id="box5" class="box"></div>
+        <div id="box6" class="box"></div>
     </div>
     <div id="placeInfo"> </div>
     <script type="application/json" src="/javascripts/tour.js">
@@ -63,7 +65,7 @@
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
-        const boxClassNames = [".box1", ".box2", ".box3"];
+        const boxClassNames = ["#box1", "#box2", "#box3", "#box4", "#box5", "#box6"];
 
         // 박스 안에 관광지 정보 표시
         function getPlace(apiUrlWithPageNo, boxClass) {
@@ -144,6 +146,19 @@
         function move() {
             location.href = "/";
         }
+        $(".box").click(function() {
+            var titledata = $(this).attr('title.textContent');
+            console.log(titledata);
+            const variableValue2 = titledata;
+            fetch(`/get-variable2?variable2=${encodeURIComponent(variableValue2)}`)
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href = `/placeInfo?variable2=${encodeURIComponent(data.variable2)}`;
+                })
+                .catch(error => {
+                    console.error('변수 값을 가져오는 중 오류 발생:', error);
+                });
+        });
     </script>
 
 </body>

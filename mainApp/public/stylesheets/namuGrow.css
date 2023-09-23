@@ -252,12 +252,13 @@
     .item--add--icon {
         cursor: pointer;
         font-size: 30px;
-        position: relative;
+        position: static;
     }
     
     .item--check {
         transform: scale(1.5);
         margin-right: 6px;
+        position: static;
     }
     /*쓰레기통 아이콘*/
     

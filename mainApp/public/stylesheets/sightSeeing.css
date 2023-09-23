@@ -101,7 +101,7 @@ span>a {
     clear: both;
 }
 
-.box1 {
+.box {
     background-color: white;
     border: #E9f1E5 solid 40px;
     border-radius: 20px;
@@ -118,6 +118,30 @@ span>a {
 }
 
 .box3 {
+    background-color: white;
+    border: #E9f1E5 solid 40px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: #000000;
+}
+
+.box5 {
+    background-color: white;
+    border: #E9f1E5 solid 40px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: #000000;
+}
+
+.box6 {
+    background-color: white;
+    border: #E9f1E5 solid 40px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: #000000;
+}
+
+.box4 {
     background-color: white;
     border: #E9f1E5 solid 40px;
     border-radius: 20px;

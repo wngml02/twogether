@@ -22,7 +22,7 @@
         <ul class="menubar">
             <span class="menu1"> <a href="/">홈</a></span>
             <span class="menu2"> <a href="/map">지역 선택</a></span>
-            <span class="menu3"> <a href="">관광 안내소</a></span>
+            <span class="menu3"> <a href="/scH">관광 안내소</a></span>
             <span class="menu4"> <a href="/namuGrow/namuGrow.html">나무 키우기</a></span>
         </ul>
     </nav>
@@ -48,6 +48,9 @@
     </div>
 
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const variableValue2 = urlParams.get('variable2');
+        console.log(variableValue2);
         // 마커를 담을 배열입니다
         var markers = [];
 
