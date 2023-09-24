@@ -189,10 +189,10 @@ app.get('/auth/kakao/callback', async(req, res) => {
             method: 'get',
             url: 'https://kapi.kakao.com/v2/user/me',
             headers: {
-            Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${accessToken}`,
             },
         });
-    
+
         const kakaoId = userResponse.data.id;
         const nickname = userResponse.data.properties.nickname;
 
@@ -201,9 +201,9 @@ app.get('/auth/kakao/callback', async(req, res) => {
             kakaoId: String,
             nickname: String,
         });
-    
+
         const existingUser = await User.findOne({ kakaoId });
-    
+
         if (!existingUser) {
             const user = new User({ kakaoId, nickname });
             await user.save();
