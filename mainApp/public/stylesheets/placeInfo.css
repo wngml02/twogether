@@ -81,6 +81,22 @@ span>a {
     border: #90B77D 1px solid;
 }
 
+#cafe:hover {
+    background-color: #90B77D;
+}
+
+#cafe:focus {
+    background-color: #90B77D;
+}
+
+#restaurant:hover {
+    background-color: #90B77D;
+}
+
+#restaurant:focus {
+    background-color: #90B77D;
+}
+
 #restaurant {
     margin-left: 40px;
     margin-top: 20px;
