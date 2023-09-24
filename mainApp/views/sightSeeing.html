@@ -75,6 +75,7 @@
                     const box = document.querySelector(boxClass);
                     box.innerHTML = "";
                     box.className = data.response.body.items.item[0].addr;
+                    box.tagName = data.response.body.items.item[0].title;
                     box.style.backgroundColor = "white";
                     box.style.border = " #E9f1E5 solid 40px";
                     box.style.borderRadius = " 20 px";
@@ -83,7 +84,7 @@
 
                     const title = document.createElement("div");
                     title.textContent = data.response.body.items.item[0].title;
-                    title.className = data.response.body.items.item[0].title;
+
                     title.style.fontSize = "30px";
                     title.style.textAlign = "center";
                     title.style.lineHeight = "40px";
@@ -153,13 +154,16 @@
             location.href = "/";
         }
         $(".box").click(function() {
-            var titledata = $(this).attr('class');
-            console.log(titledata);
-            const variableValue2 = titledata;
-            fetch(`/get-variable2?variable2=${encodeURIComponent(variableValue2)}`)
+            var addrdata = $(this).attr('class');
+            var titledata = $(this).attr('tag');
+
+            console.log(addrdata);
+            const variableValue2 = addrdata;
+            const variableValue3 = titledata;
+            fetch(`/get-variable2?variable2=${encodeURIComponent(variableValue2)}?variable3=${encodeURIComponent(variableValue3)}`)
                 .then(response => response.json())
                 .then(data => {
-                    window.location.href = `/placeInfo?variable2=${encodeURIComponent(data.variable2)}`;
+                    window.location.href = `/placeInfo?variable2=${encodeURIComponent(data.variable2)}?variable3=${encodeURIComponent(variableValue3)}`;
                 })
                 .catch(error => {
                     console.error('변수 값을 가져오는 중 오류 발생:', error);
