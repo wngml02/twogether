@@ -9,13 +9,24 @@ queryParams += '&' + encodeURIComponent('trsmicLc') + '=' + encodeURIComponent('
 queryParams += '&' + encodeURIComponent('ctprvnNm') + '=' + encodeURIComponent(''); /* */
 const apiUrl = url + queryParams;
 // API 요청 보내고 데이터 가져오기
+
 fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
+        
         // 데이터를 HTML에 렌더링
         const apiDataElement = document.getElementById('ntic');
         apiDataElement.innerHTML = JSON.stringify(data, null, 2);
     })
     .catch(error => {
         console.error('API 요청 중 오류 발생:', error);
+
     });
+
+    let fetchData = {
+        method: 'POST',
+        body: JSON.stringify(apiUrl),
+        headers: new Headers({
+          'Content-Type': 'application/json; cahrset=UTF-8'
+        })
+      }
