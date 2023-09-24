@@ -34,8 +34,8 @@
             <div id="menu_wrap" class="bg_white">
                 <div class="option">
                     <div>
-                        <form onsubmit="searchPlaces(); return false;">
-                            <input type="text" value="가볼만한 곳 추천" id="keyword" size="25">
+                        <form name="search" onsubmit="searchPlaces(); return false;">
+                            <input name="searchGo" type="text" value="가볼만한 곳 추천" id="keyword" size="25">
                             <button type="submit">검색하기</button>
                         </form>
                     </div>
@@ -52,6 +52,8 @@
         const variableValue2 = urlParams.get('variable2');
         console.log(variableValue2);
         // 마커를 담을 배열입니다
+        var Placeelement = document.forms['search']['searchGo'];
+        Placeelement.setAttribute('value', variableValue2 + "식당");
         var markers = [];
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

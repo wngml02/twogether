@@ -29,12 +29,12 @@
         </ul>
     </nav>
     <div id="image-box">
-        <div id="box1" class="box"></div>
-        <div id="box2" class="box"></div>
-        <div id="box3" class="box"></div>
-        <div id="box4" class="box"></div>
-        <div id="box5" class="box"></div>
-        <div id="box6" class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
     </div>
     <div id="placeInfo"> </div>
     <script type="application/json" src="/javascripts/tour.js">
@@ -65,7 +65,7 @@
         const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
         const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 
-        const boxClassNames = ["#box1", "#box2", "#box3", "#box4", "#box5", "#box6"];
+        const boxClassNames = [".box", ".box", ".box", ".box", ".box", ".box"];
 
         // 박스 안에 관광지 정보 표시
         function getPlace(apiUrlWithPageNo, boxClass) {
@@ -74,10 +74,16 @@
                 .then(data => {
                     const box = document.querySelector(boxClass);
                     box.innerHTML = "";
+                    box.className = data.response.body.items.item[0].title;
+                    box.style.backgroundColor = "white";
+                    box.style.border = " #E9f1E5 solid 40px";
+                    box.style.borderRadius = " 20 px";
+                    box.style.fontSize = " 10 px";
+                    box.style.color = "#000000";
 
                     const title = document.createElement("div");
                     title.textContent = data.response.body.items.item[0].title;
-
+                    title.className = data.response.body.items.item[0].title;
                     title.style.fontSize = "30px";
                     title.style.textAlign = "center";
                     title.style.lineHeight = "40px";
@@ -147,7 +153,7 @@
             location.href = "/";
         }
         $(".box").click(function() {
-            var titledata = $(this).attr('title.textContent');
+            var titledata = $(this).attr('class');
             console.log(titledata);
             const variableValue2 = titledata;
             fetch(`/get-variable2?variable2=${encodeURIComponent(variableValue2)}`)
