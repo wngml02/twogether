@@ -32,8 +32,6 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
 
-
-
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
@@ -78,15 +76,6 @@ app.get('/get-variable2', (req, res) => {
     const variableValue2 = req.query.variable2;
     res.json({ variable2: variableValue2 });
 });
-
-
-/*
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`서버가 포트 ${PORT}에서 실행 중입니다.`);
-});
-*/
-
 
 /*
 // MySQL 연결 설정
@@ -152,7 +141,7 @@ mongoose.connect('mongodb://localhost:27017/TWOGETHER', { useNewUrlParser: true,
 
 const mongoURI = process.env.mongoURI;
 
-mongoose.connect(mongoURI)
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'twogether' })
     .then(() => console.log("MongoDB 연결 성공..."))
     .catch((err) => console.log(err));
 
@@ -191,11 +180,48 @@ app.get('/auth/kakao/callback', async(req, res) => {
                     redirectUri: kakao.redirectUri,
                     code: req.query.code, //결과값을 반환했다. 안됐다.
                 }) //객체를 string 으로 변환
-        })
+        });
+
+        const accessToken = tokenResponse.data.access_token;
+
+        // 카카오 사용자 정보 받아오기
+        const userResponse = await axios({
+            method: 'get',
+            url: 'https://kapi.kakao.com/v2/user/me',
+            headers: {
+            Authorization: `Bearer ${accessToken}`,
+            },
+        });
+    
+        const kakaoId = userResponse.data.id;
+        const nickname = userResponse.data.properties.nickname;
+
+        // MongoDB에 사용자 정보 저장
+        const User = mongoose.model('User', {
+            kakaoId: String,
+            nickname: String,
+        });
+    
+        const existingUser = await User.findOne({ kakaoId });
+    
+        if (!existingUser) {
+            const user = new User({ kakaoId, nickname });
+            await user.save();
+        }
+
+        // 쿠키 설정 (예: 사용자 ID 저장)
+        res.cookie('kakaoId', kakaoId);
+
+        // 세션 설정 (예: 사용자 정보 저장)
+        req.session.kakao = userResponse.data;
+
+        res.redirect('/');
+
     } catch (err) {
         res.json(err.data);
     }
 
+    /*
     //access토큰을 받아서 사용자 정보를 알기 위해 쓰는 코드
     let user;
     try {
@@ -213,32 +239,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
     console.log(user);
     res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
-
-    /*try {
-        const kakaoAccessToken = req.query.access_token;
-
-        const response = await axios.get('https://kapi.kakao.com/v2/user/me', {
-            headers: {
-                Authorization: `Bearer ${kakaoAccessToken}`,
-            },
-        });
-        const kakaoId = response.data.id;
-        const username = user.data.properties.nickname;
-
-        //const query = `INSERT INTO userTable (kakaoId, username) VALUES (${kakaoId}, ${username})`;
-        const newUser = new User({
-            kakaoId,
-            username
-        });
-
-        await newUser.save();
-
-    } catch (error) {
-        console.error('오류 발생:', error);
-        res.status(500).json({ error: '서버 오류' });
-    }*/
-
-    res.redirect('/');
+    */
 })
 
 /*
