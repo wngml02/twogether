@@ -198,7 +198,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
 
         // MongoDB에 사용자 정보 저장
         const User = mongoose.model('User', {
-            kakaoId: String,
+            kakaoId: Number,
             nickname: String,
         });
 
