@@ -74,7 +74,7 @@
                 .then(data => {
                     const box = document.querySelector(boxClass);
                     box.innerHTML = "";
-                    box.className = data.response.body.items.item[0].title;
+                    box.className = data.response.body.items.item[0].addr;
                     box.style.backgroundColor = "white";
                     box.style.border = " #E9f1E5 solid 40px";
                     box.style.borderRadius = " 20 px";

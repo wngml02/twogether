@@ -27,6 +27,10 @@
     </nav>
 
     <div class="box1">
+        <div class="choice">
+            <button type="button" onclick="clickWhere(restaurant)" class="restaurant" id="restaurant">식당</button>
+            <button type="button" onclick="clickWhere(cafe)" class="cafe" id="cafe">카페</button>
+        </div>
         <div class="map_wrap">
             <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -35,7 +39,7 @@
                     <div>
                         <form name="search" onsubmit="searchPlaces(); return false;">
                             <input name="searchGo" type="text" value="가볼만한 곳 추천" id="keyword" size="25">
-                            <button type="submit">검색하기</button>
+                            <button type="submit" id="searching">검색하기</button>
                         </form>
                     </div>
                 </div>
@@ -52,7 +56,21 @@
         console.log(variableValue2);
         // 마커를 담을 배열입니다
         var Placeelement = document.forms['search']['searchGo'];
-        Placeelement.setAttribute('value', variableValue2 + "식당");
+        Placeelement.setAttribute('value', variableValue2 + " 식당");
+
+        function clickWhere(className) {
+            if (className == restaurant) {
+                var Placeelement = document.forms['search']['searchGo'];
+                Placeelement.setAttribute('value', variableValue2 + " 식당");
+                document.getElementById('searching').click();
+            } else if (className == cafe) {
+                var Placeelement = document.forms['search']['searchGo'];
+                Placeelement.setAttribute('value', variableValue2 + " 카페");
+                document.getElementById('searching').click();
+            } else {
+                alert("식당이나 카페를 선택하세요!")
+            }
+        };
         var markers = [];
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
