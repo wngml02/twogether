@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-    <title>가볼 만한 곳 추천</title>
+    <title>🌳TWOGETHER</title>
     <link rel="stylesheet" href="/stylesheets/placeInfo.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f9a5c956172b9d5f4228f9b7b68540e1&libraries=services"></script>
 </head>
@@ -14,8 +14,7 @@
     <header>
         <div>
             <img src="images/twogether-logo.png" onclick="move()" alt="로고" width="380px" height="140px">
-            <input type="button" onclick="location.href='/signup'" value="마이페이지" class="button1" style="float:right;">
-            <input type="button" onclick="location.href='/login'" value="로그인" class="button2" style="float:right;">
+
         </div>
     </header>
     <nav>
@@ -23,7 +22,7 @@
             <span class="menu1"> <a href="/">홈</a></span>
             <span class="menu2"> <a href="/map">지역 선택</a></span>
             <span class="menu3"> <a href="/scH">관광 안내소</a></span>
-            <span class="menu4"> <a href="/namuGrow/namuGrow.html">나무 키우기</a></span>
+            <span class="menu4"> <a href="/namuGrow">나무 키우기</a></span>
         </ul>
     </nav>
 
@@ -59,7 +58,7 @@
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
                 center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
+                level: 5 // 지도의 확대 레벨
             };
 
         // 지도를 생성합니다    
