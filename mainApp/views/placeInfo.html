@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-    <title>가볼 만한 곳 추천</title>
+    <title>🌳TWOGETHER</title>
     <link rel="stylesheet" href="/stylesheets/placeInfo.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f9a5c956172b9d5f4228f9b7b68540e1&libraries=services"></script>
 </head>
@@ -14,8 +14,7 @@
     <header>
         <div>
             <img src="images/twogether-logo.png" onclick="move()" alt="로고" width="380px" height="140px">
-            <input type="button" onclick="location.href='/signup'" value="마이페이지" class="button1" style="float:right;">
-            <input type="button" onclick="location.href='/login'" value="로그인" class="button2" style="float:right;">
+
         </div>
     </header>
     <nav>
@@ -23,11 +22,15 @@
             <span class="menu1"> <a href="/">홈</a></span>
             <span class="menu2"> <a href="/map">지역 선택</a></span>
             <span class="menu3"> <a href="/scH">관광 안내소</a></span>
-            <span class="menu4"> <a href="/namuGrow/namuGrow.html">나무 키우기</a></span>
+            <span class="menu4"> <a href="/namuGrow">나무 키우기</a></span>
         </ul>
     </nav>
 
     <div class="box1">
+        <div class="choice">
+            <button type="button" onclick="clickWhere(restaurant)" class="restaurant" id="restaurant">식당</button>
+            <button type="button" onclick="clickWhere(cafe)" class="cafe" id="cafe">카페</button>
+        </div>
         <div class="map_wrap">
             <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -36,7 +39,7 @@
                     <div>
                         <form name="search" onsubmit="searchPlaces(); return false;">
                             <input name="searchGo" type="text" value="가볼만한 곳 추천" id="keyword" size="25">
-                            <button type="submit">검색하기</button>
+                            <button type="submit" id="searching">검색하기</button>
                         </form>
                     </div>
                 </div>
@@ -53,13 +56,27 @@
         console.log(variableValue2);
         // 마커를 담을 배열입니다
         var Placeelement = document.forms['search']['searchGo'];
-        Placeelement.setAttribute('value', variableValue2 + "식당");
+        Placeelement.setAttribute('value', variableValue2 + " 식당");
+
+        function clickWhere(className) {
+            if (className == restaurant) {
+                var Placeelement = document.forms['search']['searchGo'];
+                Placeelement.setAttribute('value', variableValue2 + " 식당");
+                document.getElementById('searching').click();
+            } else if (className == cafe) {
+                var Placeelement = document.forms['search']['searchGo'];
+                Placeelement.setAttribute('value', variableValue2 + " 카페");
+                document.getElementById('searching').click();
+            } else {
+                alert("식당이나 카페를 선택하세요!")
+            }
+        };
         var markers = [];
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
                 center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
+                level: 10 // 지도의 확대 레벨
             };
 
         // 지도를 생성합니다    
