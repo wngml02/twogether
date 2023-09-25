@@ -8,6 +8,7 @@ const axios = require('axios');
 const apiUrlBase = "http://apis.data.go.kr/B551011/GreenTourService1/areaBasedList1";
 const queryParams = "numOfRows=1&MobileOS=ETC&MobileApp=App&_type=json&arrange=O&serviceKey=iPOcFKrhHgswObtTYryGrWDTZq4ck8a%2FGIYMAjRBDVO3DnY2O70fCDzT4Dzj2IWMSdJCb7%2F%2BMsO52yqttO72Zw%3D%3D";
 const mongoose = require('mongoose');
+const jwt = require("jsonwebtoken");
 require('dotenv').config();
 
 app.set('view engine', 'html');
@@ -49,7 +50,7 @@ app.get('/map', function(req, res) {
 app.get('/signup', function(req, res) {
     res.render('signup.html');
 });
-app.get('/login', function(req, res) {
+app.get('/login', loggedin2, function(req, res) {
     res.render('login.html');
 });
 app.get('/namuGrow', loggedin, function(req, res) {
@@ -77,26 +78,7 @@ app.get('/get-variable2', (req, res) => {
     res.json({ variable2: variableValue2 });
 });
 
-/*
-// MySQL 연결 설정
-const dbConfig = {
-    host: '127.0.0.1',
-    port: 40040,
-    user: 'user1',
-    password: '1',
-    database: 'TWOGETHER'
-};
 
-const mysqlClient = mysql.createConnection(dbConfig);
-
-mysqlClient.connect((err) => {
-    if (err) {
-        console.error('MySQL connection error:', err);
-    } else {
-        console.log('MySQL connected');
-    }
-});
-*/
 function loggedin(req, res, next) {
     if (req.session.kakao) {
         next();
@@ -105,6 +87,13 @@ function loggedin(req, res, next) {
     }
 }
 
+function loggedin2(req, res, next) {
+    if (req.session.kakao) {
+        res.redirect('/');
+    } else {
+        next();
+    }
+}
 app.get('/', function(req, res) {
     if (req.session.user) {
         return res.redirect('/main');
@@ -114,9 +103,9 @@ app.get('/', function(req, res) {
 });
 // 로그아웃 처리
 app.get('/auth/logout', (req, res) => {
-    delete req.session.authData;
+    delete req.session.kakao;
     res.redirect('/signupka');
-    console.log(req.session.authData);
+    console.log(req.session.kakao);
     console.log("로그아웃");
 });
 
@@ -164,37 +153,24 @@ app.get('/auth/kakao', (req, res) => {
     res.redirect(kakaoAuthURL);
 })
 
-//let kakaoUserData = {}; //주희야 여기야
-
-let kakaoID = 0;
-let nickName;
 
 app.get('/auth/kakao/callback', async(req, res) => {
     //axios>>promise object
     try { //access토큰을 받기 위한 코드
         token = await axios({ //token
-                method: 'POST',
-                url: 'https://kauth.kakao.com/oauth/token',
-                headers: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                },
-                data: qs.stringify({
-                        grant_type: 'authorization_code', //특정 스트링
-                        client_id: kakao.clientID,
-                        client_secret: kakao.clientSecret,
-                        redirectUri: kakao.redirectUri,
-                        code: req.query.code, //결과값을 반환했다. 안됐다.
-                    }) //객체를 string 으로 변환
-            })
-            //주희야 여기야
-            //kakaoUserData = {
-            //id: user.data.id,
-            //nickname: user.data.properties.nickname
-            //};
-
-        // 사용자 데이터를 저장한 후 다른 경로로 리디렉션
-        //res.redirect('/some-other-route'); //주희야 이것도야
-
+            method: 'POST',
+            url: 'https://kauth.kakao.com/oauth/token',
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: qs.stringify({
+                    grant_type: 'authorization_code', //특정 스트링
+                    client_id: kakao.clientID,
+                    client_secret: kakao.clientSecret,
+                    redirectUri: kakao.redirectUri,
+                    code: req.query.code, //결과값을 반환했다. 안됐다.
+                }) //객체를 string 으로 변환
+        })
     } catch (err) {
         res.json(err.data);
     }
@@ -213,52 +189,61 @@ app.get('/auth/kakao/callback', async(req, res) => {
         res.json(e.data);
     }
     try {
+        const kakaoUserInfo = user.data;
+        const { kakaoId } = kakaoUserInfo.id;
         // 카카오로부터 받아온 사용자 정보
-        const kakaoUserInfo = user.data; // 예시에서 가정한 변수
+        let user = await User.findOne({ kakaoId });
+        if (user) {
+            return res.status(400).json({ errors: [{ msg: "User already exists" }] });
+        };
+        // 예시에서 가정한 변수
 
         // 사용자 정보를 MongoDB에 저장
         const newUser = new User({
             kakaoId: kakaoUserInfo.id,
-            username: kakaoUserInfo.properties.username,
-        });
-
+            username: kakaoUserInfo.properties.nickname,
+            accessToken: kakaoUserInfo.access_token
+        })
         const savedUser = await newUser.save();
+        const payload = { // json web token 으로 변환할 데이터 정보
+            user: {
+                id: user.id,
+            },
+        };
+        // json web token 생성하여 send 해주기
+        jwt.sign(
+            payload, // 변환할 데이터
+            "jwtSecret", // secret key 값
+            { expiresIn: "5m" }, // token의 유효시간
+            (err, token) => {
+                if (err) throw err;
+                res.send({ token }); // token 값 response 해주기
+            }
+        );
+
     } catch (err) {
 
     }
-    console.log(user);
-    /*kakaoID = user.data.id;
-    nickName = user.data.nickname;*/
 
-    /*res.setHeader('Set-Cookie', `login=${user.data.id}`);
+    res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
-    */
+
+    console.log(user);
     res.redirect('/');
 });
 
 
-//주희야 여기야
-/*app.get('/some-other-route', (req, res) => {
-    console.log('Accessing user data from another route:', kakaoUserData);
-    res.json({ id: kakaoUserData.id, nickname: kakaoUserData.nickname });
-});*/
 
-
-const userSchema = new mongoose.Schema({ kakaoId: String, username: String, });
+const userSchema = new mongoose.Schema({ kakaoId: String, username: String, accessToken: String });
 const user = mongoose.model('user', userSchema);
 module.exports = user;
-/*
-app.post('/saveUser', async(req, res) => {
-    try {
-        // 사용자 ID를 MongoDB에 저장
-        const newUser = new User({ username: nickName, id: kakaoID });
-        const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+
+
+app.get(kakao.redirectUri);
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
 });
-*/
 /*
 app.get('/login', async(req, res) => {
     try {
@@ -280,9 +265,3 @@ app.get('/login', async(req, res) => {
     }
 });
 */
-
-app.get(kakao.redirectUri);
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-});
