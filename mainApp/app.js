@@ -163,7 +163,8 @@ app.get('/auth/kakao', (req, res) => {
     const kakaoAuthURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao.clientID}&redirect_uri=${kakao.redirectUri}&response_type=code&scope=profile_nickname,account_email`;
     res.redirect(kakaoAuthURL);
 })
-
+var kakaoID = 0;
+var nickName;
 app.get('/auth/kakao/callback', async(req, res) => {
     //axios>>promise object
     try { //access토큰을 받기 위한 코드
@@ -199,12 +200,23 @@ app.get('/auth/kakao/callback', async(req, res) => {
         res.json(e.data);
     }
     console.log(user);
+    kakaoID = user.data.id;
+    nickName = user.data.properties.nickName;
     res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
-
     res.redirect('/');
-})
+});
+//여기부터야 채연아
+const userSchema = new mongoose.Schema({ Id: Number });
+const user = mongoose.model(kakaoID, userSchema);
 
+app.post('/saveUser', (req, res) => {
+    console.log(req.body);
+    //nickname.save().then(() => { console.log('success') });
+});
+app.get('/readUser', (req, res) => {
+    user.find();
+});
 /*
 app.get('/login', async(req, res) => {
     try {
