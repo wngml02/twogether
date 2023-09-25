@@ -163,8 +163,12 @@ app.get('/auth/kakao', (req, res) => {
     const kakaoAuthURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao.clientID}&redirect_uri=${kakao.redirectUri}&response_type=code&scope=profile_nickname,account_email`;
     res.redirect(kakaoAuthURL);
 })
-var kakaoID = 0;
-var nickName;
+
+let kakaoUserData = {}; //주희야 여기야
+
+//var kakaoID = 0;
+//var nickName;
+
 app.get('/auth/kakao/callback', async(req, res) => {
     //axios>>promise object
     try { //access토큰을 받기 위한 코드
@@ -182,6 +186,15 @@ app.get('/auth/kakao/callback', async(req, res) => {
                     code: req.query.code, //결과값을 반환했다. 안됐다.
                 }) //객체를 string 으로 변환
         })
+        //주희야 여기야
+        kakaoUserData = {
+            id: user.data.id,
+            nickname: user.data.properties.nickname
+        };
+
+        // 사용자 데이터를 저장한 후 다른 경로로 리디렉션
+        res.redirect('/some-other-route'); //주희야 이것도야
+
     } catch (err) {
         res.json(err.data);
     }
@@ -200,13 +213,22 @@ app.get('/auth/kakao/callback', async(req, res) => {
         res.json(e.data);
     }
     console.log(user);
+    /*
     kakaoID = user.data.id;
     nickName = user.data.properties.nickName;
     res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
+    */
     res.redirect('/');
 });
-//여기부터야 채연아
+
+//주희야 여기야
+app.get('/some-other-route', (req, res) => {
+    console.log('Accessing user data from another route:', kakaoUserData);
+    res.json({ id: kakaoUserData.id, nickname: kakaoUserData.nickname });
+});
+
+/*
 const userSchema = new mongoose.Schema({ Id: Number });
 const user = mongoose.model(kakaoID, userSchema);
 
@@ -217,6 +239,8 @@ app.post('/saveUser', (req, res) => {
 app.get('/readUser', (req, res) => {
     user.find();
 });
+*/
+
 /*
 app.get('/login', async(req, res) => {
     try {
@@ -239,42 +263,6 @@ app.get('/login', async(req, res) => {
 });
 */
 
-/*
-const kakaoUser = user.data;
-const username = kakaoUser.properties.nickname;
-const userId = kakaoUser.id;
-
-// MySQL에 사용자 정보 저장
-const newUser = {
-    username: username,
-    id: userId
-};
-
-const insertQuery = 'INSERT INTO userTable SET ?';
-
-connection.query(insertQuery, newUser, (err, result) => {
-    if (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Failed to insert user data' });
-        return;
-    }
-
-    res.status(200).json({ message: 'User data saved successfully' });
-});
-
-
-app.get('/auth/info', (req, res) => {
-    let { nickname } = req.session.kakao.properties;
-    res.render('info', {
-        nickname,
-    })
-})
-
-app.get('', (req, res) => {
-
-    res.render('main');
-});
-*/
 app.get(kakao.redirectUri);
 
 app.listen(port, () => {
