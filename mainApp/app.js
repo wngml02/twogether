@@ -164,36 +164,36 @@ app.get('/auth/kakao', (req, res) => {
     res.redirect(kakaoAuthURL);
 })
 
-let kakaoUserData = {}; //주희야 여기야
+//let kakaoUserData = {}; //주희야 여기야
 
-//var kakaoID = 0;
-//var nickName;
+let kakaoID = 0;
+let nickName;
 
 app.get('/auth/kakao/callback', async(req, res) => {
     //axios>>promise object
     try { //access토큰을 받기 위한 코드
         token = await axios({ //token
-            method: 'POST',
-            url: 'https://kauth.kakao.com/oauth/token',
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: qs.stringify({
-                    grant_type: 'authorization_code', //특정 스트링
-                    client_id: kakao.clientID,
-                    client_secret: kakao.clientSecret,
-                    redirectUri: kakao.redirectUri,
-                    code: req.query.code, //결과값을 반환했다. 안됐다.
-                }) //객체를 string 으로 변환
-        })
-        //주희야 여기야
-        kakaoUserData = {
-            id: user.data.id,
-            nickname: user.data.properties.nickname
-        };
+                method: 'POST',
+                url: 'https://kauth.kakao.com/oauth/token',
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                data: qs.stringify({
+                        grant_type: 'authorization_code', //특정 스트링
+                        client_id: kakao.clientID,
+                        client_secret: kakao.clientSecret,
+                        redirectUri: kakao.redirectUri,
+                        code: req.query.code, //결과값을 반환했다. 안됐다.
+                    }) //객체를 string 으로 변환
+            })
+            //주희야 여기야
+            //kakaoUserData = {
+            //id: user.data.id,
+            //nickname: user.data.properties.nickname
+            //};
 
         // 사용자 데이터를 저장한 후 다른 경로로 리디렉션
-        res.redirect('/some-other-route'); //주희야 이것도야
+        //res.redirect('/some-other-route'); //주희야 이것도야
 
     } catch (err) {
         res.json(err.data);
@@ -212,35 +212,53 @@ app.get('/auth/kakao/callback', async(req, res) => {
     } catch (e) {
         res.json(e.data);
     }
+    try {
+        // 카카오로부터 받아온 사용자 정보
+        const kakaoUserInfo = user.data; // 예시에서 가정한 변수
+
+        // 사용자 정보를 MongoDB에 저장
+        const newUser = new User({
+            kakaoId: kakaoUserInfo.id,
+            username: kakaoUserInfo.properties.username,
+        });
+
+        const savedUser = await newUser.save();
+    } catch (err) {
+
+    }
     console.log(user);
-    /*
-    kakaoID = user.data.id;
-    nickName = user.data.properties.nickName;
-    res.setHeader('Set-Cookie', `login=${user.data.id}`);
+    /*kakaoID = user.data.id;
+    nickName = user.data.nickname;*/
+
+    /*res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
     */
     res.redirect('/');
 });
 
+
 //주희야 여기야
-app.get('/some-other-route', (req, res) => {
+/*app.get('/some-other-route', (req, res) => {
     console.log('Accessing user data from another route:', kakaoUserData);
     res.json({ id: kakaoUserData.id, nickname: kakaoUserData.nickname });
-});
+});*/
 
+
+const userSchema = new mongoose.Schema({ kakaoId: String, username: String, });
+const user = mongoose.model('user', userSchema);
+module.exports = user;
 /*
-const userSchema = new mongoose.Schema({ Id: Number });
-const user = mongoose.model(kakaoID, userSchema);
-
-app.post('/saveUser', (req, res) => {
-    console.log(req.body);
-    //nickname.save().then(() => { console.log('success') });
-});
-app.get('/readUser', (req, res) => {
-    user.find();
+app.post('/saveUser', async(req, res) => {
+    try {
+        // 사용자 ID를 MongoDB에 저장
+        const newUser = new User({ username: nickName, id: kakaoID });
+        const savedUser = await newUser.save();
+        res.status(201).json(savedUser);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 */
-
 /*
 app.get('/login', async(req, res) => {
     try {
