@@ -66,6 +66,25 @@ const getXMLfromAPI = async () => {
   }
 };
 
+// 검색 기능
+
+function searchTourismInfo() {
+  var searchInput = document.getElementById('searchInput').value;
+  var apiUrl = url + queryParams + '&trsmicNm=' + encodeURIComponent(searchInput);
+  
+  fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+          // 데이터를 HTML에 렌더링
+          const apiDataElement = document.getElementById('ntic');
+          apiDataElement.innerHTML = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+          console.error('API 요청 중 오류 발생:', error);
+      });
+}
+
+
 /*
 fetch(apiUrl)
     .then(response => response.json())
