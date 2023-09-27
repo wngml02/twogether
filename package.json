@@ -2,6 +2,7 @@
   "dependencies": {
     "express-mysql-session": "^3.0.0",
     "express-session": "^1.17.3",
+    "mongodb": "^6.1.0",
     "mysql": "^2.18.1",
     "passport": "^0.6.0",
     "passport-kakao": "^1.0.1"

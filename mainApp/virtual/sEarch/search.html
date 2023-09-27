@@ -43,17 +43,45 @@
     </div>
     
     <script>
-        function addMusicList() {
-        $.ajax({
-            type: 'GET',
-            url: 'http://api.data.go.kr/openapi/tn_pubr_public_trsmic_api',
-            success: function (response) {
-                alert("ajax success")	//연결을 확인한다
-                
-                }
-            }
-        });
+       var xhr = new XMLHttpRequest();
+var url = 'http://api.data.go.kr/openapi/tn_pubr_public_trsmic_api'; /*URL*/
+var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'서비스키'; /*Service Key*/
+queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
+queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
+queryParams += '&' + encodeURIComponent('trsmicNm') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('trsmicLc') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('ctprvnNm') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('signguNm') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('trsmicIntrcn') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('adiSvcInfo') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('rstde') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('summerOperOpenHhmm') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('summerOperCloseHhmm') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('winterOperOpenHhmm') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('winterOperCloseHhmm') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('avrgWorkCo') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('engGuidanceYn') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('jpGuidanceYn') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('chGuidanceYn') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('guidanceFggg') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('guidancePhoneNumber') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('rdnmadr') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('lnmadr') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('operInstitutionNm') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('homepageUrl') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('latitude') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('longitude') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('referenceDate') + '=' + encodeURIComponent(''); /**/
+queryParams += '&' + encodeURIComponent('instt_code') + '=' + encodeURIComponent(''); /**/
+xhr.open('GET', url + queryParams);
+xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
     }
+};
+
+xhr.send('');
     </script>
 
 </body>
