@@ -237,10 +237,10 @@ const userSchema = new mongoose.Schema({ kakaoId: String, username: String, acce
 const user = mongoose.model('user', userSchema);
 module.exports = user;
 
-const itemSchema = new mongoose.Schema({ kakaoId: String, namuCount: Number, heart: String });
+/*const itemSchema = new mongoose.Schema({ kakaoId: String, namuCount: Number, heart: String });
 const Item = mongoose.model('Item', itemSchema);
 
-const item1 = new Item({ item })
+const item1 = new Item({ item })*/
 app.get(kakao.redirectUri);
 
 app.listen(port, () => {
