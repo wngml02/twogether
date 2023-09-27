@@ -103,9 +103,9 @@ app.get('/', function(req, res) {
 });
 // 로그아웃 처리
 app.get('/auth/logout', (req, res) => {
-    delete req.session.kakao;
+    delete req.session.user;
     res.redirect('/signupka');
-    console.log(req.session.kakao);
+    console.log(req.session.authData);
     console.log("로그아웃");
 });
 
@@ -202,21 +202,22 @@ app.get('/auth/kakao/callback', async(req, res) => {
         const newUser = new User({
             kakaoId: kakaoUserInfo.id,
             username: kakaoUserInfo.properties.nickname,
+            accessToken: kakaoUserInfo.access_token
         })
         const savedUser = await newUser.save();
         const payload = { // json web token 으로 변환할 데이터 정보
             user: {
-                id: kakaoId,
+                id: user.id,
             },
         };
         // json web token 생성하여 send 해주기
         jwt.sign(
             payload, // 변환할 데이터
             "jwtSecret", // secret key 값
-            { expiresIn: "1h" }, // token의 유효시간
+            { expiresIn: "5m" }, // token의 유효시간
             (err, token) => {
                 if (err) throw err;
-                res.sesnd({ token }); // token 값 response 해주기
+                res.send({ token }); // token 값 response 해주기
             }
         );
 
@@ -237,10 +238,7 @@ const userSchema = new mongoose.Schema({ kakaoId: String, username: String, acce
 const user = mongoose.model('user', userSchema);
 module.exports = user;
 
-/*const itemSchema = new mongoose.Schema({ kakaoId: String, namuCount: Number, heart: String });
-const Item = mongoose.model('Item', itemSchema);
 
-const item1 = new Item({ item })*/
 app.get(kakao.redirectUri);
 
 app.listen(port, () => {
