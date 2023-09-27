@@ -18,27 +18,30 @@ body::-webkit-scrollbar {
 }
 
 .button1 {
-    border: #90B77D solid 2px;
+    width: 30px;
+    margin: 10px;
+    height: 30px;
+    /*border: #90B77D solid 2px;
     background-color: #90B77D;
     border-radius: 30px;
     font: 17px Noto Sans KR;
     color: #FFFFFF;
-    width: 100px;
-    height: 30px;
-    margin: 10px;
+    
+    */
 }
 
 .button2 {
-    all: unset;
-    text-align: center;
-    width: 100px;
+    width: 30px;
     height: 30px;
     margin: 10px;
+    /*all: unset;
+    text-align: center;
+    
     font: 17px Noto Sans KR;
     color: #90B77D;
     background-color: white;
     border: #90B77D solid 2px;
-    border-radius: 30px;
+    border-radius: 30px;*/
 }
 
 span>a {
