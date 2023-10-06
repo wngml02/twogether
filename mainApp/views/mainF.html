@@ -13,33 +13,43 @@
 
 <body>
     <div class="header">
-        <input type="button" onclick="location.href='/auth/logout'" value="로그아웃" class="button1" style="float:right;">
-        <input type="button" value="로그인" onclick="location.href='/login'" class="button2" style="float:right;">
+        <img src="/images/lock.png" type="button" onclick="location.href='/auth/logout'" value="" class="button1" style="float:right;">
+        <img src="/images/unlock.png" id="lock" type="button" value="" onclick="change()" href="" class=" button2 " style="float:right; ">
         <nav>
-            <ul class="menubar">
-                <span class="menu1"> <a href="/">홈</a></span>
-                <span class="menu2"> <a href="/map">지역 선택</a></span>
-                <span class="menu3"> <a href="/scH">관광 안내소</a></span>
-                <span class="menu4"> <a href="/namuGrow">나무 키우기</a></span>
+            <ul class="menubar ">
+                <span class="menu1 "> <a href="/ ">홈</a></span>
+                <span class="menu2 "> <a href="/map ">지역 선택</a></span>
+                <span class="menu3 "> <a href="/scH ">관광 안내소</a></span>
+                <span class="menu4 "> <a href="/namuGrow ">나무 키우기</a></span>
             </ul>
         </nav>
     </div>
-    <form action="/main" method="POST"></form>
+    <form action="/main " method="POST "></form>
 
-    <div class="main" id="main1">
-        <div class="main1-in">
-            <img src="/images/NEW.jpg" style="width: 100%;height:auto;">
+    <div class="main " id="main1 ">
+        <div class="main1-in ">
+            <img src="/images/NEW.jpg " style="width: 100%;height:auto; ">
         </div>
     </div>
-    <div id="foot">
-        <footer class="foot">
-            <p><a href="">개인정보처리방침</a> |
-                <a href="">문의사항</a></p>
+    <div id="foot ">
+        <footer class="foot ">
+            <p><a href=" ">개인정보처리방침</a> |
+                <a href=" ">문의사항</a></p>
             <p>Infomation: Twogether
                 <br>Copyright 2023 Team twogether. All rights reserved.</p>
         </footer>
     </div>
     <script>
+        var tmp = 0;
+        $('.button2').click(function change() {
+            if (tmp == 0) {
+                document.getElementById("lock ").href = "/login ";
+                tmp = tmp + 1;
+            } else {
+                document.getElementById("lock ").href = "/auth/logout ";
+                tmp = tmp - 1;
+            }
+        });
     </script>
 </body>
 

@@ -214,7 +214,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
         jwt.sign(
             payload, // 변환할 데이터
             "jwtSecret", // secret key 값
-            { expiresIn: "5m" }, // token의 유효시간
+            { expiresIn: "1h" }, // token의 유효시간
             (err, token) => {
                 if (err) throw err;
                 res.send({ token }); // token 값 response 해주기
@@ -238,6 +238,7 @@ const userSchema = new mongoose.Schema({ kakaoId: String, username: String, acce
 const user = mongoose.model('user', userSchema);
 module.exports = user;
 
+//채연아 여기가 나무야
 
 app.get(kakao.redirectUri);
 
