@@ -79,7 +79,7 @@
         //인천
         var circle2 = new kakao.maps.Circle({
             center: new kakao.maps.LatLng(37.450542763, 126.701041), // 원의 중심좌표 입니다 
-            radius: 10000, // 미터 단위의 원의 반지름입니다 
+            radius: 20000, // 미터 단위의 원의 반지름입니다 
             strokeWeight: 3, // 선의 두께입니다 
             strokeColor: '#FFF7DD', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
@@ -106,7 +106,7 @@
         //대전
         var circle3 = new kakao.maps.Circle({
             center: new kakao.maps.LatLng(36.363792, 127.38555749), // 원의 중심좌표 입니다 
-            radius: 15000, // 미터 단위의 원의 반지름입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
             strokeWeight: 3, // 선의 두께입니다 
             strokeColor: '#FFF7DD', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
@@ -159,32 +159,6 @@
         customOverlay.setMap(map);
 
 
-        //광주
-        var circle5 = new kakao.maps.Circle({
-            center: new kakao.maps.LatLng(35.1738156, 126.8796307), // 원의 중심좌표 입니다 
-            radius: 15000, // 미터 단위의 원의 반지름입니다 
-            strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#FFF7DD', // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-            strokeStyle: 'solid', // 선의 스타일 입니다
-            fillColor: '#FFF7DD', // 채우기 색깔입니다
-            fillOpacity: 1 // 채우기 불투명도 입니다   
-        });
-        circle5.setMap(map);
-        //광주 마크
-        var content5 = '<form class ="label"><span class="left"></span><label class="center"id="5" >광주</label><span class="right"></span></div>';
-
-        // 커스텀 오버레이가 표시될 위치입니다 
-        var position5 = new kakao.maps.LatLng(35.1738156, 126.8796307);
-
-        // 커스텀 오버레이를 생성합니다
-        var customOverlay = new kakao.maps.CustomOverlay({
-            position: position5,
-            content: content5
-        });
-
-        // 커스텀 오버레이를 지도에 표시합니다
-        customOverlay.setMap(map);
 
 
         //부산
@@ -236,33 +210,6 @@
         var customOverlay = new kakao.maps.CustomOverlay({
             position: position7,
             content: content7
-        });
-
-        // 커스텀 오버레이를 지도에 표시합니다
-        customOverlay.setMap(map);
-
-        //세종
-        var circle8 = new kakao.maps.Circle({
-            center: new kakao.maps.LatLng(36.50712515, 127.2776754), // 원의 중심좌표 입니다 
-            radius: 15000, // 미터 단위의 원의 반지름입니다 
-            strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#FFF7DD', // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-            strokeStyle: 'solid', // 선의 스타일 입니다
-            fillColor: '#FFF7DD', // 채우기 색깔입니다
-            fillOpacity: 1 // 채우기 불투명도 입니다   
-        });
-        circle8.setMap(map);
-        //세종 마크
-        var content8 = '<form class ="label"><span class="left"></span><label class="center"id="8" >세종</input><span class="right"></span></div>';
-
-        // 커스텀 오버레이가 표시될 위치입니다 
-        var position8 = new kakao.maps.LatLng(36.50712515, 127.2776754);
-
-        // 커스텀 오버레이를 생성합니다
-        var customOverlay = new kakao.maps.CustomOverlay({
-            position: position8,
-            content: content8
         });
 
         // 커스텀 오버레이를 지도에 표시합니다
@@ -460,7 +407,7 @@
         //전라님도
         var circle38 = new kakao.maps.Circle({
             center: new kakao.maps.LatLng(34.9511999, 127.0032734), // 원의 중심좌표 입니다 
-            radius: 15000, // 미터 단위의 원의 반지름입니다 
+            radius: 30000, // 미터 단위의 원의 반지름입니다 
             strokeWeight: 3, // 선의 두께입니다 
             strokeColor: '#FFF7DD', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
