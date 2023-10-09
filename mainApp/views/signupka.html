@@ -16,9 +16,40 @@
         <div><img src="/images/twogether-logo.png" onclick="move()" alt="로고" width="600px" height="230px"></div>
     </header>
     <div class="container">
-        <br><br>
-        <div class="kakao-login-btn">
-            <button class="logka"><a href="/auth/kakao">카카오톡으로 로그인하기</a></button>
+            <p>아래 사항에 동의하시면, <strong style="font-weight: bold;">카카오톡으로 로그인하기</strong>를 눌러주세요.</p>
+            <ul class="agree">
+                <li class="agree1">
+                    <label for="agree1">
+                        <span>이용약관 동의<strong> (필수)</strong></span>
+                    </label>
+                    <div class="agreeT">
+                        <textarea name="agree1" class="agreeText">TWOgether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 TWOgether 서비스의 이용과 관련하여 TWOgether 서비스를 제공하는 TWOgether와 이를 이용하는 TWOgether 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 TWOgether 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.</textarea>
+                    </div>
+                </li>
+                <br>
+                <li class="agree2">
+                    <label for="agree2">
+                        <span>개인정보 수집 및 이용 동의<strong> (필수)</strong></span>
+                    </label>
+                    <div class="agreeT">
+                        <textarea name="agree2" class="agreeText">TWOgether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 TWOgether 서비스의 이용과 관련하여 TWOgether 서비스를 제공하는 TWOgether와 이를 이용하는 TWOgether 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 TWOgether 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.</textarea>
+                    </div>
+                </li>
+                <br>
+                <li class="agree3">
+                    <label for="agree3">
+                        <span>개인위치정보 수집ㆍ이용<strong> (필수)</strong></span>
+                    </label>
+                    <div class="agreeT">
+                        <textarea name="agree3" class="agreeText">TWOgether 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 TWOgether 서비스의 이용과 관련하여 TWOgether 서비스를 제공하는 TWOgether와 이를 이용하는 TWOgether 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 TWOgether 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.</textarea>
+                    </div>
+                </li>
+                <br>
+            </ul>
+            <div class="kakao-login-btn">
+                <button class="logka"><a href="/auth/kakao">카카오톡으로 로그인하기</a></button>
+            </div>
+            <br>
         </div>
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
         <script>
@@ -102,12 +133,30 @@
                     },
                 });
             });
+
+            // kakaoId와 username을 Session Storage에 저장하는 함수
+            function saveUserDataToSessionStorage(kakaoId, username) {
+                // Session Storage에 데이터 저장
+                sessionStorage.setItem('kakaoId', kakaoId);
+                sessionStorage.setItem('username', username);
+            }
+
+            // kakaoId와 username을 가져오는 함수
+            function getUserDataFromSessionStorage() {
+                // Session Storage에서 데이터 가져오기
+                const kakaoId = sessionStorage.getItem('kakaoId');
+                const username = sessionStorage.getItem('username');
+
+                // 가져온 데이터 반환
+                return { kakaoId, username };
+            }
+
+            const kakaoIdToSave = user.data.id;
+            const usernameToSave = user.data.properties.nickname;
+
+            saveUserDataToSessionStorage(kakaoIdToSave, usernameToSave);
         </script>
         <br>
-        <div class="q">
-            <p>이미 계정이 있으신가요?</p>
-            <p class="user" onclick="location.href='/login'">로그인하기</p>
-        </div>
         </form>
     </div>
     <script>
