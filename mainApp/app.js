@@ -53,7 +53,7 @@ app.get('/signup', function(req, res) {
 app.get('/login', loggedin2, function(req, res) {
     res.render('login.html');
 });
-app.get('/namuGrow', loggedin, function(req, res) {
+app.get('/namuGrow', loggedin, namuheart, function(req, res) {
     res.render('namuGrow.html');
 });
 app.get('/myPage', function(req, res) {
@@ -93,7 +93,31 @@ function loggedin2(req, res, next) {
     } else {
         next();
     }
+
 }
+app.get('/loginclick', (req, res) => {
+    // 사용자가 이미지를 클릭했을 때, 카카오 로그인 정보를 확인하고 리디렉션을 수행합니다.
+    if (req.session.kakao) {
+        delete req.session.user;
+        // 로그인된 상태이면 메인 페이지로 리디렉션
+        res.redirect('/auth/logout');
+    } else {
+        // 로그인되어 있지 않으면 로그인 페이지로 리디렉션
+        res.redirect('/signupka');
+    }
+});
+function namuheart(req, res) {
+    const savedKakaoId = localStorage.getItem('kakaoId');
+    const savedUsername = localStorage.getItem('username');
+
+    if (savedKakaoId && savedUsername) {
+        // kakaoId, username 반환
+        return { kakaoId: savedKakaoId, username: savedUsername };
+    } else {
+        return { error: 'No data found' };
+}
+}
+
 app.get('/', function(req, res) {
     if (req.session.user) {
         return res.redirect('/main');
@@ -103,10 +127,13 @@ app.get('/', function(req, res) {
 });
 // 로그아웃 처리
 app.get('/auth/logout', (req, res) => {
-    delete req.session.user;
-    res.redirect('/signupka');
-    console.log(req.session.authData);
-    console.log("로그아웃");
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('세션 제거 중 오류 발생:', err);
+        }
+        // 로그아웃 후 홈페이지 또는 다른 페이지로 리디렉션할 수 있습니다.
+        res.redirect('/');
+    });
 });
 
 
@@ -191,6 +218,11 @@ app.get('/auth/kakao/callback', async(req, res) => {
     try {
         const kakaoUserInfo = user.data;
         const { kakaoId } = kakaoUserInfo.id;
+
+        // 카카오로부터 받아온 사용자 정보를 로컬 스토리지에 저장
+        localStorage.setItem('kakaoId', kakaoId);
+        localStorage.setItem('username', kakaoUserInfo.properties.nickname);
+
         // 카카오로부터 받아온 사용자 정보
         let user = await User.findOne({ kakaoId });
         if (user) {
@@ -231,8 +263,6 @@ app.get('/auth/kakao/callback', async(req, res) => {
     console.log(user);
     res.redirect('/');
 });
-
-
 
 const userSchema = new mongoose.Schema({ kakaoId: String, username: String, accessToken: String });
 const user = mongoose.model('user', userSchema);
