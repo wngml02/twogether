@@ -53,7 +53,7 @@ app.get('/signup', function(req, res) {
 app.get('/login', loggedin2, function(req, res) {
     res.render('login.html');
 });
-app.get('/namuGrow', loggedin, namuheart, function(req, res) {
+app.get('/namuGrow', loggedin, function(req, res) {
     res.render('namuGrow.html');
 });
 app.get('/myPage', function(req, res) {
@@ -77,7 +77,6 @@ app.get('/get-variable2', (req, res) => {
     const variableValue2 = req.query.variable2;
     res.json({ variable2: variableValue2 });
 });
-
 
 function loggedin(req, res, next) {
     if (req.session.kakao) {
@@ -106,6 +105,10 @@ app.get('/loginclick', (req, res) => {
         res.redirect('/signupka');
     }
 });
+app.get('/get-data', (req, res) => {
+    res.json(jsonData);
+});
+
 function namuheart(req, res) {
     const savedKakaoId = localStorage.getItem('kakaoId');
     const savedUsername = localStorage.getItem('username');
@@ -115,7 +118,7 @@ function namuheart(req, res) {
         return { kakaoId: savedKakaoId, username: savedUsername };
     } else {
         return { error: 'No data found' };
-}
+    }
 }
 
 app.get('/', function(req, res) {
@@ -135,6 +138,7 @@ app.get('/auth/logout', (req, res) => {
         res.redirect('/');
     });
 });
+
 
 
 const User = require('./models/Users.js');
@@ -180,7 +184,7 @@ app.get('/auth/kakao', (req, res) => {
     res.redirect(kakaoAuthURL);
 })
 
-
+let jsonData = null;
 app.get('/auth/kakao/callback', async(req, res) => {
     //axios>>promise object
     try { //access토큰을 받기 위한 코드
@@ -220,8 +224,7 @@ app.get('/auth/kakao/callback', async(req, res) => {
         const { kakaoId } = kakaoUserInfo.id;
 
         // 카카오로부터 받아온 사용자 정보를 로컬 스토리지에 저장
-        localStorage.setItem('kakaoId', kakaoId);
-        localStorage.setItem('username', kakaoUserInfo.properties.nickname);
+
 
         // 카카오로부터 받아온 사용자 정보
         let user = await User.findOne({ kakaoId });
@@ -230,6 +233,11 @@ app.get('/auth/kakao/callback', async(req, res) => {
         };
         // 예시에서 가정한 변수
 
+
+        // JSON 데이터를 전역 변수에 저장
+        //Object.assign(jsonData, newData);
+
+        console.log('데이터를 설정하고 전달했습니다.');
         // 사용자 정보를 MongoDB에 저장
         const newUser = new User({
             kakaoId: kakaoUserInfo.id,
@@ -242,6 +250,8 @@ app.get('/auth/kakao/callback', async(req, res) => {
                 id: user.id,
             },
         };
+
+
         // json web token 생성하여 send 해주기
         jwt.sign(
             payload, // 변환할 데이터
@@ -259,8 +269,10 @@ app.get('/auth/kakao/callback', async(req, res) => {
 
     res.setHeader('Set-Cookie', `login=${user.data.id}`);
     req.session.kakao = user.data;
-
     console.log(user);
+    jsonData = {
+        id: user.data.id,
+    };
     res.redirect('/');
 });
 
@@ -271,10 +283,16 @@ module.exports = user;
 //채연아 여기가 나무야
 
 app.get(kakao.redirectUri);
+app.get('/get-data', (req, res) => {
+    res.json(jsonData);
+    const dataToUse = jsonData;
 
+    res.json(dataToUse);
+});
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
+
 /*
 app.get('/login', async(req, res) => {
     try {
