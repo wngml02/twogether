@@ -13,8 +13,7 @@
 
 <body>
     <div class="header">
-        <img src="/images/lock.png" type="button" onclick="location.href='/auth/logout'" value="" class="button1" style="float:right;">
-        <img src="/images/unlock.png" id="lock" type="button" value="" onclick="change()" href="" class=" button2 " style="float:right; ">
+        <img src="/images/lock.png" type="button" onclick="location.href='/loginclick'" value="" class="button1" style="float:right;">
         <nav>
             <ul class="menubar ">
                 <span class="menu1 "> <a href="/ ">홈</a></span>
@@ -41,15 +40,16 @@
     </div>
     <script>
         var tmp = 0;
-        $('.button2').click(function change() {
+
+        function change() {
             if (tmp == 0) {
                 document.getElementById("lock ").href = "/login ";
                 tmp = tmp + 1;
             } else {
                 document.getElementById("lock ").href = "/auth/logout ";
                 tmp = tmp - 1;
-            }
-        });
+            };
+        };
     </script>
 </body>
 
