@@ -67,74 +67,164 @@
 
         const boxClassNames = [".box", ".box", ".box", ".box", ".box", ".box"];
 
-        // 박스 안에 관광지 정보 표시
-        function getPlace(apiUrlWithPageNo, boxClass) {
+        /*
+        function getRandomPlaces(apiUrlWithPageNo, boxClass, numberOfRandomPlaces) {
             fetch(apiUrlWithPageNo)
                 .then(response => response.json())
                 .then(data => {
-                    const box = document.querySelector(boxClass);
-                    box.innerHTML = "";
-                    box.className = data.response.body.items.item[0].addr;
-                    box.style.backgroundColor = "white";
-                    box.style.border = " #E9f1E5 solid 40px";
-                    box.style.borderRadius = " 20 px";
-                    box.style.fontSize = " 10 px";
-                    box.style.color = "#000000";
+                    const boxContainer = document.querySelector(boxClass);
+                    boxContainer.innerHTML = ""; // 박스 컨테이너 초기화
 
-                    const title = document.createElement("div");
-                    title.textContent = data.response.body.items.item[0].title;
-                    title.className = data.response.body.items.item[0].title;
-                    title.style.fontSize = "30px";
-                    title.style.textAlign = "center";
-                    title.style.lineHeight = "40px";
-                    title.style.fontWeight = "bold";
-                    title.style.margin = "30px";
-                    title.style.color = "#42855B"
+                    const allPlaces = data.response.body.items.item;
 
-                    //const mainimage = document.createElement("div");
-                    //mainimage.innerHTML = `<div><img src ="${data.response.body.items.item[0].mainimage}" style: "width:50px; height:20px"></div>`;
-                    //mainimage.style.width = "50px";
-                    //mainimage.style.height = "10px";
+                    // 6개의 랜덤 관광지 정보를 가져오도록 호출
+                    const numberOfRandomPlaces = 6;
 
-                    const addr = document.createElement("div");
-                    addr.textContent = "📌 " + data.response.body.items.item[0].addr;
-                    addr.style.fontSize = "20px";
-                    addr.style.fontWeight = "bold";
-                    addr.style.margin = "10px";
+                    if (allPlaces.length > 0) {
+                        const randomPlaces = getRandomItems(allPlaces, numberOfRandomPlaces);
 
-                    const summary = document.createElement("div");
-                    const originalSummary = data.response.body.items.item[0].summary;
+                        randomPlaces.forEach(place => {
+                            const box = document.querySelector(boxClass);
+                            box.innerHTML = "";
+                            box.className = data.response.body.items.item[0].addr;
+                            box.style.backgroundColor = "white";
+                            box.style.border = " #E9f1E5 solid 40px";
+                            box.style.borderRadius = " 20 px";
+                            box.style.fontSize = " 10 px";
+                            box.style.color = "#000000";
 
-                    summary.style.fontSize = "20px";
+                            const title = document.createElement("div");
+                            title.textContent = data.response.body.items.item[0].title;
+                            title.className = data.response.body.items.item[0].title;
+                            title.style.fontSize = "30px";
+                            title.style.textAlign = "center";
+                            title.style.lineHeight = "40px";
+                            title.style.fontWeight = "bold";
+                            title.style.margin = "30px";
+                            title.style.color = "#42855B"
 
-                    // 최대 10줄까지 표시
-                    const maxLines = 10;
-                    const summaryLines = originalSummary.split("\n");
-                    if (summaryLines.length <= maxLines) {
-                        // 10줄 이하인 경우 전체 내용 표시
-                        summary.textContent = originalSummary;
-                    } else {
-                        // 10줄을 넘는 경우 생략 부호 포함하여 10줄까지만 표시
-                        summary.textContent = summaryLines.slice(0, maxLines).join("\n") + " (...)"; // 생략 부호 추가
+                            const addr = document.createElement("div");
+                            addr.textContent = "📌 " + data.response.body.items.item[0].addr;
+                            addr.style.fontSize = "20px";
+                            addr.style.fontWeight = "bold";
+                            addr.style.margin = "10px";
+
+                            const summary = document.createElement("div");
+                            const originalSummary = data.response.body.items.item[0].summary;
+
+                            summary.style.fontSize = "20px";
+
+                            // 최대 10줄까지 표시
+                            const maxLines = 10;
+                            const summaryLines = originalSummary.split("\n");
+                            if (summaryLines.length <= maxLines) {
+                                // 10줄 이하인 경우 전체 내용 표시
+                                summary.textContent = originalSummary;
+                            } else {
+                                // 10줄을 넘는 경우 생략 부호 포함하여 10줄까지만 표시
+                                summary.textContent = summaryLines.slice(0, maxLines).join("\n") + " (...)"; // 생략 부호 추가
+                            }
+
+                            summary.style.whiteSpace = "pre-line"; // 텍스트가 여러 줄로 표시되도록 설정
+                            summary.style.overflow = "hidden"; // 내용이 넘칠 경우 숨김 처리
+                            summary.style.maxHeight = "35em"; // 최대 높이 지정
+
+                            // html 태그 보여지는 현상 삭제
+                            function removeHtmlTags(input) {
+                                return input.replace(/<\/?[^>]+(>|$)/g, "");
+                            }
+
+                            // HTML 태그 제거
+                            const cleanedSummary = removeHtmlTags(originalSummary);
+                            summary.textContent = cleanedSummary;
+
+                            box.appendChild(title);
+                            box.appendChild(addr);
+                            box.appendChild(summary);
+                        });
                     }
+                })
+                .catch(error => console.log("fetch 에러:", error));
+        }
+    */
 
-                    summary.style.whiteSpace = "pre-line"; // 텍스트가 여러 줄로 표시되도록 설정
-                    summary.style.overflow = "hidden"; // 내용이 넘칠 경우 숨김 처리
-                    summary.style.maxHeight = "35em"; // 최대 높이 지정
 
-                    // html 태그 보여지는 현상 삭제
-                    function removeHtmlTags(input) {
-                        return input.replace(/<\/?[^>]+(>|$)/g, "");
-                    }
+        // 박스 안에 관광지 정보 표시
+        function getPlace(apiUrlWithPageNo, boxContainerClass) {
+            fetch(apiUrlWithPageNo)
+                .then(response => response.json())
+                .then(data => {
+                    const boxContainer = document.querySelector(boxContainerClass);
+                    boxContainer.innerHTML = "";
 
-                    // HTML 태그 제거
-                    const cleanedSummary = removeHtmlTags(originalSummary);
-                    summary.textContent = cleanedSummary;
+                    const items = data.response.body.items.item;
 
-                    box.appendChild(title);
-                    //box.appendChild(mainimage);
-                    box.appendChild(addr);
-                    box.appendChild(summary);
+                    items.forEach(item => {
+                        const box = document.createElement("div");
+                        box.className = data.response.body.items.item[0].addr;
+                        box.style.backgroundColor = "white";
+                        box.style.border = " #E9f1E5 solid 40px";
+                        box.style.borderRadius = " 20 px";
+                        box.style.fontSize = " 10 px";
+                        box.style.color = "#000000";
+
+                        const title = document.createElement("div");
+                        title.textContent = data.response.body.items.item[0].title;
+                        title.className = data.response.body.items.item[0].title;
+                        title.style.fontSize = "30px";
+                        title.style.textAlign = "center";
+                        title.style.lineHeight = "40px";
+                        title.style.fontWeight = "bold";
+                        title.style.margin = "30px";
+                        title.style.color = "#42855B"
+
+                        //const mainimage = document.createElement("div");
+                        //mainimage.innerHTML = `<div><img src ="${data.response.body.items.item[0].mainimage}" style: "width:50px; height:20px"></div>`;
+                        //mainimage.style.width = "50px";
+                        //mainimage.style.height = "10px";
+
+                        const addr = document.createElement("div");
+                        addr.textContent = "📌 " + data.response.body.items.item[0].addr;
+                        addr.style.fontSize = "20px";
+                        addr.style.fontWeight = "bold";
+                        addr.style.margin = "10px";
+
+                        const summary = document.createElement("div");
+                        const originalSummary = data.response.body.items.item[0].summary;
+
+                        summary.style.fontSize = "20px";
+
+                        // 최대 10줄까지 표시
+                        const maxLines = 10;
+                        const summaryLines = originalSummary.split("\n");
+                        if (summaryLines.length <= maxLines) {
+                            // 10줄 이하인 경우 전체 내용 표시
+                            summary.textContent = originalSummary;
+                        } else {
+                            // 10줄을 넘는 경우 생략 부호 포함하여 10줄까지만 표시
+                            summary.textContent = summaryLines.slice(0, maxLines).join("\n") + " (...)"; // 생략 부호 추가
+                        }
+
+                        summary.style.whiteSpace = "pre-line"; // 텍스트가 여러 줄로 표시되도록 설정
+                        summary.style.overflow = "hidden"; // 내용이 넘칠 경우 숨김 처리
+                        summary.style.maxHeight = "35em"; // 최대 높이 지정
+
+                        // html 태그 보여지는 현상 삭제
+                        function removeHtmlTags(input) {
+                            return input.replace(/<\/?[^>]+(>|$)/g, "");
+                        }
+
+                        // HTML 태그 제거
+                        const cleanedSummary = removeHtmlTags(originalSummary);
+                        summary.textContent = cleanedSummary;
+
+                        box.appendChild(title);
+                        //box.appendChild(mainimage);
+                        box.appendChild(addr);
+                        box.appendChild(summary);
+
+                        boxContainer.appendChild(box);
+                    });
                 })
                 .catch(error => console.log("fetch 에러:", error));
         }
