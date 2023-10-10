@@ -1,7 +1,7 @@
 [build]
   base = "/"
   command = "npm start"
-  publish = "/dist/"
+  publish = "/mainApp/"
   functions = "functions/"
   [build.environment]
     NODE_VERSION = "18"
