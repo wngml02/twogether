@@ -23,34 +23,35 @@ function xmlToJson(xml) {
           }
       }
   } else if (xml.nodeType == 3) { // text
-      obj = xml.nodeValue;
+      obj = xml.nodeValue.trim();
   }
 
-  var textNodes = [].slice.call(xml.childNodes).filter(function(node) {
-    return node.nodeType === 3;
+  var textNodes = [].slice.call(xml.childNodes).filter(function (node) {
+      return node.nodeType === 3;
   });
   if (xml.hasChildNodes() && xml.childNodes.length === textNodes.length) {
-    obj = [].slice.call(xml.childNodes).reduce(function(text, node) {
-      return text + node.nodeValue;
-    }, "");
+      obj = [].slice.call(xml.childNodes).reduce(function (text, node) {
+          return text + node.nodeValue.trim();
+      }, "");
   } else if (xml.hasChildNodes()) {
-    for (var i = 0; i < xml.childNodes.length; i++) {
-      var item = xml.childNodes.item(i);
-      var nodeName = item.nodeName;
-      if (typeof obj[nodeName] == "undefined") {
-        obj[nodeName] = xmlToJson(item);
-      } else {
-        if (typeof obj[nodeName].push == "undefined") {
-          var old = obj[nodeName];
-          obj[nodeName] = [];
-          obj[nodeName].push(old);
-        }
-        obj[nodeName].push(xmlToJson(item));
+      for (var i = 0; i < xml.childNodes.length; i++) {
+          var item = xml.childNodes.item(i);
+          var nodeName = item.nodeName;
+          if (typeof obj[nodeName] == "undefined") {
+              obj[nodeName] = xmlToJson(item);
+          } else {
+              if (typeof obj[nodeName].push == "undefined") {
+                  var old = obj[nodeName];
+                  obj[nodeName] = [];
+                  obj[nodeName].push(old);
+              }
+              obj[nodeName].push(xmlToJson(item));
+          }
       }
-    }
   }
   return obj;
 }
+
 
 const getXMLfromAPI = async () => {
   try {
@@ -69,15 +70,24 @@ const getXMLfromAPI = async () => {
 // 검색 기능
 
 function searchTourismInfo() {
-  var searchInput = document.getElementById('searchInput').value;
+  var searchInput = document.getElementById('sh').value;
   var apiUrl = url + queryParams + '&trsmicNm=' + encodeURIComponent(searchInput);
-  
+
+  console.log(apiUrl); // 디버깅 위한 콘솔
+
   fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-          // 데이터를 HTML에 렌더링
+      .then(response => response.text())
+      .then(xmlString => {
+          let XmlNode = new DOMParser().parseFromString(xmlString, "text/xml");
+          let jsonData = xmlToJson(XmlNode);
+          console.log(jsonData); // 디버깅 위한 콘솔
+
           const apiDataElement = document.getElementById('ntic');
-          apiDataElement.innerHTML = JSON.stringify(data, null, 2);
+          if (jsonData.response.header.resultCode === "03") {
+              apiDataElement.innerHTML = "검색 결과가 없습니다.";
+          } else {
+              apiDataElement.innerHTML = JSON.stringify(jsonData, null, 2);
+          }
       })
       .catch(error => {
           console.error('API 요청 중 오류 발생:', error);
