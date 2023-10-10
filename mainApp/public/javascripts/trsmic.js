@@ -91,7 +91,7 @@ function searchTourismInfo() {
           if (jsonData.response.header.resultCode === "03") {
               apiDataElement.innerHTML = "검색 결과가 없습니다.";
           } else {
-              apiDataElement.innerHTML = JSON.stringify(jsonData, null, 2);
+              apiDataElement.innerText = JSON.stringify(jsonData, null, 2);
           }
       })
       .catch(error => {
