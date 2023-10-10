@@ -2,7 +2,7 @@
   base = "/"
   command = "npm start"
   publish = "/mainApp/"
-  functions = "functions/"
+  functions = "functions"
   [build.environment]
     NODE_VERSION = "18"
 [functions]
@@ -10,6 +10,6 @@
   node_bundler = "esbuild"
 [[redirects]]
   force = true
-  from = "/"
-  to = "/"
+  from = "/api/*"
   status = 200
+  to = "/.netlify/functions/api/:splat"
