@@ -11,5 +11,5 @@
 [[redirects]]
   force = true
   from = "/*"
-  to = "/app.js"
+  to = "/main.html"
   status = 200
