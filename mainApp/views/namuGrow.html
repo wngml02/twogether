@@ -38,43 +38,43 @@
                     <ion-icon name="heart" class="heart">
                         <div class='red-bg'></div>
                     </ion-icon>
-                    <span class="todo">쓰레기 줍기</span>
+                    <span class="todo" data-key="쓰레기 줍기">쓰레기 줍기</span>
                 </div>
                 <div class='large-font text-center top-20'>
                     <ion-icon name="heart" class="heart">
                         <div class='red-bg'></div>
                     </ion-icon>
-                    <span class="todo">텀블러 사용하기</span>
+                    <span class="todo" data-key="텀블러 사용하기">텀블러 사용하기</span>
                 </div>
                 <div class='large-font text-center top-20'>
                     <ion-icon name="heart" class="heart">
                         <div class='red-bg'></div>
                     </ion-icon>
-                    <span class="todo">포장용기 직접 가져오기</span>
+                    <span class="todo" data-key="포장용기 직접 가져오기">포장용기 직접 가져오기</span>
                 </div>
                 <div class='large-font text-center top-20'>
                     <ion-icon name="heart" class="heart">
                         <div class='red-bg'></div>
                     </ion-icon>
-                    <span class="todo">대중교통 이용하기</span>
+                    <span class="todo" data-key="대중교통 이용하기">대중교통 이용하기</span>
                 </div>
                 <div class='large-font text-center top-20'>
                     <ion-icon name="heart" class="heart">
                         <div class='red-bg'></div>
                     </ion-icon>
-                    <span class="todo">친환경 관광지 방문하기</span>
+                    <span class="todo" data-key="친환경 관광지 방문하기">친환경 관광지 방문하기</span>
                 </div>
                 <div class='large-font text-center top-20'>
                     <ion-icon name="heart" class="heart">
                         <div class='red-bg'></div>
                     </ion-icon>
-                    <span class="todo">봉지 대신 에코백 사용하기</span>
+                    <span class="todo" data-key="봉지 대신 에코백 사용하기">봉지 대신 에코백 사용하기</span>
                 </div>
                 <div class='large-font text-center top-20'>
                     <ion-icon name="heart" class="heart">
                         <div class='red-bg'></div>
                     </ion-icon>
-                    <span class="todo">녹색매장 이용하기</span>
+                    <span class="todo" data-key="녹색매장 이용하기">녹색매장 이용하기</span>
                 </div>
                 <ul class="items">
                     <div class="item--add--icon">
@@ -106,13 +106,50 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
         //하트 아이콘 js
+        const todoSpans = document.querySelectorAll('.todo');
+
+        // 각각의 span 요소의 내용을 키로 사용하여 데이터를 localStorage에 저장합니다.
+        /*todoSpans.forEach(function(span) {
+            const key = span.textContent.trim();
+            const value = ''; // 저장할 값을 가져오거나 생성합니다.
+            localStorage.setItem(key, value);
+        });*/
+
         const icons = document.querySelectorAll('ion-icon');
         icons.forEach(icon => {
+            const todoElement = icon.nextElementSibling;
+
+            // .todo 엘리먼트의 내용을 가져와서 키로 사용합니다.
+            const key = todoElement.getAttribute('data-key');
+
+            // localStorage에서 해당 키의 값 가져오기
+            const value = localStorage.getItem(key);
+
+            if (value == 'click') {
+                // 값이 "click"인 경우 .heart 아이콘에 "active" 클래스 추가
+                icon.classList.add('active');
+            }
+        });
+        icons.forEach(icon => {
             icon.addEventListener('click', () => {
-                icon.classList.toggle('active');
+                const todoElement = icon.nextElementSibling;
+                const keyToChange = todoElement.textContent.trim();
+                const currentValue = localStorage.getItem(keyToChange);
+                // 변경하려는 키
+                const newValue = currentValue === 'click' ? 'unclick' : 'click'; // 새로운 값
+                const oldValue = localStorage.getItem(keyToChange);
+                localStorage.setItem(keyToChange, newValue);
+                // 변경된 값을 화면에 표시하거나 다른 작업을 수행할 수 있습니다.
+                alert(`키 "${keyToChange}"의 값이 변경되었습니다. 새로운 값: "${newValue}"`);
+                if (newValue == 'click') {
+                    icon.classList.add('active');
+                } else {
+                    icon.classList.remove('active');
+                }
             });
 
         });
+
 
         //리스트 추가삭제 js
         const items = document.querySelector('.items');
