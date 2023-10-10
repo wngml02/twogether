@@ -27,6 +27,8 @@ const mysql = require('mysql');
 //var conn = dbConfig.init();
 //dbConfig.connect(conn);
 
+app.use(`/.netlify/functions/api`, router);
+
 // bodyParser를 사용하여 POST 데이터를 파싱합니다.
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
