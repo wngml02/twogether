@@ -76,7 +76,12 @@ function searchTourismInfo() {
   console.log(apiUrl); // 디버깅 위한 콘솔
 
   fetch(apiUrl)
-      .then(response => response.text())
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('네트워크 응답이 실패했습니다.');
+          }
+          return response.text(); // XML 형식으로 받기
+      })
       .then(xmlString => {
           let XmlNode = new DOMParser().parseFromString(xmlString, "text/xml");
           let jsonData = xmlToJson(XmlNode);
