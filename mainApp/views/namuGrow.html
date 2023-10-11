@@ -140,7 +140,6 @@
                 const oldValue = localStorage.getItem(keyToChange);
                 localStorage.setItem(keyToChange, newValue);
                 // 변경된 값을 화면에 표시하거나 다른 작업을 수행할 수 있습니다.
-                alert(`키 "${keyToChange}"의 값이 변경되었습니다. 새로운 값: "${newValue}"`);
                 if (newValue == 'click') {
                     icon.classList.add('active');
                 } else {
