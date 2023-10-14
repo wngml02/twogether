@@ -176,7 +176,7 @@ app.use(session({
 const kakao = {
         clientID: '18f1f5174d57449e61102b40f59207e4',
         clientSecret: 'dsqOVxIa5Hgy9de5wogSDqaGm6COhILH',
-        redirectUri: 'http://localhost:3000/auth/kakao/callback' //임시 uri..???
+        redirectUri: 'https://ecotwogether-23247a9522d0.herokuapp.com/auth/kakao/callback' //임시 uri..???
     }
     //profile account_email
 app.get('/auth/kakao', (req, res) => {
