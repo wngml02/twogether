@@ -126,3 +126,28 @@ span>a {
     color: #90B77D;
     color: #739264;
 }
+
+.table-container {
+    margin-top: 20px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 85%;
+    margin: 50px 80px 50px 100px;
+  }
+  
+  th, td {
+    border: 1px solid #45583c;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #90B77D;
+    color: #ffffff;
+  }
+  
+  a {
+    text-decoration: none;
+  }
