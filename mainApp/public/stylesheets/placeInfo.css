@@ -71,6 +71,7 @@ span>a {
 
 #cafe {
     margin-top: 20px;
+    margin-bottom: 10px;
     order: 0;
     background-color: #ffffff;
     border-radius: 30px;
@@ -100,6 +101,7 @@ span>a {
 #restaurant {
     margin-left: 40px;
     margin-top: 20px;
+    margin-bottom: 10px;
     order: 0;
     background-color: #ffffff;
     border-radius: 30px;
