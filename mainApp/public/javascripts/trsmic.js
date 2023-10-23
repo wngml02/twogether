@@ -41,7 +41,6 @@ const getAllTourismInfo = async() => {
 async function searchTourismInfo() {
     var searchInput = document.getElementById('sh').value;
     console.log(searchInput);
-    location.href = "http://ecotwogether-23247a9522d0.herokuapp.com/scH";
     try {
         // 모든 관광안내소 정보 받아오기
         const allTourismInfo = await getAllTourismInfo();
